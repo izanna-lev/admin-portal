@@ -191,7 +191,7 @@ export const PLANNED_TRAVELLER = [
   },
 ];
 
-// ////////// NAVIGATION CONSTANT ///////////
+//////////// NAVIGATION CONSTANT ///////////
 
 export const NAVIGATE = {
   DASHBOARD: 1,
