@@ -19,6 +19,12 @@ const SideNavBar = () => (
       NAVIGATE.CANCELLED_ITINERARIES,
       "itinerary/cancelled"
     )}
+      {NavigationOption(
+      "Access Management",
+      ICON.ACCESS_MANAGEMENT_INACTIVE,
+      NAVIGATE.ACCESS_MANAGEMENT,
+      "admin/accessSpecialistList"
+    )}
     {NavigationOption(
       "Send Notifications",
       ICON.NOTIFICATIONS_INACTIVE,
