@@ -140,7 +140,7 @@ const AccessManagement = () => {
   };
 
   useEffect(() => {
-    dispatch(Fetch(API.LIST_SPECIALIST, {specialistRef: popup.id}));
+    dispatch(Fetch(API.LIST_SPECIALIST, {}, 1, 10));
   }, [dispatch]);
 
   return (
