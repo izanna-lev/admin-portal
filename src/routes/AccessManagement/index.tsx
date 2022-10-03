@@ -93,7 +93,16 @@ const TableRow = (
         <button
           className="btn view-button specialist-edit"
           onClick={() => {
-
+            navigate(`/admin/editSpecialist/${item._id}`, {
+              state: {
+                id: item._id,
+                name: item.name,
+                email: item.email,
+                phoneNumber: item.phoneNumber,
+                permissions: item.permissions,
+                image: item.image
+              }
+            });
           }}
         >
           <FaRegEdit />
@@ -101,7 +110,7 @@ const TableRow = (
         </button>
         <button
           className="btn view-button specialist-delete"
-          onClick={() => popupUpdate(true,item._id )
+          onClick={() => popupUpdate(true, item._id)
           }
         >
           <RiDeleteBin6Line />
@@ -126,12 +135,12 @@ const AccessManagement = () => {
   });
 
 
-  const popupUpdate = (show: boolean, id:string) => {
-    setPopup({...popup, show, id})
+  const popupUpdate = (show: boolean, id: string) => {
+    setPopup({ ...popup, show, id })
   };
 
   const cancel = () => {
-    setPopup({...popup, show: false, id: ""})
+    setPopup({ ...popup, show: false, id: "" })
   };
 
   const deleteSpecialist = () => {
@@ -194,7 +203,7 @@ const AccessManagement = () => {
           secondButtonText="Cancel"
           firstButtonAction={deleteSpecialist}
           secondButtonAction={cancel}
-           />}
+        />}
         root={document.getElementById("overlay-root") as HTMLElement}
       />}
     </main>
