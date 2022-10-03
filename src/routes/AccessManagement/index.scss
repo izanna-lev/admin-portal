@@ -181,3 +181,24 @@
   padding: 2px 8px;
   border-radius: 8px;
 } 
+
+.text {
+  font-size: 12px;
+  color: $theme_color_8;
+}
+
+.specialist-edit {
+  display: flex;
+  gap: 2px;
+}
+
+.specialist-delete {
+  display: flex;
+  gap: 2px;
+  background-color: red !important;
+  color: $theme_color_white !important;
+}
+  
+.specialist-delete:hover {
+  background-color: yellow;
+}

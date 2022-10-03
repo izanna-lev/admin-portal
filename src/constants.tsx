@@ -92,6 +92,7 @@ export const API = {
 
   LIST_SPECIALIST: `${API_URL}admin/accessSpecialistList`,
   CREATE_SPECIALIST: `${API_URL}admin/createSpecialist`,
+  DELETE_SPECIALIST: `${API_URL}admin/deleteSpecialist`,
 };
 
 type IconOptions = {

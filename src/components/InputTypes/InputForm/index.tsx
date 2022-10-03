@@ -25,6 +25,7 @@ const InputForm = ({ inputFields }: InputProps) => {
         max={inputFields.max}
         className={styles["field-value"]}
         ref={inputFields.ref}
+        value="yo"
         onChange={(e) =>
           inputFields.onChange && inputFields.onChange(e.target.value)
         }
