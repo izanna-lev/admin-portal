@@ -20,10 +20,16 @@ const EditSpecialist = () => {
   const location: any = useLocation();
   const navigate = useNavigate();
 
-  if (!location.state.id) {
-    navigate("/admin/accessSpecialistList")
-  }
-  console.log("-----------", location.state)
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/admin/accessSpecialistList")
+    }
+    if (location.state?.image) {
+      const myMaybeNullElement = window.document.getElementById("specialistImage")
+      myMaybeNullElement!.style.background = "url(" + IMAGE.SMALL + location.state.image + ")";
+    }
+  }, []);
+
   const [permissions, setPermissions] = useState({
     createItinerary: location.state?.permissions?.createItinerary || false,
     editItinerary: location.state?.permissions?.editItinerary || false,
@@ -36,6 +42,7 @@ const EditSpecialist = () => {
   const setSpecificPermission = (data: boolean, name: string) => {
     setPermissions({ ...permissions, ...{ [name]: data } })
   };
+
   const apiMessage = useAppSelector((state) => state.apiMessage);
 
 
@@ -44,14 +51,7 @@ const EditSpecialist = () => {
   const phoneRef = useRef();
 
   const dispatch = useAppDispatch();
-  useEffect(() => {
-    console.log("----location.state-------",)
 
-    if (location.state.image) {
-      const myMaybeNullElement = window.document.getElementById("specialistImage")
-      myMaybeNullElement!.style.background = "url(" + IMAGE.SMALL + location.state.image+ ")";
-    }
-  }, []);
 
   const imageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -72,7 +72,7 @@ const EditSpecialist = () => {
       specialistRef: location.state.id
     };
 
-     dispatch(Create(API.EDIT_SPECIALIST, data, true, selectedImage));
+    dispatch(Create(API.EDIT_SPECIALIST, data, true, selectedImage));
   };
 
   if (apiMessage.type === "success") navigate("/admin/accessSpecialistList");
@@ -120,7 +120,7 @@ const EditSpecialist = () => {
               id: "name",
               maxlength: 30,
               type: "text",
-              value: location.state.name
+              value: location.state?.name
             }}
           />
           <InputForm
@@ -131,7 +131,7 @@ const EditSpecialist = () => {
               id: "email",
               maxlength: 30,
               type: "email",
-              value: location.state.email
+              value: location.state?.email
             }}
           />
 
@@ -143,7 +143,7 @@ const EditSpecialist = () => {
               id: "tel",
               maxlength: 30,
               type: "tel",
-              value: location.state.phoneNumber
+              value: location.state?.phoneNumber
             }}
           />
 
