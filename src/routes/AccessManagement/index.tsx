@@ -146,6 +146,7 @@ const AccessManagement = () => {
   const deleteSpecialist = () => {
     dispatch(DeleteEntity(API.DELETE_SPECIALIST, { specialistRef: popup.id }));
     cancel()
+    window.location.reload()
   };
 
   useEffect(() => {

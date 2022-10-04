@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { API } from "../../constants";
 
 interface listObject {
+  _id: string
   name: string
   email: string
   phoneNumber: string
