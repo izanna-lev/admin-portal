@@ -13,7 +13,9 @@ const Login = loadable(() => import("./Login"));
 const Profile = loadable(() => import("./Profile"));
 const SendNotifications = loadable(() => import("./Notifications"));
 const CancelledItineraries = loadable(() => import("./CancelledItineraries"));
-
+const AccessManagement = loadable(() => import("./AccessManagement"));
+const CreateSpecialist = loadable(() => import("./CreateSpecialist"));
+const EditSpecialist = loadable(() => import("./EditSpecialist"));
 const Activities = loadable(() => import("./CreateItinerary/Activities"));
 const Accomodation = loadable(() => import("./CreateItinerary/Accomodation"));
 const AddItinerary = loadable(
@@ -47,6 +49,15 @@ const App = () => (
           <Route path="summary" element={<Activities />} />
         </Route>
       </Route>
+
+      <Route path="admin" >
+        <Route index element={<AccessManagement />} />
+        <Route path="accessSpecialistList" element={<AccessManagement />} />
+        <Route path="createSpecialist" element={<CreateSpecialist />} />
+        <Route path="editSpecialist/:specialistRef" element={<EditSpecialist />} />
+
+      </Route>
+
       <Route path="profile" element={<Profile />} />
       <Route path="notifications" element={<SendNotifications />} />
       <Route path="chat">

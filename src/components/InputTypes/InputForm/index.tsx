@@ -9,6 +9,7 @@ type InputProps = {
     placeholder?: string;
     max?: number;
     ref?: any;
+    value?: any;
     default?: string;
     onChange?: Function;
   };
@@ -25,11 +26,12 @@ const InputForm = ({ inputFields }: InputProps) => {
         max={inputFields.max}
         className={styles["field-value"]}
         ref={inputFields.ref}
+        
         onChange={(e) =>
           inputFields.onChange && inputFields.onChange(e.target.value)
         }
         placeholder={inputFields.placeholder}
-        defaultValue={inputFields.default}
+        defaultValue={inputFields.value || inputFields.default}
         autoFocus
         required
       />

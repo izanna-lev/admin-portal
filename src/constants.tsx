@@ -9,7 +9,7 @@
 // const S3_URL = process.env.S3_URL;
 
 const SERVER_TYPE = "development/";
-const API_URL = "http://44.209.25.93:3000/api/";
+const API_URL = "http://localhost:3001/api/";
 const S3_URL = "https://app-onsite.s3.amazonaws.com/";
 
 // Custom Environment Variables
@@ -87,6 +87,13 @@ export const API = {
   // Upload Image
 
   IMAGE_UPLOAD: `${API_URL}transportation/upload`,
+
+    // ACCESS MANAGEMENT
+
+  LIST_SPECIALIST: `${API_URL}admin/accessSpecialistList`,
+  CREATE_SPECIALIST: `${API_URL}admin/createSpecialist`,
+  EDIT_SPECIALIST: `${API_URL}admin/editSpecialist`,
+  DELETE_SPECIALIST: `${API_URL}admin/deleteSpecialist`,
 };
 
 type IconOptions = {
@@ -198,6 +205,15 @@ export const NAVIGATE = {
   ITINERARY: 2,
   CHAT: 3,
   CANCELLED_ITINERARIES: 4,
-  NOTIFICATION: 5,
-  PROFILE: 6,
+  ACCESS_MANAGEMENT: 5,
+  NOTIFICATION: 6,
+  PROFILE: 7,
 };
+
+
+export const PERMISSIONS_STRING : { [key: string]: any } = {
+  "createItinerary": "Create Itinerary",
+  "editItinerary": "Edit Itinerary",
+  "cancelItinerary": "Cancel Itinerary",
+  "sendNotifications": "Send Notifications",
+}

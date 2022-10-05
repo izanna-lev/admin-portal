@@ -11,3 +11,5 @@ export { default as notes } from "./notes";
 export { default as profile } from "./profile";
 export { default as reservation } from "./reservation";
 export { default as transportation } from "./transportation";
+export { default as specialists } from "./accessManagement";
+
