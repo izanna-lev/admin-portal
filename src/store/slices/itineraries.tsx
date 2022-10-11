@@ -4,6 +4,7 @@ import { API } from "../../constants";
 interface listObject {
   _id: string;
   name: string;
+  userName: string,
   price: number;
   description: string;
   duration: string;

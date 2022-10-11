@@ -18,7 +18,8 @@ export const store = configureStore({
     profile: reducers.profile,
     reservation: reducers.reservation,
     transportation: reducers.transportation,
-    specialists: reducers.specialists
+    specialists: reducers.specialists,
+    specialistList: reducers.specialistsList
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>

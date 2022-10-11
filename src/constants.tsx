@@ -42,9 +42,14 @@ export const API = {
   PROFILE: `${API_URL}specialist/details`,
   DASHBOARD: `${API_URL}specialist/dashboard`,
 
+  
+  // Specialist (List & Actions)
+  SPECIALIST_LIST: `${API_URL}admin/specialistList`,
+  ASSIGN_SPECIALIST: `${API_URL}admin/assignSpecialist`,
+
   // Itinerary (List & Actions)
 
-  ITINERARIES: `${API_URL}itinerary/list`,
+  ITINERARIES: `${API_URL}admin/itinerariesList`,
   ITINERARY_ADD: `${API_URL}itinerary/add`,
   ITINERARY_DETAILS: `${API_URL}itinerary/details`,
 
@@ -94,6 +99,9 @@ export const API = {
   CREATE_SPECIALIST: `${API_URL}admin/createSpecialist`,
   EDIT_SPECIALIST: `${API_URL}admin/editSpecialist`,
   DELETE_SPECIALIST: `${API_URL}admin/deleteSpecialist`,
+
+  // ITINERARIES
+  LIST_ITINERARIES: `${API_URL}specialist/cancelRequestList`
 };
 
 type IconOptions = {
@@ -148,6 +156,7 @@ export const ITINERARY_STATUS: ItineraryOptions = {
   3: "Cancelled",
   4: "Pending",
   5: "Completed",
+  6: "Expired"
 };
 
 export const TRAVELER_ITINERARY_DETAILS = {

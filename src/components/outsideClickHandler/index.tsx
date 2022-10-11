@@ -16,6 +16,7 @@ export default function useComponentVisible(initialIsVisible: boolean) {
         }
     };
 
+    console.log("===========")
     useEffect(() => {
         document.addEventListener('keydown', handleHideDropdown, true);
         document.addEventListener('click', handleClickOutside, true);
