@@ -79,7 +79,7 @@ const TableRow = (
               handleDropDown(item._id);
             }} />
           {userDropdown === item._id &&
-            <ul className="specialist-user-list" ref={ref}>
+            <div className="specialist-user-list" ref={ref}>
               {
                 userList.map((user: any) => {
                   return <option
@@ -93,7 +93,7 @@ const TableRow = (
                    >{user.name}</option>
                 })
               }
-            </ul>}
+            </div>}
 
         </div></td>
       <td>
