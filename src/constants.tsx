@@ -101,7 +101,12 @@ export const API = {
   DELETE_SPECIALIST: `${API_URL}admin/deleteSpecialist`,
 
   // ITINERARIES
-  LIST_ITINERARIES: `${API_URL}specialist/cancelRequestList`
+  LIST_ITINERARIES: `${API_URL}specialist/cancelRequestList`,
+
+
+  //NOTIFICATIONS
+  LIST_USERS: `${API_URL}notification/userSelectList`
+
 };
 
 type IconOptions = {
@@ -226,3 +231,9 @@ export const PERMISSIONS_STRING : { [key: string]: any } = {
   "cancelItinerary": "Cancel Itinerary",
   "sendNotifications": "Send Notifications",
 }
+
+export const USER_TYPES_NOTIFICATION = {
+  TRAVELLER: 1,
+  SPECIALIST: 2,
+  ALL: 3,
+};

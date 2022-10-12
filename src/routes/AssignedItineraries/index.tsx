@@ -97,8 +97,8 @@ const TableRow = (
 
         </div></td>
       <td>
-        <div className="table-data-status">
-          {ITINERARY_STATUS[item.status]}
+        <div className={`table-data-status ${item.blockedByTraveller? 'blocked': ""}`}>
+          { item.blockedByTraveller ? "Blocked" :ITINERARY_STATUS[item.status]}
         </div>
       </td>
       <td>

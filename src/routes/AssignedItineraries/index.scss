@@ -199,3 +199,8 @@
 .specialist-user-list > option:hover {
   background-color: $theme_color_light_blue_2x;
 }
+
+.blocked {
+  background-color: red;
+  color: white;
+}
