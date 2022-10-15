@@ -7,7 +7,7 @@ const SideNavBar = () => (
   <nav className={`${styles["navigation-sidebar"]} `}>
     {NavigationOption("Dashboard", ICON.DASHBOARD_INACTIVE, NAVIGATE.DASHBOARD)}
     {NavigationOption(
-      "Assigned Itineraries",
+      "Itineraries",
       ICON.ITINERARIES_INACTIVE,
       NAVIGATE.ITINERARY,
       "itinerary/list"
