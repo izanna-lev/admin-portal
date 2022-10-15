@@ -15,10 +15,6 @@ const ProfilePage = () => {
   const profileData = useAppSelector((state) => state.profile);
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(SET_NAVIGATION({ value: NAVIGATE.PROFILE }));
-  }, [dispatch]);
-
   return (
     <main className="content-container" id="profilePage">
       <section className="content-top">
@@ -32,7 +28,7 @@ const ProfilePage = () => {
           alt={profileData.name}
         />
         <div className="profile-details">
-          <h4 className="profile-name">{profileData.name}</h4>
+          <h4 className="profile-name">Admin</h4>
           <a href={`mailto:${profileData.email}`} className="profile-text">
             {profileData.email}
           </a>

@@ -38,14 +38,16 @@ export const IMAGE = {
 // All Server API Endpoints
 
 export const API = {
-  LOGIN: `${API_URL}specialist/login`,
+  LOGIN: `${API_URL}admin/login`,
   PROFILE: `${API_URL}specialist/details`,
-  DASHBOARD: `${API_URL}specialist/dashboard`,
+  DASHBOARD: `${API_URL}admin/dashboard`,
 
   
   // Specialist (List & Actions)
   SPECIALIST_LIST: `${API_URL}admin/specialistList`,
   ASSIGN_SPECIALIST: `${API_URL}admin/assignSpecialist`,
+  USER_SPECIALIST: `${API_URL}admin/userList`,
+
 
   // Itinerary (List & Actions)
 
@@ -216,12 +218,12 @@ export const PLANNED_TRAVELLER = [
 
 export const NAVIGATE = {
   DASHBOARD: 1,
-  ITINERARY: 2,
-  CHAT: 3,
-  CANCELLED_ITINERARIES: 4,
-  ACCESS_MANAGEMENT: 5,
-  NOTIFICATION: 6,
-  PROFILE: 7,
+  TRAVELELRS: 2,
+  ITINERARY: 3,
+  CHAT: 4,
+  CANCELLED_ITINERARIES: 5,
+  ACCESS_MANAGEMENT: 6,
+  NOTIFICATION: 7,
 };
 
 

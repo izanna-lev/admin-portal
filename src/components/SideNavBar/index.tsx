@@ -6,6 +6,7 @@ import { NAVIGATE } from "../../constants";
 const SideNavBar = () => (
   <nav className={`${styles["navigation-sidebar"]} `}>
     {NavigationOption("Dashboard", ICON.DASHBOARD_INACTIVE, NAVIGATE.DASHBOARD)}
+    {NavigationOption("Travellers", ICON.PROFILE_INACTIVE, NAVIGATE.TRAVELELRS, "travellers")}
     {NavigationOption(
       "Itineraries",
       ICON.ITINERARIES_INACTIVE,
@@ -31,7 +32,6 @@ const SideNavBar = () => (
       NAVIGATE.NOTIFICATION,
       "notifications"
     )}
-    {NavigationOption("Profile", ICON.PROFILE_INACTIVE, NAVIGATE.PROFILE)}
   </nav>
 );
 
