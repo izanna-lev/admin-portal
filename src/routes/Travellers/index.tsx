@@ -4,15 +4,13 @@
  */
 
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { FaRegEdit } from 'react-icons/fa'
-import dayjs from "dayjs";
-
+import { useEffect, useRef, useState } from "react";
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { AiOutlineSearch } from 'react-icons/ai'
 import {
   IMAGE,
   ICON,
   API,
-  PERMISSIONS_STRING,
 } from "../../constants";
 import { Modal } from "../../components/Portal";
 
@@ -24,6 +22,7 @@ import { Fetch } from "../../api/Fetch";
 import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
+import InputForm from "../../components/InputTypes/InputForm";
 
 
 const TableHead = () => (
@@ -31,9 +30,7 @@ const TableHead = () => (
     <tr className="head-tr">
       <th>Sr.No.</th>
       <th>Itinerary Name</th>
-      <th>User Name</th>
-      <th>No. of guests</th>
-      <th>Assigned Date</th>
+      <th>Email</th>
       <th className="custom-head">Actions</th>
     </tr>
   </thead>
@@ -68,39 +65,31 @@ const TableRow = (
       </td>
       <td>
         <div className="access-management-user">
-        <span className="access-management text">{item.email}</span>
-        <span className="access-management text">{item.phoneNumber}</span>
-      </div></td>
-      <td>
-        {item.plannedTraveller || 0}
-      </td>
-      <td>{dayjs(item.plannedDate).format('DD-MMM-YYYY')}</td>
+          <span className="access-management text">{item.email}</span>
+          <span className="access-management text">{item.phoneNumber}</span>
+        </div></td>
       <td className="specialist-actions">
+        <div className={`table-data-status ${item.blocked ? 'blocked' : ""}`}>
+          {item.blocked ? "Blocked" : "Block"}
+        </div>
         <button
-          className="btn view-button chat-specialist"
+          className=" btn view-button"
           onClick={() => {
-            navigate(`/admin/editSpecialist/${item._id}`, {
-              state: {
-                id: item._id,
-                name: item.name,
-                email: item.email,
-                phoneNumber: item.phoneNumber,
-                permissions: item.permissions,
-                image: item.image
-              }
-            });
+
           }}
         >
-          <FaRegEdit />
-          Chat
+          View Details
         </button>
+
         <button
-          className="btn view-button cancel-itinerary"
+          className="btn view-button specialist-delete"
           onClick={() => popupUpdate(true, item._id)
           }
         >
-          Cancel Itinerary
+          <RiDeleteBin6Line />
+          Delete
         </button>
+
       </td>
     </tr>
 
@@ -110,15 +99,18 @@ const TableRow = (
 const Travellers = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const searchRef = useRef<HTMLInputElement | null>(null);
+  const [text, setText] = useState<any>("");
 
   const { page, limit, size, total, list } = useAppSelector(
-    (state) => state.specialists
+    (state) => state.travellerList
   );
   const [popup, setPopup] = useState({
     id: "",
     show: false
   });
 
+  console.log("-----------_list, list", list)
 
   const popupUpdate = (show: boolean, id: string) => {
     setPopup({ ...popup, show, id })
@@ -134,22 +126,32 @@ const Travellers = () => {
     window.location.reload()
   };
 
+
   useEffect(() => {
-    dispatch(Fetch(API.USER_SPECIALIST, {}, 1, 10));
-  }, [dispatch]);
+    dispatch(Fetch(API.USER_LIST, { text }, 1, 10));
+  }, [dispatch, text]);
 
   return (
     <main className="content-container">
       <section className="content-top">
-        <h2 className="content-heading">Access Management</h2>
-        <button
-          className=" btn view-button create-specialist"
-          onClick={() => {
-            navigate(`/admin/createSpecialist`);
-          }}
-        >
-          Create Specialist
-        </button>
+        <h2 className="content-heading">Travellers</h2>
+        <div className="traveller-search">
+          <input
+            name="Search"
+            type="text"
+            className="traveller-search-input"
+            maxLength={20}
+            placeholder="Search here"
+            ref={searchRef}
+            onChange={(e) => setText(searchRef.current?.value)}
+            autoFocus
+          />
+          <AiOutlineSearch className="search-icon" />
+          <div className="traveller-search-go ">Go</div>
+        </div>
+
+        <div>
+        </div>
       </section>
       {list.length
         ? Pagination({

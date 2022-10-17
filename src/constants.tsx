@@ -46,7 +46,7 @@ export const API = {
   // Specialist (List & Actions)
   SPECIALIST_LIST: `${API_URL}admin/specialistList`,
   ASSIGN_SPECIALIST: `${API_URL}admin/assignSpecialist`,
-  USER_SPECIALIST: `${API_URL}admin/userList`,
+  USER_LIST: `${API_URL}admin/userList`,
 
 
   // Itinerary (List & Actions)

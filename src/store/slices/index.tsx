@@ -14,3 +14,4 @@ export { default as transportation } from "./transportation";
 export { default as specialists } from "./accessManagement";
 export { default as specialistsList } from "./specialistList";
 export { default as NotificationUserList } from "./notification";
+export { default as TravellerList } from "./travellers";
