@@ -75,7 +75,7 @@ const TableRow = (
         <button
           className=" btn view-button"
           onClick={() => {
-
+            navigate(`/travellers/details/${item._id}`)
           }}
         >
           View Details

@@ -48,6 +48,10 @@ export const API = {
   ASSIGN_SPECIALIST: `${API_URL}admin/assignSpecialist`,
   USER_LIST: `${API_URL}admin/userList`,
 
+  //TRAVELLER
+  TRAVELLER_DETAILS: `${API_URL}admin/userDetails`,
+
+
 
   // Itinerary (List & Actions)
 
