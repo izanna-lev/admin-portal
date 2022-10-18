@@ -110,7 +110,6 @@ const Travellers = () => {
     show: false
   });
 
-  console.log("-----------_list, list", list)
 
   const popupUpdate = (show: boolean, id: string) => {
     setPopup({ ...popup, show, id })
@@ -143,15 +142,14 @@ const Travellers = () => {
             maxLength={20}
             placeholder="Search here"
             ref={searchRef}
-            onChange={(e) => setText(searchRef.current?.value)}
             autoFocus
           />
-          <AiOutlineSearch className="search-icon" />
-          <div className="traveller-search-go ">Go</div>
+          <AiOutlineSearch 
+          
+           className="search-icon" />
+          <div   onClick={(e) => setText(searchRef.current?.value)}  className="traveller-search-go">Go</div>
         </div>
 
-        <div>
-        </div>
       </section>
       {list.length
         ? Pagination({

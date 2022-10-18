@@ -6,6 +6,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { FaRegEdit } from 'react-icons/fa'
+import { AiFillStar } from 'react-icons/ai'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import {
   IMAGE,
@@ -83,7 +84,9 @@ const TableRow = (
 
         </div>
       </td>
-      <td>{item.averageRatings || 0}</td>
+      <td className="specialist-ratings">
+      <AiFillStar className="star-rating"/>
+      <div>{item.averageRatings || 0}</div></td>
       <td>
         {item.completedItineraries || 0}
       </td>

@@ -51,8 +51,6 @@ export const API = {
   //TRAVELLER
   TRAVELLER_DETAILS: `${API_URL}admin/userDetails`,
 
-
-
   // Itinerary (List & Actions)
 
   ITINERARIES: `${API_URL}admin/itinerariesList`,
@@ -111,8 +109,8 @@ export const API = {
 
 
   //NOTIFICATIONS
-  LIST_USERS: `${API_URL}notification/userSelectList`
-
+  LIST_USERS: `${API_URL}notification/userSelectList`,
+  BROADCAST: `${API_URL}notification/broadcast`
 };
 
 type IconOptions = {

@@ -5,8 +5,6 @@
 
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaRegEdit } from 'react-icons/fa'
-import dayjs from "dayjs";
 
 import {
   IMAGE,
@@ -44,7 +42,19 @@ const TableRow = (
 
   return (
     <tr className="body-tr" key={index}>
-      <td>{item.name}</td>
+      
+      <td>
+        <div className="name-image-cell">
+          <img
+            className="user-image"
+            src={IMAGE.SMALL + item.image}
+            alt={item.name}
+            onError={(e: any) => {
+              e.target.src = ICON.USER_PLACEHOLDER;
+            }}
+          />
+          <span className="access-management">{item.name}</span>
+        </div></td>
       <td>{item.email}</td>
       <td>{item.itineryCount}</td>
     </tr>
@@ -57,8 +67,6 @@ const SpecialistList = () => {
   const { page, limit, size, total, list } = useAppSelector(
     (state) => state.specialistList
   );
-
-  console.log(list)
 
   useEffect(() => {
     dispatch(Fetch(API.SPECIALIST_LIST, {}, 1, 10));

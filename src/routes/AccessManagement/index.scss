@@ -202,3 +202,14 @@
 .specialist-delete:hover {
   background-color: yellow;
 }
+
+.specialist-ratings {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star-rating {
+  font-size: 16px;
+  color: #fcca00;
+}

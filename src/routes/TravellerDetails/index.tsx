@@ -5,7 +5,7 @@
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BsChevronDown } from "react-icons/bs"
+import { BsChevronLeft } from "react-icons/bs"
 import {
   IMAGE,
   ITINERARY_STATUS,
@@ -26,7 +26,7 @@ const TableHead = () => (
   <thead className="table-head">
     <tr className="head-tr">
       <th>Sr.No.</th>
-      <th>Location Planneds</th>
+      <th>Location Planned</th>
       <th>User Name</th>
       <th>Contact Number</th>
       <th>Planned Date</th>
@@ -63,15 +63,15 @@ const TableRow = (
         </div>
       </td>
       <td>{item.userName}</td>
-      <td>{item.contactNumber}
+      <td>{item.phoneNumber}
       </td>
       <td>{getFormattedDate(item.plannedDate)}</td>
       <td>{PLANNED_TRAVELLER[item.plannedTraveller - 1 || 0].name}</td>
       <td>{item.plannedTraveller}</td>
 
       <td>
-        <div className={`table-data-status ${item.blockedByTraveller? 'blocked': ""}`}>
-          { item.blockedByTraveller ? "Blocked" :ITINERARY_STATUS[item.status]}
+        <div className={`table-data-status ${item.blockedByTraveller ? 'blocked' : ""}`}>
+          {item.blockedByTraveller ? "Blocked" : ITINERARY_STATUS[item.status]}
         </div>
       </td>
     </tr>
@@ -93,8 +93,8 @@ const TravellersDetails = () => {
   useEffect(() => {
     const { travellerRef } = params;
 
-    
-    dispatch(Fetch(API.TRAVELLER_DETAILS, { userRef: travellerRef}, 1, 1000));
+
+    dispatch(Fetch(API.TRAVELLER_DETAILS, { userRef: travellerRef }, 1, 1000));
   }, []);
 
   useEffect(() => {
@@ -105,31 +105,45 @@ const TravellersDetails = () => {
   }, [isComponentVisible]);
 
 
-  let {  itinerary,
+  let { itinerary,
     _id,
     name,
     image } = useAppSelector(
-    (state) => state.travellerDetails
-  );
-
-
-  console.log( itinerary,
-    _id,
-    name,
-    image)
-
+      (state) => state.travellerDetails
+    );
 
   return (
     <main className="content-container">
+
+      <h2
+        className="content-heading"
+        onClick={() => navigate("/travellers")}
+        style={{ cursor: "pointer" }}
+      >
+        <BsChevronLeft />
+        <span>Traveller Details</span>
+      </h2>
+
       <section className="content-top">
-        <h2 className="content-heading">Traveller Details</h2>
+        <h3 className="content-heading">Basic Details</h3>
       </section>
+      <div className="name-image-cell">
+        <img
+          className="user-image"
+          src={IMAGE.SMALL + image}
+          alt="user-image"
+          onError={(e: any) => {
+            e.target.src = ICON.USER_PLACEHOLDER;
+          }}
+        />
+        <span className="traveller-detail-name">{name}</span>
+      </div>
       <section className="table-container">
         <table className="itinerary-table table">
           {TableHead()}
           <tbody className="body-tr">
             {itinerary.length ? (
-              itinerary.map((item, index) =>  TableRow(item, index, navigate, dispatch, handleDropDown, userDropdown, ref)
+              itinerary.map((item, index) => TableRow(item, index, navigate, dispatch, handleDropDown, userDropdown, ref)
               )
             ) : (
               <tr className="table-empty">

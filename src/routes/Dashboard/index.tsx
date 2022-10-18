@@ -40,7 +40,7 @@ const DashboardPage = () => {
       </section>
 
       <section className="dashboard-ratings">
-        <h3 className="rating-text">List of Specialists</h3>
+        <h3 className="">List of Specialists</h3>
         <SpecialistList/>
       </section>
     </main>
