@@ -47,6 +47,7 @@ export const API = {
   SPECIALIST_LIST: `${API_URL}admin/specialistList`,
   ASSIGN_SPECIALIST: `${API_URL}admin/assignSpecialist`,
   USER_LIST: `${API_URL}admin/userList`,
+  USER_ACTION: `${API_URL}admin/editUser`,
 
   //TRAVELLER
   TRAVELLER_DETAILS: `${API_URL}admin/userDetails`,
@@ -103,6 +104,7 @@ export const API = {
   CREATE_SPECIALIST: `${API_URL}admin/createSpecialist`,
   EDIT_SPECIALIST: `${API_URL}admin/editSpecialist`,
   DELETE_SPECIALIST: `${API_URL}admin/deleteSpecialist`,
+  ACTION_SPECIALIST: `${API_URL}admin/specialistActions`,
 
   // ITINERARIES
   LIST_ITINERARIES: `${API_URL}specialist/cancelRequestList`,
@@ -240,4 +242,16 @@ export const USER_TYPES_NOTIFICATION = {
   TRAVELLER: 1,
   SPECIALIST: 2,
   ALL: 3,
+};
+
+export const SPECIALIST_ACTIONS = {
+  UNBLOCK: 1,
+  BLOCK: 2,
+};
+
+
+export const USER_ACTIONS = {
+  BLOCKED: 2,
+  UNBLOCKED: 3,
+  DELETED: 4,
 };

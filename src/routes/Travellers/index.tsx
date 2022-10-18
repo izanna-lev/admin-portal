@@ -11,6 +11,7 @@ import {
   IMAGE,
   ICON,
   API,
+  USER_ACTIONS,
 } from "../../constants";
 import { Modal } from "../../components/Portal";
 
@@ -23,6 +24,7 @@ import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
 import InputForm from "../../components/InputTypes/InputForm";
+import { Create } from "../../api/Create";
 
 
 const TableHead = () => (
@@ -44,6 +46,7 @@ const TableRow = (
   navigate: any,
   dispatch: any,
   popupUpdate: any,
+  updateTravellerAction: any
 ) => {
 
 
@@ -69,7 +72,12 @@ const TableRow = (
           <span className="access-management text">{item.phoneNumber}</span>
         </div></td>
       <td className="specialist-actions">
-        <div className={`table-data-status ${item.blocked ? 'blocked' : ""}`}>
+        <div onClick={()=> {
+          updateTravellerAction({
+            id: item._id,
+            action: item.blocked? USER_ACTIONS.UNBLOCKED: USER_ACTIONS.BLOCKED
+          })
+        }} className={`table-data-status ${item.blocked ? 'blocked' : ""}`}>
           {item.blocked ? "Blocked" : "Block"}
         </div>
         <button
@@ -120,11 +128,16 @@ const Travellers = () => {
   };
 
   const deleteSpecialist = () => {
-    dispatch(DeleteEntity(API.DELETE_SPECIALIST, { specialistRef: popup.id }));
+    dispatch(DeleteEntity(API.USER_ACTION, { userRef: popup.id, action:  USER_ACTIONS.DELETED }));
     cancel()
     window.location.reload()
   };
 
+
+  const updateTravellerAction = (data: any) => {
+    dispatch(Create(API.USER_ACTION, { userRef: data.id, action: data.action}));
+    window.location.reload()
+  };
 
   useEffect(() => {
     dispatch(Fetch(API.USER_LIST, { text }, 1, 10));
@@ -169,7 +182,7 @@ const Travellers = () => {
           <tbody className="body-tr">
             {list.length ? (
               list.map((item, index) =>
-                TableRow(item, index, limit, page, navigate, dispatch, popupUpdate)
+                TableRow(item, index, limit, page, navigate, dispatch, popupUpdate, updateTravellerAction)
               )
             ) : (
               <tr className="table-empty">
@@ -184,7 +197,7 @@ const Travellers = () => {
       {popup.show && <Modal
         modal={<Popup
           heading="Delete Specialist"
-          text="Are you sure you want to delete this specialist. This can`t be undone"
+          text="Are you sure you want to delete this traveller. This can`t be undone"
           firstButtonText="Delete"
           secondButtonText="Cancel"
           firstButtonAction={deleteSpecialist}

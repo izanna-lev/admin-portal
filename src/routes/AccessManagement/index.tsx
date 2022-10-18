@@ -15,7 +15,7 @@ import {
   PERMISSIONS_STRING,
 } from "../../constants";
 import { Modal } from "../../components/Portal";
-
+import { SPECIALIST_ACTIONS } from '../../constants'
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 import { Pagination } from "../../components/Pagination";
@@ -24,6 +24,7 @@ import { Fetch } from "../../api/Fetch";
 import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
+import { Create } from "../../api/Create";
 
 
 const TableHead = () => (
@@ -47,6 +48,7 @@ const TableRow = (
   navigate: any,
   dispatch: any,
   popupUpdate: any,
+  updateSpecialistAction: any
 ) => {
 
 
@@ -92,7 +94,14 @@ const TableRow = (
       </td>
       <td>{permissions(item.permissions)}</td>
       <td className="specialist-actions">
-        <div>{item.blocked ? "Deactivate" : "Activate"}</div>
+        <div
+        onClick={() => {
+          updateSpecialistAction({
+            id: item._id,
+            action: item.blocked? SPECIALIST_ACTIONS.UNBLOCK: SPECIALIST_ACTIONS.BLOCK
+          })
+        }}
+        >{item.blocked ? "Deactivate" : "Activate"}</div>
         <button
           className="btn view-button specialist-edit"
           onClick={() => {
@@ -152,6 +161,11 @@ const AccessManagement = () => {
     window.location.reload()
   };
 
+  const updateSpecialistAction = (data: any) => {
+    dispatch(Create(API.ACTION_SPECIALIST, { specialistRef: data.id, action: data.action}));
+    window.location.reload()
+  };
+
   useEffect(() => {
     dispatch(Fetch(API.LIST_SPECIALIST, {}, 1, 10));
   }, [dispatch]);
@@ -187,7 +201,7 @@ const AccessManagement = () => {
           <tbody className="body-tr">
             {list.length ? (
               list.map((item, index) =>
-                TableRow(item, index, limit, page, navigate, dispatch, popupUpdate)
+                TableRow(item, index, limit, page, navigate, dispatch, popupUpdate, updateSpecialistAction)
               )
             ) : (
               <tr className="table-empty">

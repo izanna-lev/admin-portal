@@ -93,7 +93,6 @@ const Notifications = (props: any) => {
 
   const selectOne = (id: any) => {
     if (selectedUsers.indexOf(id) > -1) {
-     
       setSelectedAll(false)
       selectedUsers.splice(selectedUsers.indexOf(id), 1);
     } else {
