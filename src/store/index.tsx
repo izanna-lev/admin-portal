@@ -20,7 +20,9 @@ export const store = configureStore({
     transportation: reducers.transportation,
     specialists: reducers.specialists,
     specialistList: reducers.specialistsList,
-    notificationUserList: reducers.NotificationUserList
+    notificationUserList: reducers.NotificationUserList,
+    travellerList: reducers.TravellerList,
+    travellerDetails: reducers.TravellerDetails
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>

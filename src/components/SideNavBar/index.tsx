@@ -6,6 +6,7 @@ import { NAVIGATE } from "../../constants";
 const SideNavBar = () => (
   <nav className={`${styles["navigation-sidebar"]} `}>
     {NavigationOption("Dashboard", ICON.DASHBOARD_INACTIVE, NAVIGATE.DASHBOARD)}
+    {NavigationOption("Travellers", ICON.PROFILE_INACTIVE, NAVIGATE.TRAVELELRS, "travellers")}
     {NavigationOption(
       "Itineraries",
       ICON.ITINERARIES_INACTIVE,
@@ -13,12 +14,6 @@ const SideNavBar = () => (
       "itinerary/list"
     )}
     {NavigationOption("Chat", ICON.CHAT_INACTIVE, NAVIGATE.CHAT)}
-    {NavigationOption(
-      "Cancel Request",
-      ICON.CANCELLED_ITINERARIES_INACTIVE,
-      NAVIGATE.CANCELLED_ITINERARIES,
-      "itinerary/cancelled"
-    )}
       {NavigationOption(
       "Access Management",
       ICON.ACCESS_MANAGEMENT_INACTIVE,
@@ -31,7 +26,6 @@ const SideNavBar = () => (
       NAVIGATE.NOTIFICATION,
       "notifications"
     )}
-    {NavigationOption("Profile", ICON.PROFILE_INACTIVE, NAVIGATE.PROFILE)}
   </nav>
 );
 

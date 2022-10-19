@@ -35,11 +35,11 @@ const Nav = ({ showUserData = true }: Props) => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    if (!profileData._id && showUserData) {
-      dispatch(Fetch(API.PROFILE));
-    }
-  }, [dispatch, profileData._id, showUserData]);
+  // useEffect(() => {
+  //   if (!profileData._id && showUserData) {
+  //     dispatch(Fetch(API.PROFILE));
+  //   }
+  // }, [dispatch, profileData._id, showUserData]);
 
   return (
     <header className={styles["header"]} id="navBar">
@@ -48,7 +48,7 @@ const Nav = ({ showUserData = true }: Props) => {
       </div>
 
       <div className={styles["header-right"]}>
-        <div className={styles["notification"]}>
+        {/* <div className={styles["notification"]}>
           <IoIosNotificationsOutline
             className={styles["notification-icon"]}
             onClick={() => setNotificationvisibility(!notificationvisibility)}
@@ -60,8 +60,8 @@ const Nav = ({ showUserData = true }: Props) => {
               }}
             />
           )}
-        </div>
-        <div className={styles["user-data"]}>
+        </div> */}
+        {/* <div className={styles["user-data"]}>
           <div className={styles["image-container"]}>
             <img
               src={`${IMAGE.SMALL}${profileData.image}`}
@@ -74,7 +74,7 @@ const Nav = ({ showUserData = true }: Props) => {
             <div className={styles["user-name"]}>{profileData.name}</div>
           </div>
           <FiChevronDown className={styles["down-icon"]} />
-        </div>
+        </div> */}
       </div>
     </header>
   );

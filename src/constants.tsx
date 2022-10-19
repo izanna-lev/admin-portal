@@ -38,14 +38,19 @@ export const IMAGE = {
 // All Server API Endpoints
 
 export const API = {
-  LOGIN: `${API_URL}specialist/login`,
+  LOGIN: `${API_URL}admin/login`,
   PROFILE: `${API_URL}specialist/details`,
-  DASHBOARD: `${API_URL}specialist/dashboard`,
+  DASHBOARD: `${API_URL}admin/dashboard`,
 
   
   // Specialist (List & Actions)
   SPECIALIST_LIST: `${API_URL}admin/specialistList`,
   ASSIGN_SPECIALIST: `${API_URL}admin/assignSpecialist`,
+  USER_LIST: `${API_URL}admin/userList`,
+  USER_ACTION: `${API_URL}admin/editUser`,
+
+  //TRAVELLER
+  TRAVELLER_DETAILS: `${API_URL}admin/userDetails`,
 
   // Itinerary (List & Actions)
 
@@ -99,14 +104,15 @@ export const API = {
   CREATE_SPECIALIST: `${API_URL}admin/createSpecialist`,
   EDIT_SPECIALIST: `${API_URL}admin/editSpecialist`,
   DELETE_SPECIALIST: `${API_URL}admin/deleteSpecialist`,
+  ACTION_SPECIALIST: `${API_URL}admin/specialistActions`,
 
   // ITINERARIES
   LIST_ITINERARIES: `${API_URL}specialist/cancelRequestList`,
 
 
   //NOTIFICATIONS
-  LIST_USERS: `${API_URL}notification/userSelectList`
-
+  LIST_USERS: `${API_URL}notification/userSelectList`,
+  BROADCAST: `${API_URL}notification/broadcast`
 };
 
 type IconOptions = {
@@ -216,12 +222,11 @@ export const PLANNED_TRAVELLER = [
 
 export const NAVIGATE = {
   DASHBOARD: 1,
-  ITINERARY: 2,
-  CHAT: 3,
-  CANCELLED_ITINERARIES: 4,
+  TRAVELELRS: 2,
+  ITINERARY: 3,
+  CHAT: 4,
   ACCESS_MANAGEMENT: 5,
   NOTIFICATION: 6,
-  PROFILE: 7,
 };
 
 
@@ -236,4 +241,16 @@ export const USER_TYPES_NOTIFICATION = {
   TRAVELLER: 1,
   SPECIALIST: 2,
   ALL: 3,
+};
+
+export const SPECIALIST_ACTIONS = {
+  UNBLOCK: 1,
+  BLOCK: 2,
+};
+
+
+export const USER_ACTIONS = {
+  BLOCKED: 2,
+  UNBLOCKED: 3,
+  DELETED: 4,
 };

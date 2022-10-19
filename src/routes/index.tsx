@@ -18,6 +18,10 @@ const CreateSpecialist = loadable(() => import("./CreateSpecialist"));
 const EditSpecialist = loadable(() => import("./EditSpecialist"));
 const Activities = loadable(() => import("./CreateItinerary/Activities"));
 const Accomodation = loadable(() => import("./CreateItinerary/Accomodation"));
+const Travellers =  loadable(() => import("./Travellers"));
+const TravellersDetails =  loadable(() => import("./TravellerDetails"));
+
+
 const AddItinerary = loadable(
   () => import("./CreateItinerary/ItineraryDetails")
 );
@@ -48,6 +52,11 @@ const App = () => (
           <Route path="note" element={<Notes />} />
           <Route path="summary" element={<Activities />} />
         </Route>
+      </Route>
+
+      <Route path="travellers" >
+        <Route index element={<Travellers />} />
+        <Route path="details/:travellerRef" element={<TravellersDetails />} />
       </Route>
 
       <Route path="admin" >

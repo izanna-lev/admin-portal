@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import "./index.scss";
 import { Fetch } from "../../api/Fetch";
 import { setApiMessage } from "../../store/slices/apiMessage";
+import { Create } from "../../api/Create";
 
 const User = (
   user: any,
@@ -92,25 +93,23 @@ const Notifications = (props: any) => {
 
   const selectOne = (id: any) => {
     if (selectedUsers.indexOf(id) > -1) {
-      console.log("-------------")
       setSelectedAll(false)
       selectedUsers.splice(selectedUsers.indexOf(id), 1);
     } else {
       selectedUsers.push(id);
     }
-
-    // if (selectedUsers.length === newUserList.length) {
-    // } else handleActiveState(NOTIFICATION_LIST.SELECTED);
   };
 
+
   const sendNotifications = () => {
-    if (!selectedUsers.length) {
+    if (!selectedUsers.length && !selectedAll) {
       dispatch(
         setApiMessage({
           type: "error",
           message: "Please select some users to send notifications to!",
         })
       );
+      return;
     }
     if (!(document.getElementById("notificationText") as HTMLInputElement).value) {
       dispatch(
@@ -119,24 +118,24 @@ const Notifications = (props: any) => {
           message: "Notification message cannot be empty!",
         })
       );
+      return;
     }
+
+
+    dispatch(
+      Create(
+        API.BROADCAST,
+        {
+          message: (document.getElementById("notificationText") as HTMLInputElement).value,
+          selectedAll,
+          userType,
+          userIds: selectedAll ? [] : selectedUsers,
+        },
+        false,
+      )
+    );
+
   };
-
-  // if (apiMessage.message) {
-  //   // eslint-disable-next-line no-unused-expressions
-
-  //   if (apiMessage.code === 100) {
-  //     selectedUsers = [];
-  //     const checkboxes = document.querySelectorAll("input.checkbox");
-  //     checkboxes.forEach((checkbox) => {
-  //       checkbox.checked = false;
-  //     });
-
-  //     document.getElementById("notificationText").value = "";
-  //   } else {
-  //   }
-  //   triggerNullifyApiMessage();
-  // }
 
   return (
     <section className="content-container">

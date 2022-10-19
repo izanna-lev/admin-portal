@@ -4,18 +4,17 @@
  */
 
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { FaRegEdit } from 'react-icons/fa'
-import { AiFillStar } from 'react-icons/ai'
-import { RiDeleteBin6Line } from 'react-icons/ri'
+import { useEffect, useRef, useState } from "react";
+import { RiDeleteBin6Line } from 'react-icons/ri';
+import { AiOutlineSearch } from 'react-icons/ai'
 import {
   IMAGE,
   ICON,
   API,
-  PERMISSIONS_STRING,
+  USER_ACTIONS,
 } from "../../constants";
 import { Modal } from "../../components/Portal";
-import { SPECIALIST_ACTIONS } from '../../constants'
+
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 import { Pagination } from "../../components/Pagination";
@@ -24,6 +23,7 @@ import { Fetch } from "../../api/Fetch";
 import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
+import InputForm from "../../components/InputTypes/InputForm";
 import { Create } from "../../api/Create";
 
 
@@ -31,10 +31,8 @@ const TableHead = () => (
   <thead className="table-head">
     <tr className="head-tr">
       <th>Sr.No.</th>
-      <th>Name</th>
-      <th>Average Rating</th>
-      <th>Itineraries Completed</th>
-      <th>Permissions</th>
+      <th>Itinerary Name</th>
+      <th>Email</th>
       <th className="custom-head">Actions</th>
     </tr>
   </thead>
@@ -48,22 +46,9 @@ const TableRow = (
   navigate: any,
   dispatch: any,
   popupUpdate: any,
-  updateSpecialistAction: any
+  updateTravellerAction: any
 ) => {
 
-
-  const permissions = (data: any) => {
-    let text = ""
-    if (data) {
-      for (const key in PERMISSIONS_STRING) {
-        if (data[key]) {
-          text += PERMISSIONS_STRING[key] + ", "
-        }
-      }
-    }
-
-    return text.substring(0, text.length - 2);
-  }
 
   return (
     <tr className="body-tr" key={index}>
@@ -78,48 +63,32 @@ const TableRow = (
               e.target.src = ICON.USER_PLACEHOLDER;
             }}
           />
-          <div className="access-management-user">
-            <span className="access-management">{item.name}</span>
-            <span className="access-management text">{item.email}</span>
-            <span className="access-management text">{item.phoneNumber}</span>
-          </div>
-
+          <span className="access-management">{item.name}</span>
         </div>
       </td>
-      <td className="specialist-ratings">
-      <AiFillStar className="star-rating"/>
-      <div>{item.averageRatings || 0}</div></td>
       <td>
-        {item.completedItineraries || 0}
-      </td>
-      <td>{permissions(item.permissions)}</td>
+        <div className="access-management-user">
+          <span className="access-management text">{item.email}</span>
+          <span className="access-management text">{item.phoneNumber}</span>
+        </div></td>
       <td className="specialist-actions">
-        <div
-        onClick={() => {
-          updateSpecialistAction({
+        <div onClick={()=> {
+          updateTravellerAction({
             id: item._id,
-            action: item.blocked? SPECIALIST_ACTIONS.UNBLOCK: SPECIALIST_ACTIONS.BLOCK
+            action: item.blocked? USER_ACTIONS.UNBLOCKED: USER_ACTIONS.BLOCKED
           })
-        }}
-        >{item.blocked ? "Deactivate" : "Activate"}</div>
+        }} className={`table-data-status ${item.blocked ? 'blocked' : ""}`}>
+          {item.blocked ? "Blocked" : "Block"}
+        </div>
         <button
-          className="btn view-button specialist-edit"
+          className=" btn view-button"
           onClick={() => {
-            navigate(`/admin/editSpecialist/${item._id}`, {
-              state: {
-                id: item._id,
-                name: item.name,
-                email: item.email,
-                phoneNumber: item.phoneNumber,
-                permissions: item.permissions,
-                image: item.image
-              }
-            });
+            navigate(`/travellers/details/${item._id}`)
           }}
         >
-          <FaRegEdit />
-          Edit
+          View Details
         </button>
+
         <button
           className="btn view-button specialist-delete"
           onClick={() => popupUpdate(true, item._id)
@@ -128,18 +97,21 @@ const TableRow = (
           <RiDeleteBin6Line />
           Delete
         </button>
+
       </td>
     </tr>
 
   );
 };
 
-const AccessManagement = () => {
+const Travellers = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const searchRef = useRef<HTMLInputElement | null>(null);
+  const [text, setText] = useState<any>("");
 
   const { page, limit, size, total, list } = useAppSelector(
-    (state) => state.specialists
+    (state) => state.travellerList
   );
   const [popup, setPopup] = useState({
     id: "",
@@ -156,32 +128,41 @@ const AccessManagement = () => {
   };
 
   const deleteSpecialist = () => {
-    dispatch(DeleteEntity(API.DELETE_SPECIALIST, { specialistRef: popup.id }));
+    dispatch(DeleteEntity(API.USER_ACTION, { userRef: popup.id, action:  USER_ACTIONS.DELETED }));
     cancel()
     window.location.reload()
   };
 
-  const updateSpecialistAction = (data: any) => {
-    dispatch(Create(API.ACTION_SPECIALIST, { specialistRef: data.id, action: data.action}));
+
+  const updateTravellerAction = (data: any) => {
+    dispatch(Create(API.USER_ACTION, { userRef: data.id, action: data.action}));
     window.location.reload()
   };
 
   useEffect(() => {
-    dispatch(Fetch(API.LIST_SPECIALIST, {}, 1, 10));
-  }, [dispatch]);
+    dispatch(Fetch(API.USER_LIST, { text }, 1, 10));
+  }, [dispatch, text]);
 
   return (
     <main className="content-container">
       <section className="content-top">
-        <h2 className="content-heading">Access Management</h2>
-        <button
-          className=" btn view-button create-specialist"
-          onClick={() => {
-            navigate(`/admin/createSpecialist`);
-          }}
-        >
-          Create Specialist
-        </button>
+        <h2 className="content-heading">Travellers</h2>
+        <div className="traveller-search">
+          <input
+            name="Search"
+            type="text"
+            className="traveller-search-input"
+            maxLength={20}
+            placeholder="Search here"
+            ref={searchRef}
+            autoFocus
+          />
+          <AiOutlineSearch 
+          
+           className="search-icon" />
+          <div   onClick={(e) => setText(searchRef.current?.value)}  className="traveller-search-go">Go</div>
+        </div>
+
       </section>
       {list.length
         ? Pagination({
@@ -201,7 +182,7 @@ const AccessManagement = () => {
           <tbody className="body-tr">
             {list.length ? (
               list.map((item, index) =>
-                TableRow(item, index, limit, page, navigate, dispatch, popupUpdate, updateSpecialistAction)
+                TableRow(item, index, limit, page, navigate, dispatch, popupUpdate, updateTravellerAction)
               )
             ) : (
               <tr className="table-empty">
@@ -216,7 +197,7 @@ const AccessManagement = () => {
       {popup.show && <Modal
         modal={<Popup
           heading="Delete Specialist"
-          text="Are you sure you want to delete this specialist. This can`t be undone"
+          text="Are you sure you want to delete this traveller. This can`t be undone"
           firstButtonText="Delete"
           secondButtonText="Cancel"
           firstButtonAction={deleteSpecialist}
@@ -228,4 +209,4 @@ const AccessManagement = () => {
   );
 };
 
-export default AccessManagement;
+export default Travellers;

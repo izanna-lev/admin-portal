@@ -85,3 +85,12 @@
   padding: 0px;
   background-color: $theme_color_light_blue;
 }
+
+.image-placeholder {
+  width: 2.5rem;
+  height: 2.5rem;
+  svg {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}

@@ -159,57 +159,53 @@
   justify-content: center;
   background-color: $theme_color_light_blue_2x;
 }
-
-.access-management-user {
-  display: flex;
-  flex-direction: column;
+.assign-specialist {
+  padding: 0px !important; 
 }
 
-.create-specialist {
-  background-color: $theme_color_blue;
-  color: $theme_color_white;
-}
-
-.specialist-actions {
+.dropdown-container {
+  width: 100%;
+  height: 60px;
+  border: 2px solid $theme_color_blue;
+  border-radius: 12px;
   display: flex;
-  gap: 12px;
   align-items: center;
+  padding: 4px;
+  position: relative;
+  justify-content: space-between;
 }
 
-.specialist-actions > div {
+.specialist-user-list {
+  width: 100%;
+  display: grid;
+  min-height: 180px;
+  max-height: 360px;
+  border-radius: 4px;
+  justify-content: start;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  grid-template-columns: 1fr;
+  background-color: $theme_color_white;
+  overflow: scroll;
+  list-style: none;
+  z-index: 10;
+}
+
+.specialist-user-list > option {
+  padding: 8px;
+}
+
+.specialist-user-list > option:hover {
   background-color: $theme_color_light_blue_2x;
-  padding: 2px 8px;
-  border-radius: 8px;
-} 
-
-.text {
-  font-size: 12px;
-  color: $theme_color_8;
 }
 
-.specialist-edit {
-  display: flex;
-  gap: 2px;
+.blocked {
+  background-color: red;
+  color: white;
 }
 
-.specialist-delete {
-  display: flex;
-  gap: 2px;
-  background-color: red !important;
-  color: $theme_color_white !important;
-}
-  
-.specialist-delete:hover {
-  background-color: yellow;
-}
-
-.specialist-ratings {
-  display: flex;
-  align-items: center;
-  gap: 2px;
-}
-
-.star-rating {
-  font-size: 16px;
-  color: #fcca00;
+.traveller-detail-name {
+  align-self: center;
+  padding-left: 8px;
 }
