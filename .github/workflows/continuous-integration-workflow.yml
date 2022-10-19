@@ -63,7 +63,7 @@ jobs:
           npm install --legacy-peer-deps
 
           echo "Triggering Build"
-          webpack --env BRANCH="${GITHUB_REF##*/}" API_URL="$SERVER" S3_URL="$S3_URL"
+          webpack --env BRANCH="${GITHUB_REF##*/}" API_URL="$SERVER" S3_URL="$S3_URL" GOOGLE_API="$GOOGLE_PLACES_KEY"
 
           echo "Build Completed"
 
