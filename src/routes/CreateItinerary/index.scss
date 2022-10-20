@@ -24,16 +24,12 @@
   border-radius: 0.5rem;
   justify-self: center;
   grid-template-columns: repeat(7, 1fr);
-  background-image: linear-gradient(
-    to right,
-    $theme_color_light_lime,
-    $theme_color_light_blue_2x
-  );
+  background-color: $gray-200;
 }
 
 .form-request {
   font-size: 0.75rem;
-  margin: 4px 0.5rem 0px 0rem;
+  margin: 1rem 0.5rem 0px 0rem;
 }
 
 .step {
@@ -81,34 +77,27 @@
   text-decoration: none;
 }
 
-.step > .selected {
+.step>.selected {
   background-color: $theme_color_blue;
   color: $white;
   border-radius: 0.5rem;
 }
 
 .tab-active {
-  color: #000000;
-  background-color: #73d8bb;
-}
-
-.itineraryImage {
-  max-width: 6rem;
-  border-radius: 15px;
-  max-height: 4rem;
-  padding: 0.25rem;
+  color: $white;
+  background-color: $theme_color_blue;
 }
 
 .continue-button {
-  padding: 10px 30px;
+  padding: 0.6rem 1.9rem;
   background-color: #0b9dd8;
   color: white;
-  width: 200px;
+  width: 15rem;
   border-radius: 10px;
   text-align: center;
   cursor: pointer;
-  font-size: 14px;
-  margin: 4px 0.5rem 0px 0.5rem;
+  font-size: 0.95rem;
+  margin: 2rem 0.5rem 0rem 0rem;
 
   &:hover {
     filter: brightness(1.05);

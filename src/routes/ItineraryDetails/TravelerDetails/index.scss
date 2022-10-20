@@ -1,4 +1,4 @@
-@import "../../../styles/globals.scss";
+@import "../../../styles/configs/colors";
 
 .itineraryDetailPage {
   height: calc(92vh - 1rem);
@@ -66,21 +66,21 @@
 .status {
   font-size: 1rem;
   text-align: start;
-  // margin-top: 4px;
+  // margin-top: 0.25rem ;
   font-weight: 500;
 }
 
 .status-text {
-  font-size: 14px;
+  font-size: 0.95rem;
   align-self: flex-end;
   font-weight: 500;
-  padding-bottom: 4px;
+  padding-bottom: 0.25rem;
   color: $theme_color_3;
 }
 
 .chat {
   display: flex;
-  font-size: 14px;
+  font-size: 0.95rem;
   align-items: center;
   justify-self: end;
   gap: 0.5rem;
@@ -100,17 +100,13 @@
   background-color: $theme_color_light_blue_2x;
 }
 
-.trip-details-heading {
-  padding: 1rem 1rem;
-  font-size: 1rem;
-  font-weight: 500;
-}
+
 
 .trip-details-data {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   padding-left: 1rem;
-  font-size: 14px;
+  font-size: 0.95rem;
   margin-bottom: 0.5rem;
   justify-items: start;
   align-items: center;

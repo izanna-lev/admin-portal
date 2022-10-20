@@ -1,4 +1,4 @@
-import "./index.scss";
+import styles from "./index.module.scss";
 
 type InputProps = {
   inputFields: {
@@ -12,13 +12,14 @@ type InputProps = {
 
 const Toggle = ({ inputFields }: InputProps) => {
   return (
-    <div className="input-toggle-form">
-      <div className="feild-heading">{inputFields.name}</div>
+    <div className={styles["input-toggle-form"]}>
+      <div className={styles["feild-heading"]}>{inputFields.name}</div>
       <input
         name={inputFields.id}
         type={inputFields.type}
         ref={inputFields.ref}
-        className="field-toggle-value"
+        className={styles["field-toggle-value"]}
+        defaultChecked={inputFields.default}
         autoFocus
         required
       />

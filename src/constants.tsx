@@ -4,13 +4,13 @@
 
 // Global Environment Variables
 
-const SERVER_TYPE = `${process.env.BRANCH}/`;
-const API_URL = process.env.API_URL;
-const S3_URL = process.env.S3_URL;
+// const SERVER_TYPE = `${process.env.BRANCH}/`;
+// const API_URL = process.env.API_URL;
+// const S3_URL = process.env.S3_URL;
 
-// const SERVER_TYPE = "development/";
-// const API_URL = "http://localhost:3001/api/";
-// const S3_URL = "https://app-onsite.s3.amazonaws.com/";
+const SERVER_TYPE = "development/";
+const API_URL = "http://44.209.25.93:3000/api/";
+const S3_URL = "https://app-onsite.s3.amazonaws.com/";
 
 // Custom Environment Variables
 
@@ -19,8 +19,8 @@ const IMAGE_URL = `${S3_URL}${SERVER_TYPE}images/`;
 
 // Google Places Api Key
 
-export const GOOGLE_API = process.env.GOOGLE_API;
-// export const GOOGLE_API = "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s";
+// export const GOOGLE_API = process.env.GOOGLE_API;
+export const GOOGLE_API = "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s";
 
 console.log(SERVER_TYPE, API_URL, S3_URL, GOOGLE_API);
 
@@ -45,7 +45,6 @@ export const API = {
   PROFILE: `${API_URL}specialist/details`,
   DASHBOARD: `${API_URL}admin/dashboard`,
 
-  
   // Specialist (List & Actions)
   SPECIALIST_LIST: `${API_URL}admin/specialistList`,
   ASSIGN_SPECIALIST: `${API_URL}admin/assignSpecialist`,
@@ -58,50 +57,65 @@ export const API = {
   // Itinerary (List & Actions)
 
   ITINERARIES: `${API_URL}admin/itinerariesList`,
-  ITINERARY_ADD: `${API_URL}itinerary/add`,
-  ITINERARY_DETAILS: `${API_URL}itinerary/details`,
+  ITINERARY_ADD: `${API_URL}admin/add`,
+  ITINERARY_EDIT: `${API_URL}admin/edit`,
+  ITINERARY_DETAILS: `${API_URL}admin/details`,
+  ITINERARY_COMPLETE: `${API_URL}admin/complete`,
+  ITINERARY_CANCEL: `${API_URL}admin/cancel`,
 
   // Itinerary Transportation (List & Actions)
 
-  TRANSPORTATION_DATA: `${API_URL}transportation/list`,
-  TRANSPORTATION_DELETE: `${API_URL}transportation/delete`,
+  TRANSPORTATION_DATA: `${API_URL}admin/transportationList`,
+  TRANSPORTATION_DELETE: `${API_URL}admin/deleteTransportation`,
 
-  ADD_CAR: `${API_URL}transportation/addCar`,
-  ADD_FERRY: `${API_URL}transportation/addTrainFerry`,
-  ADD_FLIGHT: `${API_URL}transportation/addFlight`,
-  ADD_TRAIN: `${API_URL}transportation/addTrainFerry`,
+  ADD_CAR: `${API_URL}admin/addCar`,
+  ADD_FERRY: `${API_URL}admin/addTrainFerry`,
+  ADD_FLIGHT: `${API_URL}admin/addFlight`,
+  ADD_TRAIN: `${API_URL}admin/addTrainFerry`,
 
-  EDIT_CAR: `${API_URL}transportation/editCar`,
-  EDIT_FERRY: `${API_URL}transportation/editTrainFerry`,
-  EDIT_FLIGHT: `${API_URL}transportation/editFlight`,
-  EDIT_TRAIN: `${API_URL}transportation/editTrainFerry`,
+  EDIT_CAR: `${API_URL}admin/editCar`,
+  EDIT_FERRY: `${API_URL}admin/editTrainFerry`,
+  EDIT_FLIGHT: `${API_URL}admin/editFlight`,
+  EDIT_TRAIN: `${API_URL}admin/editTrainFerry`,
 
   // Reservation (List & Actions)
 
-  RESERVATION_DELETE: `${API_URL}reservation/delete`,
-  RESERVATION_LIST: `${API_URL}reservation/list`,
+  RESERVATION_DELETE: `${API_URL}admin/deleteReservation`,
+  RESERVATION_LIST: `${API_URL}admin/reservationList`,
 
-  ACCOMODATION_ADD: `${API_URL}reservation/addAccommodation`,
-  ACCOMODATION_EDIT: `${API_URL}reservation/editAccommodation`,
+  ACCOMODATION_ADD: `${API_URL}admin/addAccommodation`,
+  ACCOMODATION_EDIT: `${API_URL}admin/editAccommodation`,
 
-  ACTIVITY_ADD: `${API_URL}reservation/addActivity`,
-  ACTIVITY_EDIT: `${API_URL}reservation/editActivity`,
+  ACTIVITY_ADD: `${API_URL}admin/addActivity`,
+  ACTIVITY_EDIT: `${API_URL}admin/editActivity`,
 
-  RESTAURANT_ADD: `${API_URL}reservation/addRestaurant`,
-  RESTAURANT_EDIT: `${API_URL}reservation/editRestaurant`,
+  RESTAURANT_ADD: `${API_URL}admin/addRestaurant`,
+  RESTAURANT_EDIT: `${API_URL}admin/editRestaurant`,
 
   // Notes (List & Actions)
 
-  NOTE_ADD: `${API_URL}note/add`,
-  NOTE_DELETE: `${API_URL}note/delete`,
-  NOTE_EDIT: `${API_URL}note/edit`,
-  NOTES_LIST: `${API_URL}note/list`,
+  NOTE_ADD: `${API_URL}admin/addNote`,
+  NOTE_DELETE: `${API_URL}admin/deleteNote`,
+  NOTE_EDIT: `${API_URL}admin/editNote`,
+  NOTES_LIST: `${API_URL}admin/noteList`,
+
+  // Trip Summary (List)
+
+  TRIP_LIST: `${API_URL}admin/tripList`,
+
+  // Trip Days (List)
+
+  DAYS_LIST: `${API_URL}admin/dayList`,
+
+  // Submit Itinerary (List)
+
+  SUBMIT_ITINERARY: `${API_URL}admin/submit`,
 
   // Upload Image
 
-  IMAGE_UPLOAD: `${API_URL}transportation/upload`,
+  IMAGE_UPLOAD: `${API_URL}admin/upload`,
 
-    // ACCESS MANAGEMENT
+  // ACCESS MANAGEMENT
 
   LIST_SPECIALIST: `${API_URL}admin/accessSpecialistList`,
   CREATE_SPECIALIST: `${API_URL}admin/createSpecialist`,
@@ -112,10 +126,9 @@ export const API = {
   // ITINERARIES
   LIST_ITINERARIES: `${API_URL}specialist/cancelRequestList`,
 
-
   //NOTIFICATIONS
   LIST_USERS: `${API_URL}notification/userSelectList`,
-  BROADCAST: `${API_URL}notification/broadcast`
+  BROADCAST: `${API_URL}notification/broadcast`,
 };
 
 type IconOptions = {
@@ -170,13 +183,29 @@ export const ITINERARY_STATUS: ItineraryOptions = {
   3: "Cancelled",
   4: "Pending",
   5: "Completed",
-  6: "Expired"
+  6: "Expired",
 };
 
 export const TRAVELER_ITINERARY_DETAILS = {
   TRAVELER: 1,
   ITINERARY: 2,
 };
+
+export const ITINERARY_SECTION = {
+  TRAVELER: 1,
+  ITINERARY: 2,
+  TRANSPORTATION: 3,
+  ACCOMODATIONS: 4,
+  RESTAURANT: 5,
+  ACTIVITIES: 6,
+  NOTES: 7,
+  SUMMARY: 8,
+};
+
+export const PAYMENT_STATUS = [
+  { name: "Unpaid", value: 1 },
+  { name: "Paid", value: 2 },
+];
 
 export const RESERVATION_TYPE = {
   ACCOMMODATION: 1,
@@ -232,13 +261,12 @@ export const NAVIGATE = {
   NOTIFICATION: 6,
 };
 
-
-export const PERMISSIONS_STRING : { [key: string]: any } = {
-  "createItinerary": "Create Itinerary",
-  "editItinerary": "Edit Itinerary",
-  "cancelItinerary": "Cancel Itinerary",
-  "sendNotifications": "Send Notifications",
-}
+export const PERMISSIONS_STRING: { [key: string]: any } = {
+  createItinerary: "Create Itinerary",
+  editItinerary: "Edit Itinerary",
+  cancelItinerary: "Cancel Itinerary",
+  sendNotifications: "Send Notifications",
+};
 
 export const USER_TYPES_NOTIFICATION = {
   TRAVELLER: 1,
@@ -250,7 +278,6 @@ export const SPECIALIST_ACTIONS = {
   UNBLOCK: 1,
   BLOCK: 2,
 };
-
 
 export const USER_ACTIONS = {
   BLOCKED: 2,
