@@ -11,6 +11,7 @@ import { usePlacesWidget } from "react-google-autocomplete";
 import { API, GOOGLE_API, IMAGE, RESERVATION_TYPE } from "../../../constants";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { Create } from "../../../api/Create";
+import moment from "moment";
 
 const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
   const [selectedImage, setSelectedImage] = useState();
@@ -19,9 +20,7 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
 
   const dispatch = useAppDispatch();
 
-  const { _id } = useAppSelector(
-    (state) => state.itineraryData.itineraryDetails
-  );
+  const { _id } = useAppSelector((state) => state.itinerary.itineraryDetails);
 
   const dayRef = useRef();
   const nameRef = useRef();
@@ -92,6 +91,10 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
       payload.checkOutDateTime
     );
 
+    if (payload.contactNumber.length < 10) {
+      return alert("Please enter a valid phone number!");
+    }
+
     if (!dateComparison) {
       return alert("Please select proper date range!");
     }
@@ -115,9 +118,8 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
         )
       );
     } else {
-      if (!selectedImage) {
-        return alert("Please select an image!");
-      }
+      if (!selectedImage) return alert("Please select an image!");
+
       payload = { ...payload, itineraryRef: _id };
       dispatch(
         Create(
@@ -139,10 +141,7 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
   return (
     <div className={styles["add-itinerary-data-form"]}>
       <div className={styles["form-background"]}>
-        <form
-          className={styles["form-block"]}
-          onSubmit={saveAccomodationDetails}
-        >
+        <form className="form-block" onSubmit={saveAccomodationDetails}>
           <div className={styles["form-image"]} id="accomodationImage">
             <input
               type="file"
@@ -155,15 +154,16 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
             <label
               htmlFor="activity-upload"
               className={styles["not-selected-preview"]}
-              // className={styles[{` ${activityChangedData?.[index]?.image ? "" : "not-selected-preview"}`}
             >
               <IoCloudUploadOutline
                 className={styles["activity-image-placeholder"]}
               />
             </label>
           </div>
+          <label htmlFor="activity-upload" className="bold underline">
+            Upload Image
+          </label>
 
-          <div>Upload Image</div>
           <div className={styles["form-required-feilds"]}>
             <div className={styles["form-left-details"]}>
               <InputForm
@@ -208,8 +208,10 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
                 }}
                 country="us"
                 value={phone}
+                specialLabel="Contact Number"
                 inputClass={`${styles["field-value"]}`}
                 containerClass={`${styles["input-tel"]}`}
+                buttonClass={`${styles["flag-dropdown"]}`}
                 onChange={(value) => setPhone(value)}
               />
 
@@ -228,7 +230,11 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
             <div className={styles["form-left-details"]}>
               <InputForm
                 inputFields={{
-                  default: data.checkInDateTime?.slice(0, 10),
+                  default: data.checkInDateTime
+                    ? moment(new Date(data.checkInDateTime).toISOString())
+                        .format()
+                        .slice(0, 10)
+                    : "",
                   ref: checkInDateRef,
                   name: "Check In Date",
                   id: "date",
@@ -238,7 +244,11 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
               />
               <InputForm
                 inputFields={{
-                  default: data.checkInDateTime?.slice(11, 16),
+                  default: data.checkInDateTime
+                    ? moment(new Date(data.checkInDateTime).toISOString())
+                        .format()
+                        .slice(11, 16)
+                    : "",
                   ref: checkInTimeRef,
                   name: "Check In Time",
                   id: "time",
@@ -248,7 +258,11 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
               />
               <InputForm
                 inputFields={{
-                  default: data.checkOutDateTime?.slice(0, 10),
+                  default: data.checkInDateTime
+                    ? moment(new Date(data.checkOutDateTime).toISOString())
+                        .format()
+                        .slice(0, 10)
+                    : "",
                   ref: checkOutDateRef,
                   name: "Check Out Date",
                   id: "date",
@@ -258,7 +272,11 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
               />
               <InputForm
                 inputFields={{
-                  default: data.checkOutDateTime?.slice(11, 16),
+                  default: data.checkInDateTime
+                    ? moment(new Date(data.checkOutDateTime).toISOString())
+                        .format()
+                        .slice(11, 16)
+                    : "",
                   ref: checkOutTimeRef,
                   name: "Check Out Time",
                   id: "time",
@@ -270,7 +288,9 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
           </div>
 
           <div className={styles["button-save"]}>
-            <button className={styles["form-button-text"]}>Save</button>
+            <button className={`continue-button no-border`} type="submit">
+              Save
+            </button>
           </div>
         </form>
 

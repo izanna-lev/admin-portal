@@ -5,7 +5,7 @@ import TextArea from "../../InputTypes/TextArea/index";
 import styles from "./index.module.scss";
 import { Modal } from "../../Portal";
 import ImagePopup from "../../sub-components/ImagePopup";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { usePlacesWidget } from "react-google-autocomplete";
 import { API, GOOGLE_API, TRANSPORTATION_TYPE } from "../../../constants";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
@@ -117,9 +117,7 @@ const NewTransportationForm = (props: props) => {
   const [depart, setDepart] = useState({});
 
   const dispatch = useAppDispatch();
-  const { _id } = useAppSelector(
-    (state) => state.itineraryData.itineraryDetails
-  );
+  const { _id } = useAppSelector((state) => state.itinerary.itineraryDetails);
   const dayRef = useRef();
   const pickupTimeRef = useRef();
   const pickupDateRef = useRef();
@@ -204,11 +202,10 @@ const NewTransportationForm = (props: props) => {
   return (
     <div className={styles["add-itinerary-data-form"]}>
       <div className={styles["form-background"]}>
-        <form
-          className={styles["form-block"]}
-          onSubmit={(e) => saveCarDetails(e)}
-        >
-          <div className={`${styles["form-heading"]} ${styles["bold"]}`}>
+        <form className="form-block" onSubmit={(e) => saveCarDetails(e)}>
+          <div
+            className={`${styles["form-heading"]} ${styles["bold"]} feild-heading`}
+          >
             Basic Details
           </div>
           <div className={styles["form-required-feilds"]}>
@@ -279,13 +276,12 @@ const NewTransportationForm = (props: props) => {
               />
             </div>
           </div>
-          <div className={`${styles["form-heading"]} ${styles["bold"]}`}>
+          <div
+            className={`${styles["form-heading"]} ${styles["bold"]} feild-heading`}
+          >
             User Car Details
           </div>
-          <div
-            className={styles["form-required-feilds"]}
-            style={{ maxHeight: "400px", overflow: "auto" }}
-          >
+          <div className={styles["form-required-feilds"]}>
             {UserTicket(
               1,
               saveUserTicketsData,
@@ -296,7 +292,9 @@ const NewTransportationForm = (props: props) => {
           </div>
 
           <div className={styles["button-save"]}>
-            <button className={styles["form-button-text"]}>Save</button>
+            <button className={`continue-button no-border`} type="submit">
+              Save
+            </button>
           </div>
         </form>
 

@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import { Navigate, Route, Routes } from "react-router-dom";
 import loadable from "@loadable/component";
+import { useAppSelector } from "../store/hooks";
 
 const Account = loadable(() => import("./Account"));
 const AssignedItineraries = loadable(() => import("./AssignedItineraries"));
@@ -18,9 +19,9 @@ const CreateSpecialist = loadable(() => import("./CreateSpecialist"));
 const EditSpecialist = loadable(() => import("./EditSpecialist"));
 const Activities = loadable(() => import("./CreateItinerary/Activities"));
 const Accomodation = loadable(() => import("./CreateItinerary/Accomodation"));
-const Travellers =  loadable(() => import("./Travellers"));
-const TravellersDetails =  loadable(() => import("./TravellerDetails"));
-
+const Travellers = loadable(() => import("./Travellers"));
+const TravellersDetails = loadable(() => import("./TravellerDetails"));
+const TripSummary = loadable(() => import("./CreateItinerary/TripSummary"));
 
 const AddItinerary = loadable(
   () => import("./CreateItinerary/ItineraryDetails")
@@ -32,51 +33,84 @@ const Transportation = loadable(
   () => import("./CreateItinerary/Transportation")
 );
 
-const App = () => (
-  <Routes>
-    <Route path="/" element={<Account />}>
-      <Route index element={<Dashboard />} />
-      <Route path="dashboard" element={<Dashboard />} />
-      <Route path="itinerary" element={<Itinerary />}>
-        <Route index element={<AssignedItineraries />} />
-        <Route path="list" element={<AssignedItineraries />} />
-        <Route path="cancelled" element={<CancelledItineraries />} />
-        <Route path="detail/:formRef" element={<ItineraryDetails />} />
-        <Route path="add" element={<CreateItinerary />}>
-          <Route index element={<AddItinerary />} />
-          <Route path="details" element={<AddItinerary />} />
-          <Route path="transportation" element={<Transportation />} />
-          <Route path="accomodation" element={<Accomodation />} />
-          <Route path="restaurant" element={<Restaurant />} />
-          <Route path="activity" element={<Activities />} />
-          <Route path="note" element={<Notes />} />
-          <Route path="summary" element={<Activities />} />
+const App = () => {
+  const { itineraryDetails } = useAppSelector((state) => state.itinerary);
+
+  return (
+    <Routes>
+      <Route path="/" element={<Account />}>
+        <Route index element={<Dashboard />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="itinerary" element={<Itinerary />}>
+          <Route index element={<AssignedItineraries />} />
+          <Route path="list" element={<AssignedItineraries />} />
+          <Route path="cancelled" element={<CancelledItineraries />} />
+          <Route path="detail/:formRef" element={<ItineraryDetails />} />
+          <Route path="add" element={<CreateItinerary />}>
+            <Route index element={<AddItinerary data={itineraryDetails} />} />
+            <Route
+              path="details"
+              element={<AddItinerary data={itineraryDetails} />}
+            />
+            <Route
+              path="transportation"
+              element={
+                <Transportation status={itineraryDetails.itineraryStatus} />
+              }
+            />
+            <Route
+              path="accomodation"
+              element={
+                <Accomodation status={itineraryDetails.itineraryStatus} />
+              }
+            />
+            <Route
+              path="restaurant"
+              element={<Restaurant status={itineraryDetails.itineraryStatus} />}
+            />
+            <Route
+              path="activity"
+              element={<Activities status={itineraryDetails.itineraryStatus} />}
+            />
+            <Route
+              path="note"
+              element={<Notes status={itineraryDetails.itineraryStatus} />}
+            />
+            <Route
+              path="summary"
+              element={
+                <TripSummary status={itineraryDetails.itineraryStatus} />
+              }
+            />
+          </Route>
         </Route>
-      </Route>
 
-      <Route path="travellers" >
-        <Route index element={<Travellers />} />
-        <Route path="details/:travellerRef" element={<TravellersDetails />} />
-      </Route>
+        <Route path="travellers">
+          <Route index element={<Travellers />} />
+          <Route path="details/:travellerRef" element={<TravellersDetails />} />
+        </Route>
 
-      <Route path="admin" >
-        <Route index element={<AccessManagement />} />
-        <Route path="accessSpecialistList" element={<AccessManagement />} />
-        <Route path="createSpecialist" element={<CreateSpecialist />} />
-        <Route path="editSpecialist/:specialistRef" element={<EditSpecialist />} />
+        <Route path="admin">
+          <Route index element={<AccessManagement />} />
+          <Route path="accessSpecialistList" element={<AccessManagement />} />
+          <Route path="createSpecialist" element={<CreateSpecialist />} />
+          <Route
+            path="editSpecialist/:specialistRef"
+            element={<EditSpecialist />}
+          />
+        </Route>
 
+        <Route path="profile" element={<Profile />} />
+        <Route path="notifications" element={<SendNotifications />} />
+        <Route path="chat">
+          <Route index element={<Chat />} />
+          <Route path=":channelId" element={<Chat />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/dashboard" replace={true} />} />
       </Route>
-
-      <Route path="profile" element={<Profile />} />
-      <Route path="notifications" element={<SendNotifications />} />
-      <Route path="chat">
-        <Route index element={<Chat />} />
-        <Route path=":channelId" element={<Chat />} />
-      </Route>
-      <Route path="*" element={<Navigate to="/dashboard" replace={true} />} />
-    </Route>
-    <Route path="login" element={<Login />} />
-  </Routes>
-);
+      <Route path="login" element={<Login />} />
+    </Routes>
+  );
+};
 
 export default App;

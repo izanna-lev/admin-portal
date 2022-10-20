@@ -1,4 +1,4 @@
-import "./index.scss";
+import styles from "./index.module.scss";
 
 type InputProps = {
   inputFields: {
@@ -12,10 +12,9 @@ type InputProps = {
 
 const Radio = ({ inputFields }: InputProps) => {
   return (
-    <div className="input-radio-form">
-       {" "}
+    <div className={styles["input-radio-form"]}>
       <input
-        className="field-radio-value"
+        className={styles["field-radio-value"]}
         type={inputFields.type}
         id={inputFields.id}
         name={inputFields.id}
@@ -23,7 +22,7 @@ const Radio = ({ inputFields }: InputProps) => {
         defaultChecked={inputFields.checked}
       />
        
-      <label className="input-radio-label" htmlFor={inputFields.id}>
+      <label className={styles["input-radio-label"]} htmlFor={inputFields.id}>
         {inputFields.name}
       </label>
     </div>

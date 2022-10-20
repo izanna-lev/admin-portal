@@ -22,21 +22,9 @@
   justify-content: center;
 }
 
-.form-block {
-  width: 90%;
-  height: 90%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 0.75rem;
-  font-weight: 500;
-  gap: 4px;
-  position: relative;
-}
-
 .form-required-feilds {
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
   width: 100%;
   display: grid;
   column-gap: 60px;
@@ -52,8 +40,8 @@
 }
 
 .cross {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
   color: $white;
   background-color: $theme_color_dark_grey;
   border-radius: 50%;
@@ -61,6 +49,7 @@
   align-self: baseline;
   margin-top: 2rem;
   margin-left: 0.75rem;
+  cursor: pointer;
 }
 
 .button-save {
@@ -96,8 +85,9 @@
 }
 
 .add-more {
-  font-size: 14px;
+  font-size: 0.95rem;
   font-weight: 500;
   margin-top: 0.5rem;
   cursor: pointer;
+  text-decoration: underline;
 }

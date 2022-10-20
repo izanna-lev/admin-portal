@@ -22,7 +22,7 @@ const NavigationOptions = [
   },
   {
     number: 3,
-    name: "Accommodation",
+    name: "Accommodations",
     path: "accomodation",
   },
   {
@@ -47,25 +47,35 @@ const NavigationOptions = [
   },
 ];
 
-const FormNavigation = (item: any, index: number, setTab: any, tab: string) => (
-  <Link
-    to={item.path}
-    key={index}
-    className="step"
-    onClick={() => setTab(item.path)}
-  >
-    <div className="step-number-background">
-      <span className="step-number">{item.number}</span>
-    </div>
-    <div
-      className={`step-name-background ${
-        tab === item.path ? "tab-active" : ""
-      }`}
+const FormNavigation = (
+  item: any,
+  index: number,
+  setTab: any,
+  tab: string,
+  detailsSubmission: boolean = false
+) => {
+  const handleClick = () => (detailsSubmission ? setTab(item.path) : null);
+
+  return (
+    <Link
+      to={detailsSubmission ? item.path : "details"}
+      key={index}
+      className="step"
+      onClick={handleClick}
     >
-      <span className={`step-name`}>{item.name}</span>
-    </div>
-  </Link>
-);
+      <div className="step-number-background">
+        <span className="step-number">{item.number}</span>
+      </div>
+      <div
+        className={`step-name-background ${
+          tab === item.path ? "tab-active" : ""
+        }`}
+      >
+        <span className={`step-name`}>{item.name}</span>
+      </div>
+    </Link>
+  );
+};
 
 const CreateItinerary = () => {
   const navigate = useNavigate();
@@ -73,10 +83,7 @@ const CreateItinerary = () => {
   const [tabNum, setTabNum] = useState("details");
 
   const { formRef } = useAppSelector((state) => state.appData);
-
-  // useEffect(() => {
-  // const container =   document.getElementById("itineraryDetailPage").scrollTo(0, 0);
-  // }, [])
+  const { details } = useAppSelector((state) => state.itinerary);
 
   useEffect(() => {
     !formRef && navigate("/itinerary/list");
@@ -93,7 +100,7 @@ const CreateItinerary = () => {
         <section className="content-top">
           <h2
             className="content-heading"
-            onClick={() => navigate("/itinerary/list")}
+            onClick={() => navigate(`/itinerary/detail/${formRef}`)}
             style={{ cursor: "pointer" }}
           >
             <BsChevronLeft />
@@ -102,13 +109,17 @@ const CreateItinerary = () => {
         </section>
         <section className="createItineraryNav">
           {NavigationOptions.map((item: any, index: number) =>
-            FormNavigation(item, index, setTabNum, tabNum)
+            FormNavigation(item, index, setTabNum, tabNum, details)
           )}
         </section>
-        <div className="content-bottom">
-          <h4 className="form-request">Please fill the form below</h4>
+        <section className="content-bottom">
+          <h4 className="form-request">
+            {tabNum !== "summary"
+              ? "Please fill the form below"
+              : "Please review the details below"}
+          </h4>
           <Outlet />
-        </div>
+        </section>
       </section>
     </section>
   );

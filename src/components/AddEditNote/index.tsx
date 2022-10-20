@@ -1,8 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { usePlacesWidget } from "react-google-autocomplete";
-import { BiEdit } from "react-icons/bi";
+import { useEffect, useRef, useState } from "react";
 import { IoCloudUploadOutline } from "react-icons/io5";
-import { RiDeleteBin6Line } from "react-icons/ri";
 import { Create } from "../../api/Create";
 import { API, IMAGE } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -23,39 +20,33 @@ type InputProps = {
 };
 
 const Input = ({ inputFields }: InputProps) => (
-  <input
-    name={inputFields.name}
-    type={inputFields.type}
-    maxLength={inputFields.maxlength}
-    className={`day-blank ${
-      inputFields.default ? "fixed-background" : "edit-background"
-    }`}
-    ref={inputFields.ref}
-    onChange={(e) =>
-      inputFields.onChange && inputFields.onChange(e.target.value)
-    }
-    placeholder={inputFields.placeholder}
-    defaultValue={inputFields.default}
-    autoFocus
-    required
-  />
+  <div>
+    <input
+      name={inputFields.name}
+      type={inputFields.type}
+      maxLength={inputFields.maxlength}
+      className={`day-blank edit-background`}
+      ref={inputFields.ref}
+      onChange={(e) =>
+        inputFields.onChange && inputFields.onChange(e.target.value)
+      }
+      placeholder={inputFields.placeholder}
+      defaultValue={inputFields.default}
+      autoFocus
+      required
+    />
+  </div>
 );
 
 const AddEditNotes = ({ data = {}, handleAddEdit }: any) => {
   const [defaultData, setdefaultData] = useState<any>({});
   const [selectedImage, setSelectedImage] = useState();
 
+  const { _id } = useAppSelector((state) => state.itinerary.itineraryDetails);
   const dispatch = useAppDispatch();
-
-  const { _id } = useAppSelector(
-    (state) => state.itineraryData.itineraryDetails
-  );
 
   const dayRef = useRef();
   const noteRef = useRef();
-  const titleRef = useRef();
-  const timeRef = useRef();
-  const dateRef = useRef();
 
   useEffect(() => {
     if (data.day) {
@@ -80,7 +71,7 @@ const AddEditNotes = ({ data = {}, handleAddEdit }: any) => {
       description: getRefValue(noteRef),
     };
 
-    console.log(payload);
+    // console.log(payload, selectedImage);
 
     if (data.day) {
       payload = { ...payload, noteRef: data._id };
@@ -105,11 +96,11 @@ const AddEditNotes = ({ data = {}, handleAddEdit }: any) => {
         })
       );
     }
-    // handleAddEdit(false);
+    handleAddEdit(false);
   };
 
   return (
-    <form className="add-notes add-data" onSubmit={saveNoteDetails}>
+    <form className="add-notes add-data table-item" onSubmit={saveNoteDetails}>
       <Input
         inputFields={{
           ref: dayRef,
@@ -119,22 +110,23 @@ const AddEditNotes = ({ data = {}, handleAddEdit }: any) => {
           default: defaultData.day,
         }}
       />
-
-      <div className="day-blank image" id="activity_image">
-        <input
-          type="file"
-          id="activity-upload"
-          accept="image/*"
-          name="image"
-          onChange={(e) => imageChange(e)}
-          hidden
-        />
-        <label
-          htmlFor="activity-upload"
-          className={` ${defaultData.image ? "" : "not-selected-preview"}`}
-        >
-          <IoCloudUploadOutline className="activity-image-placeholder" />
-        </label>
+      <div>
+        <div className="day-blank image itineraryImage" id="activity_image">
+          <input
+            type="file"
+            id="activity-upload"
+            accept="image/*"
+            name="image"
+            onChange={(e) => imageChange(e)}
+            hidden
+          />
+          <label
+            htmlFor="activity-upload"
+            className={` ${defaultData.image ? "" : "not-selected-preview"}`}
+          >
+            <IoCloudUploadOutline className="activity-image-placeholder" />
+          </label>
+        </div>
       </div>
 
       <Input
@@ -143,7 +135,7 @@ const AddEditNotes = ({ data = {}, handleAddEdit }: any) => {
           name: "note",
           maxlength: 1000,
           type: "text",
-          default: defaultData.note,
+          default: defaultData.description,
         }}
       />
 

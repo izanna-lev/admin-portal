@@ -1,79 +1,32 @@
-/* eslint-disable @typescript-eslint/no-unused-expressions */
-/* eslint-disable array-callback-return */
 /**
  * @desc this is the login component of the application.
  * @author Jagmohan Singh
  */
 
-import { API, FERRY_CLASS, TRANSPORTATION_TYPE } from "../../../constants";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { getFormattedDate, getFormattedTime } from "../../../util";
+import EditFerry from "../../TransportationEdit/EditFerry";
 import NewFerry from "../../TransportationAdd/AddFerry";
 import { Modal } from "../../../components/Portal";
-import { DeleteEntity } from "../../../api/Delete";
 import { MdDeleteOutline } from "react-icons/md";
+import { FERRY_CLASS } from "../../../constants";
+import { Pagination } from "../../Pagination";
 import { FaRegEdit } from "react-icons/fa";
 import styles from "./index.module.scss";
 import { useState } from "react";
-import EditFerry from "../../TransportationEdit/EditFerry";
-import { Pagination } from "../../Pagination";
-import { Fetch } from "../../../api/Fetch";
 
-const FerryDetails = ({ nextTab }: any) => {
+const FerryDetails = (props: any) => {
+  const {
+    deleteTransportation,
+    nextPage,
+    previousPage,
+    nextTab,
+    ferry,
+    status,
+  } = props;
+  const { list, page, limit, total, size } = ferry;
+
   const [addMore, setAddMore] = useState(false);
   const [edit, setEdit] = useState(undefined);
-
-  const { list, page, limit, total, size } = useAppSelector(
-    (state: any) => state.transportation.ferry
-  );
-
-  const { _id } = useAppSelector(
-    (state) => state.itineraryData.itineraryDetails
-  );
-  const dispatch = useAppDispatch();
-
-  const deleteTransportation = (transportationRef: string) => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this?"
-    );
-    if (confirmDelete)
-      dispatch(
-        DeleteEntity(
-          API.TRANSPORTATION_DELETE,
-          { transportationRef },
-          API.TRANSPORTATION_DATA,
-          { transportationType: TRANSPORTATION_TYPE.FERRY, itineraryRef: _id },
-          1,
-          10
-        )
-      );
-  };
-
-  const nextPage = () =>
-    dispatch(
-      Fetch(
-        API.TRANSPORTATION_DATA,
-        {
-          itineraryRef: _id,
-        },
-        page + 1,
-        limit,
-        { transportationType: 3 }
-      )
-    );
-
-  const previousPage = () =>
-    dispatch(
-      Fetch(
-        API.TRANSPORTATION_DATA,
-        {
-          itineraryRef: _id,
-        },
-        page - 1,
-        limit,
-        { transportationType: 3 }
-      )
-    );
 
   return (
     <>
@@ -97,7 +50,7 @@ const FerryDetails = ({ nextTab }: any) => {
           <div>Depart Station</div>
           <div>Depart Time</div>
           <div>Specialist Note</div>
-          <div>Actions</div>
+          <div>Action</div>
         </div>
 
         <div className={styles["forms"]}>
@@ -111,18 +64,20 @@ const FerryDetails = ({ nextTab }: any) => {
                 <div>{element.arrival || "NA"}</div>
                 <div>{FERRY_CLASS[element.trainClass - 1 || 0].name}</div>
                 <div>{getFormattedDate(element.arrivalDateTime)}</div>
-                <div>{getFormattedDate(element.arrivalDateTime)}</div>
+                <div>{getFormattedTime(element.arrivalDateTime)}</div>
                 <div>{element.depart || "NA"}</div>
                 <div>{getFormattedTime(element.departDateTime)}</div>
                 <div>{element.specialistNote || "NA"}</div>
-                <div
-                  className="add-activity-buttons"
-                  onClick={() => setEdit(element)}
-                >
-                  <button className="btn edit-button">
-                    <FaRegEdit />
-                    &nbsp;<span>Edit</span>
-                  </button>
+                <div className="add-activity-buttons">
+                  {status === 3 || status === 5 ? null : (
+                    <button
+                      className="btn edit-button"
+                      onClick={() => setEdit(element)}
+                    >
+                      <FaRegEdit />
+                      &nbsp;<span>Edit</span>
+                    </button>
+                  )}
                   <button
                     className="btn delete-button"
                     onClick={() => deleteTransportation(element._id)}
@@ -140,18 +95,21 @@ const FerryDetails = ({ nextTab }: any) => {
           )}
         </div>
       </section>
-      <span
-        className={styles["add-more"]}
-        onClick={() => {
-          setAddMore(true);
-        }}
-      >
-        + Add Ferry Details
-      </span>
-
-      <div onClick={() => nextTab(4)} className="continue-button">
-        Continue
-      </div>
+      {status === 4 ? (
+        <>
+          <span
+            className={styles["add-more"]}
+            onClick={() => {
+              setAddMore(true);
+            }}
+          >
+            + Add Ferry Details
+          </span>
+          <div onClick={() => nextTab(4)} className="continue-button">
+            Continue
+          </div>
+        </>
+      ) : null}
       {addMore ? (
         <Modal
           modal={<NewFerry handleAddPopup={setAddMore} />}

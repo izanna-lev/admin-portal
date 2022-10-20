@@ -26,13 +26,11 @@ const InputForm = ({ inputFields }: InputProps) => {
         max={inputFields.max}
         className={styles["field-value"]}
         ref={inputFields.ref}
-        
         onChange={(e) =>
           inputFields.onChange && inputFields.onChange(e.target.value)
         }
         placeholder={inputFields.placeholder}
         defaultValue={inputFields.value || inputFields.default}
-        autoFocus
         required
       />
     </div>

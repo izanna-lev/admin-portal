@@ -17,16 +17,14 @@ import { Fetch } from "../../../api/Fetch";
 import { FaRegEdit } from "react-icons/fa";
 import styles from "./index.module.scss";
 
-const AccomodationDetails = () => {
+const AccomodationDetails = ({ status }: { status?: number }) => {
   const [addMore, setAddMore] = useState(false);
   const [edit, setEdit] = useState(undefined);
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { _id } = useAppSelector(
-    (state) => state.itineraryData.itineraryDetails
-  );
+  const { _id } = useAppSelector((state) => state.itinerary.itineraryDetails);
 
   useEffect(() => {
     dispatch(
@@ -50,9 +48,9 @@ const AccomodationDetails = () => {
       })
     );
 
-  const {
-    accomodation: { list, page, limit, total, size },
-  } = useAppSelector((state) => state.reservation);
+  const { list, page, limit, total, size } = useAppSelector(
+    (state) => state.itinerary.accomodation
+  );
 
   const deleteReservation = (reservationRef: string) => {
     const confirmDelete = window.confirm(
@@ -99,7 +97,7 @@ const AccomodationDetails = () => {
             <div>Check Out Time</div>
             <div>Check Out Date</div>
             <div>Description</div>
-            <div>Actions</div>
+            <div>Action</div>
           </div>
 
           <div className={styles["forms"]}>
@@ -134,13 +132,15 @@ const AccomodationDetails = () => {
                   <div>{getFormattedDate(element.checkOutDateTime)}</div>
                   <div>{element.description || "NA"}</div>
                   <div className="add-activity-buttons">
-                    <button
-                      className="btn edit-button"
-                      onClick={() => setEdit(element)}
-                    >
-                      <FaRegEdit />
-                      &nbsp;<span>Edit</span>
-                    </button>
+                    {status === 3 || status === 5 ? null : (
+                      <button
+                        className="btn edit-button"
+                        onClick={() => setEdit(element)}
+                      >
+                        <FaRegEdit />
+                        &nbsp;<span>Edit</span>
+                      </button>
+                    )}
                     <button
                       className="btn delete-button"
                       onClick={() => deleteReservation(element._id)}
@@ -161,21 +161,19 @@ const AccomodationDetails = () => {
           </div>
         </div>
       </section>
-      <span
-        className={styles["add-more"]}
-        onClick={() => {
-          setAddMore(true);
-        }}
-      >
-        + Add Days
-      </span>
-
-      <div
-        onClick={() => navigate("/itinerary/add/restaurant")}
-        className="continue-button"
-      >
-        Continue
-      </div>
+      {status !== 4 ? null : (
+        <>
+          <span className={styles["add-more"]} onClick={() => setAddMore(true)}>
+            + Add Days
+          </span>
+          <div
+            onClick={() => navigate("/itinerary/add/restaurant")}
+            className="continue-button"
+          >
+            Continue
+          </div>
+        </>
+      )}
       {addMore ? (
         <Modal
           modal={<AddEditAccomodation handleAddPopup={setAddMore} />}

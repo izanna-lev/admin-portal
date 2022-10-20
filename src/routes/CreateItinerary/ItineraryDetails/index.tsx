@@ -3,7 +3,7 @@
  * @author Jagmohan Singh
  */
 
-import { API, GOOGLE_API, ITINERARY_TYPE } from "../../../constants";
+import { API, GOOGLE_API, IMAGE, ITINERARY_TYPE } from "../../../constants";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import InputForm from "../../../components/InputTypes/InputForm/index";
 import { usePlacesWidget } from "react-google-autocomplete";
@@ -13,13 +13,15 @@ import Toggle from "../../../components/InputTypes/Toggle/index";
 import { useEffect, useRef, useState } from "react";
 import { IoImageOutline } from "react-icons/io5";
 import { Create } from "../../../api/Create";
-import "./index.scss";
-import { setBackground } from "../../../util";
+import { getRefValue, setBackground } from "../../../util";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import "./index.scss";
 
-const AddItineraryPage = () => {
+const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
   const [selectedImage, setSelectedImage] = useState();
-  const [location, setLocation] = useState({});
+  const [location, setLocation] = useState({ type: "" });
+
   const nameRef = useRef();
   const emailRef = useRef();
   const priceRef = useRef();
@@ -43,9 +45,11 @@ const AddItineraryPage = () => {
   });
 
   useEffect(() => {
-    // document.getElementById("formTop")?.scrollTo(0, 0);
+    if (data.duration)
+      setBackground(`${IMAGE.SMALL}${data.image}`, "itineraryImage");
+
     document.getElementById("itineraryDetailPage")?.scrollTo(0, 0);
-  }, []);
+  }, [data]);
 
   const imageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -72,36 +76,60 @@ const AddItineraryPage = () => {
 
   const saveItinerary = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const getInputValue = (ref: any) => ref.current.value;
+    let payload;
 
-    const data = {
-      email: getInputValue(emailRef),
-      itineraryEmail: getInputValue(emailRef),
-      fromDate: getInputValue(fromDateRef),
-      isDrivingLicense: getInputValue(drivingRef) === "on",
-      isPassport: getInputValue(passportRef) === "on",
-      itineraryType: getInputValue(itineraryTypeRef),
-      location,
-      name: getInputValue(nameRef),
-      price: getInputValue(priceRef),
-      rooms: getInputValue(roomsRef),
-      specialistNote: getInputValue(noteRef),
-      specificRestrictionsAndRegulations: getInputValue(regulationsRef),
-      toDate: getInputValue(toDateRef),
-      formRef,
-      travellerRef: formRef,
+    payload = {
+      itineraryEmail: getRefValue(emailRef),
+      fromDate: new Date(getRefValue(fromDateRef)).toISOString(),
+      isDrivingLicense: getRefValue(drivingRef) === "on",
+      isPassport: getRefValue(passportRef) === "on",
+      itineraryType: getRefValue(itineraryTypeRef),
+      name: getRefValue(nameRef),
+      price: getRefValue(priceRef),
+      rooms: getRefValue(roomsRef),
+      specialistNote: getRefValue(noteRef),
+      specificRestrictionsAndRegulations: getRefValue(regulationsRef),
+      toDate: new Date(getRefValue(toDateRef)).toISOString(),
     };
 
-    if (!selectedImage) {
-      return alert("Please select an image!");
+    if (location.type) {
+      payload = { ...payload, location };
     }
-    dispatch(Create(API.ITINERARY_ADD, data, true, selectedImage));
-  };
 
+    if (data.duration) {
+      payload = { ...payload, itineraryRef: data._id };
+
+      dispatch(
+        Create(
+          API.ITINERARY_EDIT,
+          payload,
+          true,
+          selectedImage ? selectedImage : null,
+          API.ITINERARY_DETAILS,
+          { formRef }
+        )
+      );
+      handleEditPopup(null);
+    } else {
+      payload = { ...payload, formRef };
+
+      if (!selectedImage) return alert("Please select an image!");
+      dispatch(
+        Create(
+          API.ITINERARY_ADD,
+          payload,
+          true,
+          selectedImage,
+          API.ITINERARY_DETAILS,
+          { formRef }
+        )
+      );
+    }
+  };
   if (apiMessage.type === "success") navigate("/itinerary/add/summary");
 
   return (
-    <section className="AddItineraryPage" id="formTop">
+    <section className="AddItineraryDetailsPage" id="formTop">
       <div className="feild-heading">Upload Image</div>
 
       <input
@@ -129,6 +157,7 @@ const AddItineraryPage = () => {
           <div className="feild-heading">Basic Details</div>
           <InputForm
             inputFields={{
+              default: data.name,
               placeholder: "Steven Johns",
               ref: nameRef,
               name: "Name",
@@ -139,6 +168,7 @@ const AddItineraryPage = () => {
           />
           <InputForm
             inputFields={{
+              default: data.email,
               placeholder: "example@mail.com",
               ref: emailRef,
               name: "Email",
@@ -151,9 +181,11 @@ const AddItineraryPage = () => {
             name="Itinerary Type"
             inputFields={ITINERARY_TYPE}
             refe={itineraryTypeRef}
+            checkedVal={data.itineraryType}
           />
           <InputForm
             inputFields={{
+              default: data.price,
               placeholder: "$250",
               ref: priceRef,
               name: "Itinerary Price",
@@ -165,6 +197,11 @@ const AddItineraryPage = () => {
 
           <InputForm
             inputFields={{
+              default: data.fromDate
+                ? moment(new Date(data.fromDate).toISOString())
+                    .format()
+                    .slice(0, 10)
+                : "",
               placeholder: "",
               ref: fromDateRef,
               name: "From Date",
@@ -175,6 +212,11 @@ const AddItineraryPage = () => {
           />
           <InputForm
             inputFields={{
+              default: data.toDate
+                ? moment(new Date(data.toDate).toISOString())
+                    .format()
+                    .slice(0, 10)
+                : "",
               placeholder: "",
               ref: toDateRef,
               name: "To Date",
@@ -185,7 +227,7 @@ const AddItineraryPage = () => {
           />
 
           <button className="button-submit-itinerary">
-            <div className="button">Save & Next</div>
+            {data.duration ? "Save" : "Save & Next"}
           </button>
         </div>
 
@@ -194,6 +236,7 @@ const AddItineraryPage = () => {
 
           <InputForm
             inputFields={{
+              default: data.location?.location,
               placeholder: "Cebu City, Canada",
               ref: ref,
               name: "Location",
@@ -204,6 +247,7 @@ const AddItineraryPage = () => {
           />
           <InputForm
             inputFields={{
+              default: data.rooms,
               placeholder: "1",
               ref: roomsRef,
               name: "No of Rooms allotted",
@@ -215,6 +259,7 @@ const AddItineraryPage = () => {
           />
           <TextArea
             inputFields={{
+              default: data.specialistNote,
               placeholder: "Lorem Ipsum",
               ref: noteRef,
               name: "Specialist Note",
@@ -225,6 +270,7 @@ const AddItineraryPage = () => {
           />
           <TextArea
             inputFields={{
+              default: data.specificRestrictionsAndRegulations,
               placeholder: "Lorem ipsum",
               ref: regulationsRef,
               name: "Specific Restriction and Regulation",
@@ -235,6 +281,7 @@ const AddItineraryPage = () => {
           />
           <Toggle
             inputFields={{
+              default: data.isPassport,
               ref: passportRef,
               name: "Passport Required",
               id: "passport",
@@ -243,6 +290,7 @@ const AddItineraryPage = () => {
           />
           <Toggle
             inputFields={{
+              default: data.isDrivingLicense,
               ref: drivingRef,
               name: "Driving License Required",
               id: "license",
