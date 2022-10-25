@@ -5,17 +5,18 @@
 
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { FaRegEdit } from 'react-icons/fa'
-import { AiFillStar } from 'react-icons/ai'
-import { RiDeleteBin6Line } from 'react-icons/ri'
+import { FaRegEdit } from "react-icons/fa";
+import { AiFillStar } from "react-icons/ai";
+import { RiDeleteBin6Line } from "react-icons/ri";
 import {
   IMAGE,
   ICON,
   API,
   PERMISSIONS_STRING,
+  NAVIGATE,
 } from "../../constants";
 import { Modal } from "../../components/Portal";
-import { SPECIALIST_ACTIONS } from '../../constants'
+import { SPECIALIST_ACTIONS } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 import { Pagination } from "../../components/Pagination";
@@ -25,7 +26,7 @@ import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
 import { Create } from "../../api/Create";
-
+import { SET_NAVIGATION } from "../../store/slices/navigation";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -50,20 +51,18 @@ const TableRow = (
   popupUpdate: any,
   updateSpecialistAction: any
 ) => {
-
-
   const permissions = (data: any) => {
-    let text = ""
+    let text = "";
     if (data) {
       for (const key in PERMISSIONS_STRING) {
         if (data[key]) {
-          text += PERMISSIONS_STRING[key] + ", "
+          text += PERMISSIONS_STRING[key] + ", ";
         }
       }
     }
 
     return text.substring(0, text.length - 2);
-  }
+  };
 
   return (
     <tr className="body-tr" key={index}>
@@ -83,25 +82,27 @@ const TableRow = (
             <span className="access-management text">{item.email}</span>
             <span className="access-management text">{item.phoneNumber}</span>
           </div>
-
         </div>
       </td>
       <td className="specialist-ratings">
-      <AiFillStar className="star-rating"/>
-      <div>{item.averageRatings || 0}</div></td>
-      <td>
-        {item.completedItineraries || 0}
+        <AiFillStar className="star-rating" />
+        <div>{item.averageRatings || 0}</div>
       </td>
+      <td>{item.completedItineraries || 0}</td>
       <td>{permissions(item.permissions)}</td>
       <td className="specialist-actions">
         <div
-        onClick={() => {
-          updateSpecialistAction({
-            id: item._id,
-            action: item.blocked? SPECIALIST_ACTIONS.UNBLOCK: SPECIALIST_ACTIONS.BLOCK
-          })
-        }}
-        >{item.blocked ? "Deactivate" : "Activate"}</div>
+          onClick={() => {
+            updateSpecialistAction({
+              id: item._id,
+              action: item.blocked
+                ? SPECIALIST_ACTIONS.UNBLOCK
+                : SPECIALIST_ACTIONS.BLOCK,
+            });
+          }}
+        >
+          {item.blocked ? "Deactivate" : "Activate"}
+        </div>
         <button
           className="btn view-button specialist-edit"
           onClick={() => {
@@ -112,8 +113,8 @@ const TableRow = (
                 email: item.email,
                 phoneNumber: item.phoneNumber,
                 permissions: item.permissions,
-                image: item.image
-              }
+                image: item.image,
+              },
             });
           }}
         >
@@ -122,15 +123,13 @@ const TableRow = (
         </button>
         <button
           className="btn view-button specialist-delete"
-          onClick={() => popupUpdate(true, item._id)
-          }
+          onClick={() => popupUpdate(true, item._id)}
         >
           <RiDeleteBin6Line />
           Delete
         </button>
       </td>
     </tr>
-
   );
 };
 
@@ -143,31 +142,36 @@ const AccessManagement = () => {
   );
   const [popup, setPopup] = useState({
     id: "",
-    show: false
+    show: false,
   });
 
-
   const popupUpdate = (show: boolean, id: string) => {
-    setPopup({ ...popup, show, id })
+    setPopup({ ...popup, show, id });
   };
 
   const cancel = () => {
-    setPopup({ ...popup, show: false, id: "" })
+    setPopup({ ...popup, show: false, id: "" });
   };
 
   const deleteSpecialist = () => {
     dispatch(DeleteEntity(API.DELETE_SPECIALIST, { specialistRef: popup.id }));
-    cancel()
-    window.location.reload()
+    cancel();
+    window.location.reload();
   };
 
   const updateSpecialistAction = (data: any) => {
-    dispatch(Create(API.ACTION_SPECIALIST, { specialistRef: data.id, action: data.action}));
-    window.location.reload()
+    dispatch(
+      Create(API.ACTION_SPECIALIST, {
+        specialistRef: data.id,
+        action: data.action,
+      })
+    );
+    window.location.reload();
   };
 
   useEffect(() => {
     dispatch(Fetch(API.LIST_SPECIALIST, {}, 1, 10));
+    dispatch(SET_NAVIGATION({ value: NAVIGATE.ACCESS_MANAGEMENT }));
   }, [dispatch]);
 
   return (
@@ -185,15 +189,15 @@ const AccessManagement = () => {
       </section>
       {list.length
         ? Pagination({
-          page,
-          limit,
-          total,
-          size,
-          nextPage: () =>
-            dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
-          previousPage: () =>
-            dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
-        })
+            page,
+            limit,
+            total,
+            size,
+            nextPage: () =>
+              dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
+            previousPage: () =>
+              dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
+          })
         : null}
       <section className="table-container">
         <table className="itinerary-table table">
@@ -201,7 +205,16 @@ const AccessManagement = () => {
           <tbody className="body-tr">
             {list.length ? (
               list.map((item, index) =>
-                TableRow(item, index, limit, page, navigate, dispatch, popupUpdate, updateSpecialistAction)
+                TableRow(
+                  item,
+                  index,
+                  limit,
+                  page,
+                  navigate,
+                  dispatch,
+                  popupUpdate,
+                  updateSpecialistAction
+                )
               )
             ) : (
               <tr className="table-empty">
@@ -213,17 +226,21 @@ const AccessManagement = () => {
           </tbody>
         </table>
       </section>
-      {popup.show && <Modal
-        modal={<Popup
-          heading="Delete Specialist"
-          text="Are you sure you want to delete this specialist. This can`t be undone"
-          firstButtonText="Delete"
-          secondButtonText="Cancel"
-          firstButtonAction={deleteSpecialist}
-          secondButtonAction={cancel}
-        />}
-        root={document.getElementById("overlay-root") as HTMLElement}
-      />}
+      {popup.show && (
+        <Modal
+          modal={
+            <Popup
+              heading="Delete Specialist"
+              text="Are you sure you want to delete this specialist. This can`t be undone"
+              firstButtonText="Delete"
+              secondButtonText="Cancel"
+              firstButtonAction={deleteSpecialist}
+              secondButtonAction={cancel}
+            />
+          }
+          root={document.getElementById("overlay-root") as HTMLElement}
+        />
+      )}
     </main>
   );
 };
