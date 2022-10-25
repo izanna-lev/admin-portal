@@ -1,5 +1,5 @@
 import React from "react";
-import SimpleMDE from "react-simplemde-editor";
+import {SimpleMDE} from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import "./Editor.css";
 
