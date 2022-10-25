@@ -4,14 +4,18 @@ import styles from "./index.module.scss";
 
 const SettingsNavBar = () => (
   <nav className={`${styles["navigation-sidebar"]} `}>
-    {NavigationOption("About Us", ICON.DASHBOARD_INACTIVE, "settings/about")}
-    {NavigationOption("FAQs", ICON.PROFILE_INACTIVE, "settings/faq")}
+    {NavigationOption("About Us", ICON.ABOUT_US, "settings/about")}
+    {NavigationOption("FAQs", ICON.FAQ, "settings/faqs")}
     {NavigationOption(
       "Terms & Conditions",
-      ICON.ITINERARIES_INACTIVE,
+      ICON.TERMS_CONDITIONS,
       "settings/terms"
     )}
-    {NavigationOption("Privacy Policy", ICON.CHAT_INACTIVE, "settings/privacy")}
+    {NavigationOption(
+      "Privacy Policy",
+      ICON.PRIVACY_POLICY,
+      "settings/privacy"
+    )}
   </nav>
 );
 

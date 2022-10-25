@@ -171,6 +171,12 @@ export const ICON: IconOptions = {
   SETTINGS_INACTIVE: `${NAVIGATION_ICON}ic_settings-inactive.svg`,
   TRAVELLERS_INACTIVE: `${NAVIGATION_ICON}ic_travellers-inactive.svg`,
 
+  ABOUT_US: `${NAVIGATION_ICON}ic-about-us-inactive.svg`,
+  FAQ: `${NAVIGATION_ICON}ic-faq-inactive.svg`,
+  PRIVACY_POLICY: `${NAVIGATION_ICON}ic-privacy-policy-inactive.svg`,
+  SETTINGS: `${NAVIGATION_ICON}ic-settings-inactive.svg`,
+  TERMS_CONDITIONS: `${NAVIGATION_ICON}ic-t&c-inactive.svg`,
+
   // PAGINATION ICONS
   NEXT_PAGE: `${ACTION_ICON}ic_next.svg`,
   PREV_PAGE: `${ACTION_ICON}ic_previous.svg`,
