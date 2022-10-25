@@ -6,7 +6,7 @@ import { SETTINGS_NAVIGATE } from "../../constants";
 const SettingsNavBar = () => (
   <nav className={`${styles["navigation-sidebar"]} `}>
     {NavigationOption("About Us", ICON.DASHBOARD_INACTIVE, SETTINGS_NAVIGATE.ABOUT_US, "settings/aboutsUs")}
-    {NavigationOption("FAQs", ICON.PROFILE_INACTIVE, SETTINGS_NAVIGATE.FAQ, "settings/aboutsUs")}
+    {NavigationOption("FAQs", ICON.PROFILE_INACTIVE, SETTINGS_NAVIGATE.FAQ, "settings/faqs")}
     {NavigationOption(
       "Terms & Conditions",
       ICON.ITINERARIES_INACTIVE,

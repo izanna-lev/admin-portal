@@ -21,6 +21,7 @@ export const store = configureStore({
     travellerList: reducers.TravellerList,
     travellerDetails: reducers.TravellerDetails,
     appDetails: reducers.AppDetails,
+    faqList: reducers.FaqList,
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>

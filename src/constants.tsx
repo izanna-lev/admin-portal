@@ -133,8 +133,11 @@ export const API = {
   // APP DETAILS
   APP_DETAILS: `${API_URL}appdetail/list`,
   APP_DETAILS_ADD: `${API_URL}appdetail/add`,
-
-
+  
+  // FAQ
+  FAQ_LIST: `${API_URL}faq/list`,
+  FAQ_ADD: `${API_URL}faq/add`,
+  FAQ_EDIT: `${API_URL}faq/update`,
 };
 
 type IconOptions = {

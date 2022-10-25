@@ -10,6 +10,7 @@ type InputProps = {
     ref?: any;
     placeholder?: string;
     default?: string;
+    value?: string;
   };
 };
 
@@ -23,7 +24,7 @@ const TextArea = ({ inputFields }: InputProps) => {
         className={styles["textarea-value"]}
         ref={inputFields.ref}
         placeholder={inputFields.placeholder}
-        defaultValue={inputFields.default}
+        defaultValue={inputFields.value}
         autoFocus
         required
       />

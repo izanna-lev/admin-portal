@@ -14,4 +14,6 @@ export { default as NotificationUserList } from "./notification";
 export { default as TravellerList } from "./travellers";
 export { default as TravellerDetails } from "./travellerDetails";
 export { default as AppDetails } from "./appDetails";
+export { default as FaqList } from "./faqs";
+
 
