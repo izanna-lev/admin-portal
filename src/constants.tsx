@@ -4,13 +4,13 @@
 
 // Global Environment Variables
 
-const SERVER_TYPE = `${process.env.BRANCH}/`;
-const API_URL = process.env.API_URL;
-const S3_URL = process.env.S3_URL;
+// const SERVER_TYPE = `${process.env.BRANCH}/`;
+// const API_URL = process.env.API_URL;
+// const S3_URL = process.env.S3_URL;
 
-// const SERVER_TYPE = "development/";
-// const API_URL = "http://44.209.25.93:3000/api/";
-// const S3_URL = "https://app-onsite.s3.amazonaws.com/";
+const SERVER_TYPE = "development/";
+const API_URL = "http://localhost:3001/api/";
+const S3_URL = "https://app-onsite.s3.amazonaws.com/";
 
 // Custom Environment Variables
 
@@ -133,7 +133,7 @@ export const API = {
   // APP DETAILS
   APP_DETAILS: `${API_URL}appdetail/list`,
   APP_DETAILS_ADD: `${API_URL}appdetail/add`,
-  
+
   // FAQ
   FAQ_LIST: `${API_URL}faq/list`,
   FAQ_ADD: `${API_URL}faq/add`,
@@ -171,6 +171,12 @@ export const ICON: IconOptions = {
   SETTINGS_INACTIVE: `${NAVIGATION_ICON}ic_settings-inactive.svg`,
   TRAVELLERS_INACTIVE: `${NAVIGATION_ICON}ic_travellers-inactive.svg`,
 
+
+  ABOUT_US: `${NAVIGATION_ICON}ic-about-us-inactive.svg`,
+  FAQ: `${NAVIGATION_ICON}ic-faq-inactive.svg`,
+  PRIVACY_POLICY: `${NAVIGATION_ICON}ic-privacy-policy-inactive.svg`,
+  SETTINGS: `${NAVIGATION_ICON}ic-settings-inactive.svg`,
+  TERMS_CONDOTION: `${NAVIGATION_ICON}ic-t&c-inactive.svg`,
   // PAGINATION ICONS
   NEXT_PAGE: `${ACTION_ICON}ic_next.svg`,
   PREV_PAGE: `${ACTION_ICON}ic_previous.svg`,
@@ -303,3 +309,6 @@ export const USER_ACTIONS = {
   UNBLOCKED: 3,
   DELETED: 4,
 };
+
+
+

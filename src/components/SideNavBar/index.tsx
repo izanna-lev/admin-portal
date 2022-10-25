@@ -28,7 +28,7 @@ const SideNavBar = () => (
     )}
         {NavigationOption(
       "Settings",
-      ICON.NOTIFICATIONS_INACTIVE,
+      ICON.SETTINGS,
       NAVIGATE.SETTINGS,
       "settings"
     )}
