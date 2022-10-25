@@ -1,5 +1,4 @@
-
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 // import Faq from "../Faq";
@@ -7,8 +6,8 @@ import "./index.scss";
 import SettingsNavBar from "../../components/SettingsNavBar";
 import { Outlet } from "react-router-dom";
 import { Fetch } from "../../api/Fetch";
-import { API } from "../../constants";
-
+import { API, NAVIGATE } from "../../constants";
+import { SET_NAVIGATION } from "../../store/slices/navigation";
 
 const NavigationOptions = [
   {
@@ -38,6 +37,7 @@ const Settings = () => {
 
   useEffect(() => {
     dispatch(Fetch(API.APP_DETAILS, {}, 1, 10));
+    dispatch(SET_NAVIGATION({ value: NAVIGATE.SETTINGS }));
   }, [dispatch]);
 
   return (
@@ -45,10 +45,9 @@ const Settings = () => {
       <section className="page--bottom--settingsNav">
         <SettingsNavBar />
       </section>
-        <Outlet />
+      <Outlet />
     </section>
   );
 };
-
 
 export default Settings;

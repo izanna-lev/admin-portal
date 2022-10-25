@@ -19,8 +19,8 @@ const IMAGE_URL = `${S3_URL}${SERVER_TYPE}images/`;
 
 // Google Places Api Key
 
-// export const GOOGLE_API = process.env.GOOGLE_API;
-export const GOOGLE_API = "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s";
+export const GOOGLE_API = process.env.GOOGLE_API;
+// export const GOOGLE_API = "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s";
 
 console.log(SERVER_TYPE, API_URL, S3_URL, GOOGLE_API);
 
