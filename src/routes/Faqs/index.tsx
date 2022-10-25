@@ -9,6 +9,9 @@ import { AiFillStar } from 'react-icons/ai'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { Fetch } from "../../api/Fetch";
 import { useNavigate } from "react-router-dom";
+import { DeleteEntity } from "../../api/Delete";
+import { Modal } from "../../components/Portal";
+import Popup from "../../components/Popup";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -27,6 +30,7 @@ const TableRow = (
   limit: number,
   page: number,
   navigate: any,
+  popupUpdate: any,
 ) => {
 
 
@@ -57,8 +61,8 @@ const TableRow = (
         </button>
         <button
           className="btn view-button specialist-delete"
-          // onClick={() => popupUpdate(true, item._id)
-          // }
+          onClick={() => popupUpdate(true, item._id)
+          }
         >
           <RiDeleteBin6Line />
           Delete
@@ -78,6 +82,25 @@ const Faqs = () => {
     (state) => state.faqList
   );
 
+
+  const [popup, setPopup] = useState({
+    id: "",
+    show: false
+  });
+
+  const popupUpdate = (show: boolean, id: string) => {
+    setPopup({ ...popup, show, id })
+  };
+
+  const cancel = () => {
+    setPopup({ ...popup, show: false, id: "" })
+  };
+
+  const deleteFaq = () => {
+    dispatch(DeleteEntity(API.FAQ_DELETE, { faqRef: popup.id }));
+    cancel()
+    window.location.reload()
+  };
 
   useEffect(() => {
     dispatch(Fetch(API.FAQ_LIST, {}, 1, 10));
@@ -111,7 +134,7 @@ const Faqs = () => {
           <tbody className="body-tr">
             {list.length ? (
               list.map((item, index) =>
-                TableRow(item, index, limit, page, navigate)
+                TableRow(item, index, limit, page, navigate, popupUpdate)
               )
             ) : (
               <tr className="table-empty">
@@ -124,6 +147,17 @@ const Faqs = () => {
         </table>
       </section>
       </section>
+      {popup.show && <Modal
+        modal={<Popup
+          heading="Delete Specialist"
+          text="Are you sure you want to delete this faq. This can`t be undone"
+          firstButtonText="Delete"
+          secondButtonText="Cancel"
+          firstButtonAction={deleteFaq}
+          secondButtonAction={cancel}
+        />}
+        root={document.getElementById("overlay-root") as HTMLElement}
+      />}
     </section>
   );
 };

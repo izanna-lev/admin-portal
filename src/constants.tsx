@@ -9,7 +9,7 @@
 // const S3_URL = process.env.S3_URL;
 
 const SERVER_TYPE = "development/";
-const API_URL = "http://44.209.25.93:3000/api/";
+const API_URL = "http://localhost:3001/api/";
 const S3_URL = "https://app-onsite.s3.amazonaws.com/";
 
 // Custom Environment Variables
@@ -138,6 +138,7 @@ export const API = {
   FAQ_LIST: `${API_URL}faq/list`,
   FAQ_ADD: `${API_URL}faq/add`,
   FAQ_EDIT: `${API_URL}faq/update`,
+  FAQ_DELETE: `${API_URL}faq/delete`,
 };
 
 type IconOptions = {
