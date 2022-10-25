@@ -4,13 +4,13 @@
 
 // Global Environment Variables
 
-// const SERVER_TYPE = `${process.env.BRANCH}/`;
-// const API_URL = process.env.API_URL;
-// const S3_URL = process.env.S3_URL;
+const SERVER_TYPE = `${process.env.BRANCH}/`;
+const API_URL = process.env.API_URL;
+const S3_URL = process.env.S3_URL;
 
-const SERVER_TYPE = "development/";
-const API_URL = "http://44.209.25.93:3000/api/";
-const S3_URL = "https://app-onsite.s3.amazonaws.com/";
+// const SERVER_TYPE = "development/";
+// const API_URL = "http://44.209.25.93:3000/api/";
+// const S3_URL = "https://app-onsite.s3.amazonaws.com/";
 
 // Custom Environment Variables
 
@@ -19,8 +19,8 @@ const IMAGE_URL = `${S3_URL}${SERVER_TYPE}images/`;
 
 // Google Places Api Key
 
-// export const GOOGLE_API = process.env.GOOGLE_API;
-export const GOOGLE_API = "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s";
+export const GOOGLE_API = process.env.GOOGLE_API;
+// export const GOOGLE_API = "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s";
 
 console.log(SERVER_TYPE, API_URL, S3_URL, GOOGLE_API);
 
