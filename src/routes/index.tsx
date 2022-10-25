@@ -46,15 +46,15 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Account />}>
-        <Route index element={<Dashboard />} />
+        <Route index element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="itinerary" element={<Itinerary />}>
-          <Route index element={<AssignedItineraries />} />
+          <Route index element={<Navigate to="list" />} />
           <Route path="list" element={<AssignedItineraries />} />
           <Route path="cancelled" element={<CancelledItineraries />} />
           <Route path="detail/:formRef" element={<ItineraryDetails />} />
           <Route path="add" element={<CreateItinerary />}>
-            <Route index element={<AddItinerary data={itineraryDetails} />} />
+            <Route index element={<Navigate to="details" />} />
             <Route
               path="details"
               element={<AddItinerary data={itineraryDetails} />}
@@ -98,7 +98,7 @@ const App = () => {
         </Route>
 
         <Route path="admin">
-          <Route index element={<AccessManagement />} />
+          <Route index element={<Navigate to="accessSpecialistList" />} />
           <Route path="accessSpecialistList" element={<AccessManagement />} />
           <Route path="createSpecialist" element={<CreateSpecialist />} />
           <Route
@@ -107,14 +107,14 @@ const App = () => {
           />
         </Route>
 
-        <Route path="settings">
-          <Route index element={<Settings/>}></Route>
-          <Route path="about"  element={<AboutUs/>}></Route>
-          <Route path="terms"  element={<TermsConditions/>}></Route>
-          <Route path="privacy"  element={<PrivacyPolicy/>}></Route>
-          <Route path="faqs"  element={<Faqs/>}></Route>
-          <Route path="addfaq"  element={<AddFaq/>}></Route>
-          <Route path="editfaq/:faqRef"  element={<EditFaq/>}></Route>
+        <Route path="settings" element={<Settings />}>
+          <Route index element={<Navigate to="about" />} />
+          <Route path="about" element={<AboutUs />} />
+          <Route path="terms" element={<TermsConditions />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
+          <Route path="faq" element={<Faqs />} />
+          <Route path="faq/add" element={<AddFaq />} />
+          <Route path="faq/edit/:faqRef" element={<EditFaq />} />
         </Route>
 
         <Route path="profile" element={<Profile />} />

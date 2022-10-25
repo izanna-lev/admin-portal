@@ -4,11 +4,11 @@
  */
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { SET_NAVIGATION } from "../../store/slices/navigation";
-import { NAVIGATE, API } from "../../constants";
+
+import { API } from "../../constants";
 import { useEffect } from "react";
 import { Fetch } from "../../api/Fetch";
-import SpecialistList from "../SpecialistList/index"
+import SpecialistList from "../SpecialistList/index";
 import "./index.scss";
 
 const DashboardCard = (title: string, data: number) => (
@@ -24,7 +24,6 @@ const DashboardPage = () => {
 
   useEffect(() => {
     dispatch(Fetch(API.DASHBOARD));
-    dispatch(SET_NAVIGATION({ value: NAVIGATE.DASHBOARD }));
   }, [dispatch]);
 
   return (
@@ -41,7 +40,7 @@ const DashboardPage = () => {
 
       <section className="dashboard-ratings">
         <h3 className="">List of Specialists</h3>
-        <SpecialistList/>
+        <SpecialistList />
       </section>
     </main>
   );

@@ -1,19 +1,17 @@
 import NavigationOption from "../sub-components/NavigationOption";
 import { ICON } from "../../constants";
 import styles from "./index.module.scss";
-import { SETTINGS_NAVIGATE } from "../../constants";
 
 const SettingsNavBar = () => (
   <nav className={`${styles["navigation-sidebar"]} `}>
-    {NavigationOption("About Us", ICON.DASHBOARD_INACTIVE, SETTINGS_NAVIGATE.ABOUT_US, "settings/about")}
-    {NavigationOption("FAQs", ICON.PROFILE_INACTIVE, SETTINGS_NAVIGATE.FAQ, "settings/faqs")}
+    {NavigationOption("About Us", ICON.DASHBOARD_INACTIVE, "settings/about")}
+    {NavigationOption("FAQs", ICON.PROFILE_INACTIVE, "settings/faq")}
     {NavigationOption(
       "Terms & Conditions",
       ICON.ITINERARIES_INACTIVE,
-      SETTINGS_NAVIGATE.TERMS,
       "settings/terms"
     )}
-    {NavigationOption("Privacy Policy", ICON.CHAT_INACTIVE, SETTINGS_NAVIGATE.PRIVACY, "settings/privacy")}
+    {NavigationOption("Privacy Policy", ICON.CHAT_INACTIVE, "settings/privacy")}
   </nav>
 );
 

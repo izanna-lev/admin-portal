@@ -1,12 +1,5 @@
-import { SET_NAVIGATION } from "../../store/slices/navigation";
-import { useEffect, useState, useLayoutEffect, Key } from "react";
-import {
-  API,
-  IMAGE,
-  ICON,
-  NAVIGATE,
-  USER_TYPES_NOTIFICATION,
-} from "../../constants";
+import { useEffect, useState, Key } from "react";
+import { API, IMAGE, USER_TYPES_NOTIFICATION } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import "./index.scss";
 import { Fetch } from "../../api/Fetch";
@@ -53,10 +46,6 @@ const Notifications = (props: any) => {
   const [userType, setUserType] = useState(USER_TYPES_NOTIFICATION.TRAVELLER);
   const dispatch = useAppDispatch();
   let { data } = useAppSelector((state) => state.notificationUserList);
-
-  useEffect(() => {
-    dispatch(SET_NAVIGATION({ value: NAVIGATE.NOTIFICATION }));
-  }, [dispatch]);
 
   useEffect(() => {
     setSelectedAll(false);
@@ -243,11 +232,12 @@ const Notifications = (props: any) => {
 };
 
 export default Notifications;
-function FetchEntity(
-  USERS: any,
-  arg1: { notificationList: boolean },
-  arg2: number,
-  arg3: number
-) {
-  throw new Error("Function not implemented.");
-}
+
+// function FetchEntity(
+//   USERS: any,
+//   arg1: { notificationList: boolean },
+//   arg2: number,
+//   arg3: number
+// ) {
+//   throw new Error("Function not implemented.");
+// }

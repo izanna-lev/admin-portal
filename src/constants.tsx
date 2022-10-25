@@ -4,13 +4,13 @@
 
 // Global Environment Variables
 
-const SERVER_TYPE = `${process.env.BRANCH}/`;
-const API_URL = process.env.API_URL;
-const S3_URL = process.env.S3_URL;
+// const SERVER_TYPE = `${process.env.BRANCH}/`;
+// const API_URL = process.env.API_URL;
+// const S3_URL = process.env.S3_URL;
 
-// const SERVER_TYPE = "development/";
-// const API_URL = "http://44.209.25.93:3000/api/";
-// const S3_URL = "https://app-onsite.s3.amazonaws.com/";
+const SERVER_TYPE = "development/";
+const API_URL = "http://44.209.25.93:3000/api/";
+const S3_URL = "https://app-onsite.s3.amazonaws.com/";
 
 // Custom Environment Variables
 
@@ -133,7 +133,7 @@ export const API = {
   // APP DETAILS
   APP_DETAILS: `${API_URL}appdetail/list`,
   APP_DETAILS_ADD: `${API_URL}appdetail/add`,
-  
+
   // FAQ
   FAQ_LIST: `${API_URL}faq/list`,
   FAQ_ADD: `${API_URL}faq/add`,
@@ -259,26 +259,6 @@ export const PLANNED_TRAVELLER = [
     value: 3,
   },
 ];
-
-//////////// NAVIGATION CONSTANT ///////////
-
-export const NAVIGATE = {
-  DASHBOARD: 1,
-  TRAVELELRS: 2,
-  ITINERARY: 3,
-  CHAT: 4,
-  ACCESS_MANAGEMENT: 5,
-  NOTIFICATION: 6,
-  SETTINGS: 7,
-};
-
-
-export const SETTINGS_NAVIGATE = {
-  ABOUT_US: 11,
-  FAQ: 12,
-  TERMS: 13,
-  PRIVACY: 14,
-};
 
 export const PERMISSIONS_STRING: { [key: string]: any } = {
   createItinerary: "Create Itinerary",
