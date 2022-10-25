@@ -3,7 +3,7 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import "./Editor.css";
 
-function Editor({ options = {}, onChange}) {
+function Editor({ options = {}, onChange}: { onChange: any,options: any }) {
   return (
     <SimpleMDE
       id="editor"
