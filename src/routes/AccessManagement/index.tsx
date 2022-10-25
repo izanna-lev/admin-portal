@@ -8,13 +8,7 @@ import { useEffect, useState } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { AiFillStar } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import {
-  IMAGE,
-  ICON,
-  API,
-  PERMISSIONS_STRING,
-  NAVIGATE,
-} from "../../constants";
+import { IMAGE, ICON, API, PERMISSIONS_STRING } from "../../constants";
 import { Modal } from "../../components/Portal";
 import { SPECIALIST_ACTIONS } from "../../constants";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -26,7 +20,6 @@ import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
 import { Create } from "../../api/Create";
-import { SET_NAVIGATION } from "../../store/slices/navigation";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -171,7 +164,6 @@ const AccessManagement = () => {
 
   useEffect(() => {
     dispatch(Fetch(API.LIST_SPECIALIST, {}, 1, 10));
-    dispatch(SET_NAVIGATION({ value: NAVIGATE.ACCESS_MANAGEMENT }));
   }, [dispatch]);
 
   return (

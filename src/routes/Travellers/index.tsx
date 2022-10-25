@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineSearch } from "react-icons/ai";
-import { IMAGE, ICON, API, USER_ACTIONS, NAVIGATE } from "../../constants";
+import { IMAGE, ICON, API, USER_ACTIONS } from "../../constants";
 import { Modal } from "../../components/Portal";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -18,9 +18,7 @@ import { Fetch } from "../../api/Fetch";
 import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
-import InputForm from "../../components/InputTypes/InputForm";
 import { Create } from "../../api/Create";
-import { SET_NAVIGATION } from "../../store/slices/navigation";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -142,7 +140,6 @@ const Travellers = () => {
 
   useEffect(() => {
     dispatch(Fetch(API.USER_LIST, { text }, 1, 10));
-    dispatch(SET_NAVIGATION({ value: NAVIGATE.TRAVELELRS }));
   }, [dispatch, text]);
 
   return (

@@ -3,12 +3,9 @@
  * @author Jagmohan Singh
  */
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
-import { SET_NAVIGATION } from "../../store/slices/navigation";
-import { useAppDispatch } from "../../store/hooks";
 import MessagesPage from "./MessageList/index";
-import { NAVIGATE } from "../../constants";
 import { DUMMY } from "./dummy";
 import "./index.scss";
 
@@ -25,11 +22,6 @@ type Props = {
 const ChatPage = () => {
   const navigate = useNavigate();
   const listInnerRef = useRef(null);
-
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    dispatch(SET_NAVIGATION({ value: NAVIGATE.CHAT }));
-  }, [dispatch]);
 
   const onScroll = () => {
     if (listInnerRef.current) {

@@ -7,7 +7,6 @@ import { API } from "../../constants";
 import { BsChevronLeft } from "react-icons/bs";
 import { IoImageOutline } from "react-icons/io5";
 
-
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useRef } from "react";
 import { Create } from "../../api/Create";
@@ -16,9 +15,7 @@ import { useNavigate } from "react-router-dom";
 import TextArea from "../../components/InputTypes/TextArea";
 
 const AddFaq = () => {
-
   const apiMessage = useAppSelector((state) => state.apiMessage);
-
 
   const questionRef = useRef();
   const answerRef = useRef();
@@ -37,16 +34,14 @@ const AddFaq = () => {
     dispatch(Create(API.FAQ_ADD, data, false));
   };
 
-  if (apiMessage.type === "success") navigate("/settings/faqs");
-
+  if (apiMessage.type === "success") navigate("/settings/faq");
 
   return (
     <main className="content-container" id="formTop">
-
       <section className="content-top">
         <h2
           className="content-heading"
-          onClick={() => navigate("/settings/faqs")}
+          onClick={() => navigate("/settings/faq")}
           style={{ cursor: "pointer" }}
         >
           <BsChevronLeft />

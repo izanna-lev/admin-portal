@@ -15,20 +15,19 @@ import TextArea from "../../components/InputTypes/TextArea";
 
 const EditFaq = () => {
   const location: any = useLocation();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!location.state) {
-      navigate("/settings/faqs")
-    }
-  }, []);
-  
   const apiMessage = useAppSelector((state) => state.apiMessage);
 
   const questionRef = useRef();
   const answerRef = useRef();
 
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (!location.state) {
+      navigate("/settings/faq");
+    }
+  }, [location.state, navigate]);
 
   const saveFaq = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,22 +36,19 @@ const EditFaq = () => {
     const data = {
       question: getInputValue(questionRef),
       answer: getInputValue(answerRef),
-      faqRef: location.state.id
-
+      faqRef: location.state.id,
     };
     dispatch(Create(API.FAQ_EDIT, data, false));
   };
 
   if (apiMessage.type === "success") navigate("/settings/faqs");
 
-
   return (
     <main className="content-container" id="formTop">
-
       <section className="content-top">
         <h2
           className="content-heading"
-          onClick={() => navigate("/settings/faqs")}
+          onClick={() => navigate("/settings/faq")}
           style={{ cursor: "pointer" }}
         >
           <BsChevronLeft />
@@ -70,7 +66,7 @@ const EditFaq = () => {
               id: "question",
               maxlength: 30,
               type: "text",
-              value: location.state?.question
+              value: location.state?.question,
             }}
           />
           <TextArea
@@ -81,7 +77,7 @@ const EditFaq = () => {
               id: "answer",
               maxlength: 30,
               type: "text",
-              value: location.state?.answer
+              value: location.state?.answer,
             }}
           />
           <button className="button-submit-itinerary" type="submit">

@@ -9,7 +9,7 @@ const API_URL = process.env.API_URL;
 const S3_URL = process.env.S3_URL;
 
 // const SERVER_TYPE = "development/";
-// const API_URL = "http://localhost:3001/api/";
+// const API_URL = "http://44.209.25.93:3000/api/";
 // const S3_URL = "https://app-onsite.s3.amazonaws.com/";
 
 // Custom Environment Variables
@@ -171,12 +171,12 @@ export const ICON: IconOptions = {
   SETTINGS_INACTIVE: `${NAVIGATION_ICON}ic_settings-inactive.svg`,
   TRAVELLERS_INACTIVE: `${NAVIGATION_ICON}ic_travellers-inactive.svg`,
 
-
   ABOUT_US: `${NAVIGATION_ICON}ic-about-us-inactive.svg`,
   FAQ: `${NAVIGATION_ICON}ic-faq-inactive.svg`,
   PRIVACY_POLICY: `${NAVIGATION_ICON}ic-privacy-policy-inactive.svg`,
   SETTINGS: `${NAVIGATION_ICON}ic-settings-inactive.svg`,
-  TERMS_CONDOTION: `${NAVIGATION_ICON}ic-t&c-inactive.svg`,
+  TERMS_CONDITIONS: `${NAVIGATION_ICON}ic-t&c-inactive.svg`,
+
   // PAGINATION ICONS
   NEXT_PAGE: `${ACTION_ICON}ic_next.svg`,
   PREV_PAGE: `${ACTION_ICON}ic_previous.svg`,
@@ -266,26 +266,6 @@ export const PLANNED_TRAVELLER = [
   },
 ];
 
-//////////// NAVIGATION CONSTANT ///////////
-
-export const NAVIGATE = {
-  DASHBOARD: 1,
-  TRAVELELRS: 2,
-  ITINERARY: 3,
-  CHAT: 4,
-  ACCESS_MANAGEMENT: 5,
-  NOTIFICATION: 6,
-  SETTINGS: 7,
-};
-
-
-export const SETTINGS_NAVIGATE = {
-  ABOUT_US: 11,
-  FAQ: 12,
-  TERMS: 13,
-  PRIVACY: 14,
-};
-
 export const PERMISSIONS_STRING: { [key: string]: any } = {
   createItinerary: "Create Itinerary",
   editItinerary: "Edit Itinerary",
@@ -309,6 +289,3 @@ export const USER_ACTIONS = {
   UNBLOCKED: 3,
   DELETED: 4,
 };
-
-
-
