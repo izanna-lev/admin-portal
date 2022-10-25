@@ -109,7 +109,7 @@ const App = () => {
 
         <Route path="settings">
           <Route index element={<Settings/>}></Route>
-          <Route path="aboutUs"  element={<AboutUs/>}></Route>
+          <Route path="about"  element={<AboutUs/>}></Route>
           <Route path="terms"  element={<TermsConditions/>}></Route>
           <Route path="privacy"  element={<PrivacyPolicy/>}></Route>
           <Route path="faqs"  element={<Faqs/>}></Route>

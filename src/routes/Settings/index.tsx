@@ -44,8 +44,8 @@ const Settings = () => {
     <section className="settings-container">
       <section className="page--bottom--settingsNav">
         <SettingsNavBar />
-        <Outlet />
       </section>
+        <Outlet />
     </section>
   );
 };
