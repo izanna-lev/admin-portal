@@ -1,0 +1,135 @@
+@import "../../styles/globals";
+@import "../../styles/configs/_fonts.scss";
+@import "../../styles/configs/_colors.scss";
+@import "../../styles/configs/_ui.scss";
+
+
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 600px;
+  width: 100%;
+  max-width: 2000px;
+}
+
+.content-top-faq {
+  min-height: 3.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.itenaryPage {
+  height: calc(92vh - 1rem);
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+  overflow: auto;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $light_blue !important;
+}
+
+.dashboard {
+  display: grid;
+  align-items: center;
+}
+
+.heading {
+  font-size: x-large;
+  font-weight: 400;
+  display: grid;
+  align-items: center;
+  height: 60px;
+}
+
+.left {
+  padding: 2px;
+  border-radius: 4px;
+  background-color: $theme_color_light_blue_2x;
+}
+.right {
+  padding: 2px;
+  background-color: $theme_color_light_blue;
+  border-radius: 4px;
+}
+
+
+.table-data-status {
+  display: flex;
+  min-height: 2rem;
+  min-width: 5rem;
+  align-items: center;
+  border-radius: 2rem;
+  justify-content: center;
+  background-color: $theme_color_light_blue_2x;
+}
+
+.access-management-user {
+  display: flex;
+  flex-direction: column;
+}
+
+.create-specialist {
+  background-color: $theme_color_blue;
+  color: $theme_color_white;
+}
+
+.specialist-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.specialist-actions > div {
+  background-color: $theme_color_light_blue_2x;
+  padding: 2px 8px;
+  border-radius: 8px;
+} 
+
+.text {
+  font-size: 12px;
+  color: $theme_color_8;
+}
+
+.specialist-edit {
+  display: flex;
+  gap: 2px;
+}
+
+.specialist-delete {
+  display: flex;
+  gap: 2px;
+  background-color: red !important;
+  color: $theme_color_white !important;
+}
+  
+.specialist-delete:hover {
+  background-color: yellow;
+}
+
+.specialist-ratings {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.star-rating {
+  font-size: 16px;
+  color: #fcca00;
+}
+
+th {
+  min-width: 12rem !important;
+}
+
+.add-faq {
+  justify-self: end;
+  display: flex;
+  align-self: flex-end;
+}
