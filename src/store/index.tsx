@@ -20,6 +20,7 @@ export const store = configureStore({
     notificationUserList: reducers.NotificationUserList,
     travellerList: reducers.TravellerList,
     travellerDetails: reducers.TravellerDetails,
+    appDetails: reducers.AppDetails,
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>

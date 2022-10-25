@@ -129,6 +129,12 @@ export const API = {
   //NOTIFICATIONS
   LIST_USERS: `${API_URL}notification/userSelectList`,
   BROADCAST: `${API_URL}notification/broadcast`,
+
+  // APP DETAILS
+  APP_DETAILS: `${API_URL}appdetail/list`,
+  APP_DETAILS_ADD: `${API_URL}appdetail/add`,
+
+
 };
 
 type IconOptions = {
@@ -259,6 +265,15 @@ export const NAVIGATE = {
   CHAT: 4,
   ACCESS_MANAGEMENT: 5,
   NOTIFICATION: 6,
+  SETTINGS: 7,
+};
+
+
+export const SETTINGS_NAVIGATE = {
+  ABOUT_US: 11,
+  FAQ: 12,
+  TERMS: 13,
+  PRIVACY: 14,
 };
 
 export const PERMISSIONS_STRING: { [key: string]: any } = {

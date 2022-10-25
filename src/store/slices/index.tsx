@@ -13,3 +13,5 @@ export { default as specialistsList } from "./specialistList";
 export { default as NotificationUserList } from "./notification";
 export { default as TravellerList } from "./travellers";
 export { default as TravellerDetails } from "./travellerDetails";
+export { default as AppDetails } from "./appDetails";
+
