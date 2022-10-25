@@ -22,6 +22,13 @@ const Accomodation = loadable(() => import("./CreateItinerary/Accomodation"));
 const Travellers = loadable(() => import("./Travellers"));
 const TravellersDetails = loadable(() => import("./TravellerDetails"));
 const TripSummary = loadable(() => import("./CreateItinerary/TripSummary"));
+const Settings = loadable(() => import("./Settings"));
+const AboutUs = loadable(() => import("./AboutUs"));
+const TermsConditions = loadable(() => import("./TermsConditions"));
+const PrivacyPolicy = loadable(() => import("./PrivacyPolicy"));
+const Faqs = loadable(() => import("./Faqs"));
+const AddFaq = loadable(() => import("./AddFaq"));
+const EditFaq = loadable(() => import("./EditFaq"));
 
 const AddItinerary = loadable(
   () => import("./CreateItinerary/ItineraryDetails")
@@ -98,6 +105,16 @@ const App = () => {
             path="editSpecialist/:specialistRef"
             element={<EditSpecialist />}
           />
+        </Route>
+
+        <Route path="settings">
+          <Route index element={<Settings/>}></Route>
+          <Route path="about"  element={<AboutUs/>}></Route>
+          <Route path="terms"  element={<TermsConditions/>}></Route>
+          <Route path="privacy"  element={<PrivacyPolicy/>}></Route>
+          <Route path="faqs"  element={<Faqs/>}></Route>
+          <Route path="addfaq"  element={<AddFaq/>}></Route>
+          <Route path="editfaq/:faqRef"  element={<EditFaq/>}></Route>
         </Route>
 
         <Route path="profile" element={<Profile />} />
