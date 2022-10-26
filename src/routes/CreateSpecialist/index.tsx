@@ -24,7 +24,7 @@ const CreateSpecialist = () => {
     cancelItinerary: false,
     sendNotifications: false
   });
-  const [selectedImage, setSelectedImage] = useState();
+  const [selectedImage, setSelectedImage] = useState("");
 
 
   const setSpecificPermission = (data: boolean, name: string) => {
@@ -92,7 +92,6 @@ const CreateSpecialist = () => {
             accept="image/*"
             onChange={imageChange}
             hidden
-            required
           />
           <label
             htmlFor="upload"
