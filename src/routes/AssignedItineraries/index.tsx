@@ -26,7 +26,7 @@ const TableHead = () => (
   <thead className="table-head">
     <tr className="head-tr">
       <th>Sr.No.</th>
-      <th>Location Required</th>
+      <th>Location Planned</th>
       <th>User Name</th>
       <th>Contact Number</th>
       <th>Planned Date</th>

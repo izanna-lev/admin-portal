@@ -24,7 +24,7 @@ const TableHead = () => (
   <thead className="table-head">
     <tr className="head-tr">
       <th>Sr.No.</th>
-      <th>Itinerary Name</th>
+      <th>Name</th>
       <th>Email</th>
       <th className="custom-head">Actions</th>
     </tr>
@@ -145,7 +145,8 @@ const Travellers = () => {
   return (
     <main className="content-container">
       <section className="content-top">
-        <h2 className="content-heading">Travellers</h2>
+        <h2 className="content-heading">Travellers List</h2>
+        <div className="traveller-top">
         <div className="traveller-search">
           <input
             name="Search"
@@ -164,8 +165,8 @@ const Travellers = () => {
             Go
           </div>
         </div>
-      </section>
-      {list.length
+        <>Viewing</>
+        {list.length
         ? Pagination({
             page,
             limit,
@@ -177,6 +178,9 @@ const Travellers = () => {
               dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
           })
         : null}
+        </div>
+      </section>
+
       <section className="table-container">
         <table className="itinerary-table table">
           {TableHead()}

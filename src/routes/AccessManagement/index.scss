@@ -166,6 +166,7 @@
 }
 
 .create-specialist {
+  padding: 12px 16px;
   background-color: $theme_color_blue;
   color: $theme_color_white;
 }
@@ -199,9 +200,6 @@
   color: $theme_color_white !important;
 }
   
-.specialist-delete:hover {
-  background-color: yellow;
-}
 
 .specialist-ratings {
   display: flex;
@@ -212,4 +210,20 @@
 .star-rating {
   font-size: 16px;
   color: #fcca00;
+}
+
+.list-specialist {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.activate {
+  background: $theme_color_blue !important;
+  color: $theme_color_white;
+}
+
+.specialist-delete:hover {
+  background: red !important;
+  color: white !important;
 }

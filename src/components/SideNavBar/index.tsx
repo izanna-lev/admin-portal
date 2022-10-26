@@ -1,6 +1,6 @@
 import NavigationOption from "../sub-components/NavigationOption";
-import { ICON } from "../../constants";
 import styles from "./index.module.scss";
+import { ICON } from "../../assets/index";
 
 const SideNavBar = () => (
   <nav className={`${styles["navigation-sidebar"]} `}>
