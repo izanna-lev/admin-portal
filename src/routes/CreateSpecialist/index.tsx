@@ -85,7 +85,7 @@ const CreateSpecialist = () => {
       <form className="specialist-details" onSubmit={saveSpecialist}>
         <div className="specialist-basic">
           <div className="feild-heading">Basic Details</div>
-          <div className="feild-heading">Upload Image</div>
+          <div className="feild-heading-text">Upload Image</div>
           <input
             type="file"
             id="upload"
@@ -143,7 +143,7 @@ const CreateSpecialist = () => {
         <div className="specialist-basic">
           <div className="feild-heading">Permissions</div>
           <div className="permissions-container">
-            <div className="feild-heading">Specialist Permissions</div>
+            <div className="feild-heading-text">Specialist Permissions</div>
             <div className="line"></div>
             <CheckBox text="Create Itineraries" name="createItinerary" permissionValue={permissions.createItinerary} setSpecificPermission={setSpecificPermission} />
             <div className="line"></div>
