@@ -93,6 +93,7 @@ const TableRow = (
                 : SPECIALIST_ACTIONS.BLOCK,
             });
           }}
+          className={`${!item.blocked ? "activate" : ""}`}
         >
           {item.blocked ? "Deactivate" : "Activate"}
         </div>
@@ -179,6 +180,8 @@ const AccessManagement = () => {
           Create Specialist
         </button>
       </section>
+      <div className="list-specialist">
+        <div>List of Specilists</div>
       {list.length
         ? Pagination({
             page,
@@ -191,6 +194,7 @@ const AccessManagement = () => {
               dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
           })
         : null}
+        </div>
       <section className="table-container">
         <table className="itinerary-table table">
           {TableHead()}

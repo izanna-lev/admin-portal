@@ -10,36 +10,20 @@ import { useEffect, useState } from "react";
 import NotificationPopup from "../NotificationPopup/index";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { API, IMAGE } from "../../constants";
-import { Fetch } from "../../api/Fetch";
+import Logout from "../Logout";
+import { ICON } from "../../assets";
+
 type Props = {
   showUserData?: boolean;
 };
-
 const Nav = ({ showUserData = true }: Props) => {
-  const [notificationvisibility, setNotificationvisibility] = useState(false);
 
-  const profileData = useAppSelector(
-    (state: {
-      profile: {
-        name: string;
-        email: string;
-        phoneNumber: string;
-        image: string;
-        device: string;
-        fcmToken: string;
-        _id: string;
-      };
-    }) => state.profile
-  );
 
-  const dispatch = useAppDispatch();
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    window.location.replace("/login");
+  };
 
-  // useEffect(() => {
-  //   if (!profileData._id && showUserData) {
-  //     dispatch(Fetch(API.PROFILE));
-  //   }
-  // }, [dispatch, profileData._id, showUserData]);
 
   return (
     <header className={styles["header"]} id="navBar">
@@ -48,33 +32,11 @@ const Nav = ({ showUserData = true }: Props) => {
       </div>
 
       <div className={styles["header-right"]}>
-        {/* <div className={styles["notification"]}>
-          <IoIosNotificationsOutline
-            className={styles["notification-icon"]}
-            onClick={() => setNotificationvisibility(!notificationvisibility)}
-          />
-          {notificationvisibility && (
-            <NotificationPopup
-              onClickOutside={() => {
-                setNotificationvisibility(false);
-              }}
-            />
-          )}
-        </div> */}
-        {/* <div className={styles["user-data"]}>
-          <div className={styles["image-container"]}>
-            <img
-              src={`${IMAGE.SMALL}${profileData.image}`}
-              className={styles["user-image"]}
-              alt="profile"
-            />
-          </div>
-          <div className={styles["user-info"]}>
-            <div className={styles["user-welcome"]}>Welcome,</div>
-            <div className={styles["user-name"]}>{profileData.name}</div>
-          </div>
-          <FiChevronDown className={styles["down-icon"]} />
-        </div> */}
+      </div>
+      <div className={styles["logout"]}  onClick={handleLogout}>
+      <img src={ICON.LOGOUT} alt="" className={styles["logout-icon"]} />
+
+        <div>Logout</div>
       </div>
     </header>
   );

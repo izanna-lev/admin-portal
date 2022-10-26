@@ -3,6 +3,7 @@
  * @author Jagmohan Singh
  */
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
+import { FaRegEye } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -54,7 +55,7 @@ const Login = () => {
                 id="email"
                 name="email"
                 type="email"
-                placeholder="example@abc.com"
+                placeholder="example@mail.com"
                 className="custom-field"
                 autoFocus
                 autoComplete="email"
@@ -84,7 +85,7 @@ const Login = () => {
                 }}
               >
                 {passVisibleStatus ? (
-                  <RiEyeLine className="input-icon" />
+                  <FaRegEye className="input-icon" />
                 ) : (
                   <RiEyeCloseLine className="input-icon" />
                 )}

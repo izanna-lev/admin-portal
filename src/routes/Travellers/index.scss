@@ -157,7 +157,9 @@
   align-items: center;
   border-radius: 2rem;
   justify-content: center;
-  background-color: $theme_color_light_blue_2x;
+  // background-color: $theme_color_light_blue_2x;
+  border: 1px solid $theme_color_blue;
+  cursor: pointer;
 }
 
 .access-management-user {
@@ -177,7 +179,6 @@
 }
 
 .specialist-actions > div {
-  background-color: $theme_color_light_blue_2x;
   padding: 2px 8px;
   border-radius: 8px;
 } 
@@ -239,4 +240,22 @@
   padding-left: 4px;
   font-size: 24px;
   top: 25%
+}
+
+.traveller-top {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.specialist-delete {
+  display: flex;
+  gap: 2px;
+  border: 1px solid red;
+  color: black;
+}
+  
+.specialist-delete:hover {
+  background: red !important;
+  color: white !important;
 }

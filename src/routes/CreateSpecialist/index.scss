@@ -26,8 +26,8 @@
 }
 
 .upload-image {
-  max-width: 200px;
-  max-height: 100px;
+  max-width: 250px;
+  max-height: 150px;
   border-radius: 0.5rem;
   cursor: pointer;
   margin-top: 4px;
@@ -48,8 +48,8 @@
 
 .not-selected-preview {
   background-color: $theme_color_light_blue_3x;
-  width: 200px;
-  height: 100px;
+  width: 250px;
+  height: 150px;
 }
 
 .button-submit-itinerary {
@@ -62,7 +62,7 @@
   height: 3rem;
   border: none;
   border-radius: 0.5rem;
-  background-color: $theme_color_light_blue;
+  background-color: $theme_color_blue;
   color: white;
   font-size: large;
 }

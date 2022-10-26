@@ -5,7 +5,7 @@
 .header {
   height: 5rem;
   display: flex;
-  padding: 0 2rem;
+  padding:  0 0 0 2rem;
   align-items: center;
   justify-content: space-between;
   border-bottom: 4px solid #e1e1e18f;
@@ -63,5 +63,29 @@
 
 .user-name {
   font-size: 1rem;
+  font-weight: 600;
+}
+
+
+.logout-container {
+  display: flex;
+  align-items: center;
+
+  .down-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+}
+
+.logout {
+  background: $theme_color_blue;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  align-items: center;
+  gap: 8px;
+  padding:  0px 80px 0 20px;
+  color: $theme_color_white;
+  cursor: pointer;
   font-weight: 600;
 }
