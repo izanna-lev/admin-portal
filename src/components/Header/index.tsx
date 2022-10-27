@@ -27,7 +27,6 @@ const Nav = ({ showUserData = true, sideNav }: Props) => {
           alt="menu"
           src={ICON.MENU}
           onClick={() => sideNav()}
-          // onClick={sideNav()}
           className={styles["header-menu"]}
           loading="lazy"
         />
