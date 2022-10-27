@@ -18,11 +18,14 @@ const appDetails = createSlice({
   initialState,
   reducers: {
     setAppdetails: (state, action) => {
-      state = action.payload;
+      console.log("-------->",state, action)
+      Object.assign(state, action.payload);
     },
   },
   extraReducers(builder) {
     builder.addCase(API.APP_DETAILS, (state, action: any) => {
+      console.log("----state---->",state, action)
+
       Object.assign(state, action.payload);
     });
   },

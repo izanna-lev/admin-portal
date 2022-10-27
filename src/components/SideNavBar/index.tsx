@@ -5,7 +5,7 @@ import { ICON } from "../../assets/index";
 const SideNavBar = ({sideNavigationView}: {sideNavigationView: boolean}) => 
 (
   <nav className={`${styles["navigation-sidebar"]}`}
-  style={ sideNavigationView ? { display: "" } : { display: "none" }}
+  style={ sideNavigationView ? { display: "block" } : { display: "none" }}
   >
     {NavigationOption("Dashboard", ICON.DASHBOARD_INACTIVE)}
     {NavigationOption("Travellers", ICON.PROFILE_INACTIVE, "travellers")}
@@ -17,7 +17,7 @@ const SideNavBar = ({sideNavigationView}: {sideNavigationView: boolean}) =>
       "admin"
     )}
     {NavigationOption(
-      "Send Notifications",
+      "Notifications",
       ICON.NOTIFICATIONS_INACTIVE,
       "notifications"
     )}

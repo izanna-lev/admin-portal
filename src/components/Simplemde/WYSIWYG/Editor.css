@@ -84,6 +84,8 @@ a {
 
 .CodeMirror {
   height: 100% !important;
+  background: #e9ecef;
+  border-radius: 12px;
 }
 
 .CodeMirror-scroll {

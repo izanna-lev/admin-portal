@@ -3,6 +3,7 @@ import { Create } from "../../api/Create";
 import { Editor } from "../../components/Simplemde/WYSIWYG";
 import { API } from "../../constants";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { setAppdetails } from "../../store/slices/appDetails";
 import "./index.scss";
 
 const TermsConditions = () => {
@@ -26,6 +27,9 @@ const TermsConditions = () => {
         },
       )
     );
+    dispatch(setAppdetails({
+      termsAndConditions: termsAndConditionsValue
+    }))
   }
   return (
     <section className="content-container">
@@ -46,14 +50,14 @@ const TermsConditions = () => {
               // id="body-editor"
               onChange={handleAboutUsChange}
               options={{
-                initialValue: termsAndConditionsValue || "",
+                initialValue: termsAndConditionsValue || termsAndConditions || "",
               }}
             />
             <button
               onClick={() => {
                 saveAppDetails();
               }}
-              className="btn view-button"
+              className="btn view-button settings"
               style={{ marginTop: "25px" }}
             >
               Save

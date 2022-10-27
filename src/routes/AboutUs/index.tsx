@@ -3,6 +3,7 @@ import { Create } from "../../api/Create";
 import { Editor } from "../../components/Simplemde/WYSIWYG";
 import { API } from "../../constants";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
+import { setAppdetails } from "../../store/slices/appDetails";
 import "./index.scss";
 
 const AboutUs = () => {
@@ -13,11 +14,12 @@ const AboutUs = () => {
   const [aboutUsValue, setAboutUs] = useState(aboutUs)
 
 
+  console.log("=----> aboutUsValue",aboutUsValue)
   const handleAboutUsChange = (e: any) => {
     setAboutUs(e)
   }
   
-  const saveAppDetails = () => {
+  const saveAppDetails = () => { 
     dispatch(
       Create(
         API.APP_DETAILS_ADD,
@@ -26,6 +28,9 @@ const AboutUs = () => {
         },
       )
     );
+    dispatch(setAppdetails({
+      aboutUs: aboutUsValue
+    }))
   }
   return (
     <section className="content-container">
@@ -46,14 +51,14 @@ const AboutUs = () => {
               // id="body-editor"
               onChange={handleAboutUsChange}
               options={{
-                initialValue: aboutUsValue || "",
+                initialValue: aboutUsValue || aboutUs || "",
               }}
             />
             <button
               onClick={() => {
                 saveAppDetails();
               }}
-              className="btn view-button"
+              className="btn view-button settings"
               style={{ marginTop: "25px" }}
             >
               Save

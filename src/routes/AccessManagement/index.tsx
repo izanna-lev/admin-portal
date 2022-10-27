@@ -20,6 +20,7 @@ import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
 import { Create } from "../../api/Create";
+import { IoImageOutline } from "react-icons/io5";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -62,14 +63,16 @@ const TableRow = (
       <td>{SerialNum(limit, page, index)}</td>
       <td>
         <div className="name-image-cell">
-          <img
-            className="user-image"
-            src={IMAGE.SMALL + item.image}
-            alt={item.name}
-            onError={(e: any) => {
-              e.target.src = ICON.USER_PLACEHOLDER;
-            }}
-          />
+          {item.image?
+                    <img
+                    className="user-image"
+                    src={IMAGE.SMALL + item.image}
+                    alt={item.name}
+                    onError={(e: any) => {
+                      e.target.src = ICON.DUMMY;
+                    }}
+                  />:  <div className="user-selection-img-dummy"> <IoImageOutline className="dummy-image" /></div> }
+
           <div className="access-management-user">
             <span className="access-management">{item.name}</span>
             <span className="access-management text">{item.email}</span>
