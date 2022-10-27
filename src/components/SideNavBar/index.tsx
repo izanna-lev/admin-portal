@@ -8,7 +8,7 @@ const SideNavBar = ({sideNavigationView}: {sideNavigationView: boolean}) =>
   style={ sideNavigationView ? { display: "block" } : { display: "none" }}
   >
     {NavigationOption("Dashboard", ICON.DASHBOARD_INACTIVE)}
-    {NavigationOption("Travellers", ICON.PROFILE_INACTIVE, "travellers")}
+    {NavigationOption("Travellers", ICON.TRAVELLERS_INACTIVE, "travellers")}
     {NavigationOption("Itineraries", ICON.ITINERARIES_INACTIVE, "itinerary")}
     {NavigationOption("Chat", ICON.CHAT_INACTIVE)}
     {NavigationOption(
