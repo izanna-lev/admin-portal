@@ -41,7 +41,7 @@ const TableRow = (
         <button
           className="btn view-button specialist-edit"
           onClick={() => {
-            navigate(`/settings/faq/edit/${item._id}`, {
+            navigate(`/settings/faqs/edit/${item._id}`, {
               state: {
                 id: item._id,
                 question: item.question,
@@ -105,7 +105,7 @@ const Faqs = () => {
             style={{ display: "flex", alignItems: "center" }}
           >
             {/* <HelpOutlineOutlinedIcon fontSize="large" /> */}
-            &nbsp;About Us
+            &nbsp;FAQs
           </div>
           <button
             className=" btn view-button add-faq"
@@ -113,7 +113,7 @@ const Faqs = () => {
               navigate(`/settings/faq/add`);
             }}
           >
-            Add Faq
+            Add FAQs
           </button>
           <div className="content-top-left"></div>
         </section>
