@@ -26,6 +26,7 @@ import SETTINGS_INACTIVE from "./navigation/ic_settings-inactive.svg";
 import TRAVELLERS_INACTIVE from "./navigation/ic_travellers-inactive.svg";
 import SETTINGS from "./navigation/ic-settings-inactive.svg";
 import DUMMY from "./status/dummy.svg";
+import MENU from "./action/ic_menu.svg"
 
 type IconOptions = {
   [key: string]: string;
@@ -41,6 +42,7 @@ export const ICON: IconOptions = {
   // APP LOGO & BANNER
   APP_LOGO,
   APP_LOGO_BACKGROUND,
+  MENU,
 
   // CHAT SCREEN ICONS
   CHAT_SEND,

@@ -4,19 +4,13 @@
  */
 
 import styles from "./index.module.scss";
-import { IoIosNotificationsOutline } from "react-icons/io";
-import { FiChevronDown } from "react-icons/fi";
-import { useEffect, useState } from "react";
-import NotificationPopup from "../NotificationPopup/index";
-
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import Logout from "../Logout";
 import { ICON } from "../../assets";
 
 type Props = {
   showUserData?: boolean;
+  sideNav: Function
 };
-const Nav = ({ showUserData = true }: Props) => {
+const Nav = ({ showUserData = true, sideNav }: Props) => {
 
 
   const handleLogout = () => {
@@ -28,7 +22,22 @@ const Nav = ({ showUserData = true }: Props) => {
   return (
     <header className={styles["header"]} id="navBar">
       <div className={styles["header-left"]}>
-        <h1 className={styles["header-logo"]}>Onsite Travel</h1>
+      <img
+          title="menu"
+          alt="menu"
+          src={ICON.MENU}
+          onClick={() => sideNav()}
+          // onClick={sideNav()}
+          className={styles["header-menu"]}
+          loading="lazy"
+        />
+      <img
+          title="logo"
+          alt="logo"
+          src={ICON.APP_LOGO}
+          className={styles["header-logo"]}
+          loading="lazy"
+        />
       </div>
 
       <div className={styles["header-right"]}>
