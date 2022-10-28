@@ -48,7 +48,9 @@ const ItineraryDetailsPage = () => {
   const [edit, setedit] = useState(null);
 
   const { formRef } = useAppSelector((state: any) => state.appData);
-  const { itineraryDetails } = useAppSelector((state: any) => state.itinerary);
+  const { itineraryDetails, channelRef } = useAppSelector(
+    (state: any) => state.itinerary
+  );
 
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
@@ -222,7 +224,10 @@ const ItineraryDetailsPage = () => {
 
               {itineraryDetails.itineraryStatus === 2 ||
               itineraryDetails.itineraryStatus === 4 ? (
-                <div className="chat">
+                <div
+                  className="chat"
+                  onClick={() => navigate(`/chat/${channelRef}`)}
+                >
                   <BsChatRightDots />
                   <span>Chat</span>
                 </div>
