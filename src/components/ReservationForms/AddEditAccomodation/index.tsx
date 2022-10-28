@@ -106,7 +106,7 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
 
       dispatch(
         Create(
-          API.ACCOMODATION_EDIT,
+          API.ACCOMMODATION_EDIT,
           payload,
           true,
           selectedImage ? selectedImage : null,
@@ -123,7 +123,7 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
       payload = { ...payload, itineraryRef: _id };
       dispatch(
         Create(
-          API.ACCOMODATION_ADD,
+          API.ACCOMMODATION_ADD,
           payload,
           true,
           selectedImage,

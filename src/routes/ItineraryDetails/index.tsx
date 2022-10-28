@@ -132,11 +132,11 @@ const ItineraryDetailsPage = () => {
               </div>
               <div
                 className={`tab-option ${
-                  tabSelected === ITINERARY_SECTION.ACCOMODATIONS
+                  tabSelected === ITINERARY_SECTION.ACCOMMODATIONS
                     ? "tab-selected"
                     : ""
                 }`}
-                onClick={() => setTabSelected(ITINERARY_SECTION.ACCOMODATIONS)}
+                onClick={() => setTabSelected(ITINERARY_SECTION.ACCOMMODATIONS)}
               >
                 Accommodations
               </div>
@@ -251,7 +251,7 @@ const ItineraryDetailsPage = () => {
         {tabSelected === ITINERARY_SECTION.TRANSPORTATION ? (
           <TransportationDetails {...itineraryProps} />
         ) : null}
-        {tabSelected === ITINERARY_SECTION.ACCOMODATIONS ? (
+        {tabSelected === ITINERARY_SECTION.ACCOMMODATIONS ? (
           <AccomodationDetails {...itineraryProps} />
         ) : null}
         {tabSelected === ITINERARY_SECTION.RESTAURANT ? (

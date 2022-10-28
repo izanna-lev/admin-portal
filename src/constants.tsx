@@ -9,20 +9,18 @@ const API_URL = process.env.API_URL;
 const S3_URL = process.env.S3_URL;
 
 // const SERVER_TYPE = "development/";
-// const API_URL = "http://localhost:3001/api/";
+// const API_URL = "http://44.209.25.93:3000/api/";
 // const S3_URL = "https://app-onsite.s3.amazonaws.com/";
-
-// Custom Environment Variables
-
-const ICONS_URL = `${S3_URL}assets/`;
-const IMAGE_URL = `${S3_URL}${SERVER_TYPE}images/`;
 
 // Google Places Api Key
 
 export const GOOGLE_API = process.env.GOOGLE_API;
 // export const GOOGLE_API = "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s";
 
-console.log(SERVER_TYPE, API_URL, S3_URL, GOOGLE_API);
+// Custom Environment Variables
+
+const ICONS_URL = `${S3_URL}assets/`;
+const IMAGE_URL = `${S3_URL}${SERVER_TYPE}images/`;
 
 // Available Icon Prefix Variables
 
@@ -83,8 +81,8 @@ export const API = {
   RESERVATION_DELETE: `${API_URL}admin/deleteReservation`,
   RESERVATION_LIST: `${API_URL}admin/reservationList`,
 
-  ACCOMODATION_ADD: `${API_URL}admin/addAccommodation`,
-  ACCOMODATION_EDIT: `${API_URL}admin/editAccommodation`,
+  ACCOMMODATION_ADD: `${API_URL}admin/addAccommodation`,
+  ACCOMMODATION_EDIT: `${API_URL}admin/editAccommodation`,
 
   ACTIVITY_ADD: `${API_URL}admin/addActivity`,
   ACTIVITY_EDIT: `${API_URL}admin/editActivity`,
@@ -185,6 +183,7 @@ export const ICON: IconOptions = {
   PENDING: `${STATUS_ICON}ic_pending.svg`,
   UPCOMING: `${STATUS_ICON}ic_upcoming.svg`,
   COMPLETED: `${STATUS_ICON}ic_completed.svg`,
+  ONGOING: `${STATUS_ICON}ic_ongoing.svg`,
 };
 
 // Custom Constants
@@ -211,7 +210,7 @@ export const ITINERARY_SECTION = {
   TRAVELER: 1,
   ITINERARY: 2,
   TRANSPORTATION: 3,
-  ACCOMODATIONS: 4,
+  ACCOMMODATIONS: 4,
   RESTAURANT: 5,
   ACTIVITIES: 6,
   NOTES: 7,
