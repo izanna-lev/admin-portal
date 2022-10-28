@@ -4,6 +4,7 @@
   // min-height: 20rem;
   max-height: 25rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
   border-radius: 0.5rem;
   overflow: auto;
   display: flex;
@@ -55,7 +56,6 @@
 
 .add-more {
   font-size: 0.9rem;
-  margin: 0.5rem 0rem 1rem;
   cursor: pointer;
   text-decoration: underline;
 }
