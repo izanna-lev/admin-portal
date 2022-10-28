@@ -243,7 +243,7 @@ const ItineraryDetailsPage = () => {
                 onClick={() => setedit(itineraryDetails)}
               >
                 <FaRegEdit />
-                &nbsp;<span>Edit</span>
+                &nbsp;<span>Edit Details</span>
               </div>
             </div>
           ) : null}
