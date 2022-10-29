@@ -29,7 +29,7 @@ const UserTicket = (
 
   const handleImageChange = async (file: any) => {
     if (file[0]) {
-      setBackground(URL.createObjectURL(file[0]), `bg-img-${length}`);
+      setBackground(URL.createObjectURL(file[0]), divId);
       const response = await dispatch(UploadImage(undefined, file[0]));
       saveData({ carImage: response.data });
     }
@@ -45,7 +45,7 @@ const UserTicket = (
       <div className={styles["form-left-details"]}>
         <div className={`${styles["form-heading"]}`}>Upload Car Image</div>
         <div style={{ display: "flex" }}>
-          <div className={styles["form-image"]} id={`bg-img-${length}`}>
+          <div className={styles["form-image"]} id={divId}>
             <input
               type="file"
               id={`${length}`}
