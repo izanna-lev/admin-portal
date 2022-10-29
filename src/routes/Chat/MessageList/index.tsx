@@ -40,7 +40,7 @@ const ChatPage = () => {
         <div className="user-name">Jaggi</div>
       </div>
 
-      <div className="itinerary-details">
+      <div className="chat-header">
         <img
           className="user-image"
           src="https://sneakers-app.s3.amazonaws.com/staging/images/small/staging-image-1658749914901-223"
