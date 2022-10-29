@@ -24,23 +24,21 @@ const UserTicket = (
   setimageUrl: React.Dispatch<React.SetStateAction<string>>,
   dispatch: any
 ) => {
-  let newImageUrl = "";
+  const divId = `bg-img-${length}`;
+  const imgDiv = document.getElementById(divId);
+
   const handleImageChange = async (file: any) => {
     if (file[0]) {
-      newImageUrl = URL.createObjectURL(file[0]);
-      setBackground(newImageUrl, `bg-img-${length}`);
+      setBackground(URL.createObjectURL(file[0]), `bg-img-${length}`);
       const response = await dispatch(UploadImage(undefined, file[0]));
       saveData({ carImage: response.data });
     }
   };
 
-  const handleNameChange = (driverName: string) => {
-    saveData({ driverName });
-  };
+  const handleNameChange = (driverName: string) => saveData({ driverName });
 
-  const handleNoOfTravellers = (noOfTravellers: string) => {
+  const handleNoOfTravellers = (noOfTravellers: string) =>
     saveData({ noOfTravellers });
-  };
 
   return (
     <React.Fragment>
@@ -71,7 +69,8 @@ const UserTicket = (
             className={styles["activity-image-popup"]}
             onClick={() => {
               setshowImage(true);
-              setimageUrl(newImageUrl);
+              if (imgDiv)
+                setimageUrl(imgDiv.style.backgroundImage.slice(5, -2));
             }}
           >
             <MdZoomOutMap />
