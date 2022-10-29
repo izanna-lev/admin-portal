@@ -222,8 +222,7 @@ const ItineraryDetailsPage = () => {
                 </>
               ) : null}
 
-              {itineraryDetails.itineraryStatus === 2 ||
-              itineraryDetails.itineraryStatus === 4 ? (
+              {itineraryDetails.itineraryStatus === 2 ? (
                 <div
                   className="chat"
                   onClick={() => navigate(`/chat/${channelRef}`)}
