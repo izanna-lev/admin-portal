@@ -1,33 +1,30 @@
-import { useNavigate, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
-
 import LoadingOverlay from "../../components/LoadingOverlay";
+import { useNavigate, Outlet } from "react-router-dom";
 import SideNavBar from "../../components/SideNavBar";
 import Header from "../../components/Header";
 import styles from "./index.module.scss";
+import { useEffect } from "react";
 
-const Account = () => {
+const Account = (props: { sideNav: Function; sideNavView: boolean }) => {
+  const { sideNav, sideNavView } = props;
   const navigate = useNavigate();
 
-  const [sideNavigationView, setSideNavigationView] = useState(true)
-
-  const updateSideNavigation = () => {
-    setSideNavigationView(!sideNavigationView)
-  }
   useEffect(() => {
     !localStorage.getItem("accessToken") &&
       navigate("/login", { replace: true });
   }, [navigate]);
 
   return (
-    <div className={styles["page"]}>
+    <>
+      <div className={styles["page"]}>
+        <Header sideNav={sideNav} />
+        <section className={styles["page--bottom"]}>
+          <SideNavBar sideNavView={sideNavView} />
+          <Outlet />
+        </section>
+      </div>
       <LoadingOverlay />
-      <Header sideNav={updateSideNavigation}/>
-      <section className={styles["page--bottom"]}>
-        <SideNavBar sideNavigationView={sideNavigationView}/>
-        <Outlet />
-      </section>
-    </div>
+    </>
   );
 };
 

@@ -7,15 +7,15 @@ import { API } from "../../constants";
 import { BsChevronLeft } from "react-icons/bs";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { useLocation, useNavigate } from "react-router-dom";
+import TextArea from "../../components/InputTypes/TextArea";
 import { useEffect, useRef } from "react";
 import { Create } from "../../api/Create";
 import "./index.scss";
-import { useLocation, useNavigate } from "react-router-dom";
-import TextArea from "../../components/InputTypes/TextArea";
 
 const EditFaq = () => {
-  const location: any = useLocation();
   const dispatch = useAppDispatch();
+  const location = useLocation();
   const navigate = useNavigate();
 
   const apiMessage = useAppSelector((state) => state.apiMessage);
@@ -24,9 +24,7 @@ const EditFaq = () => {
   const answerRef = useRef();
 
   useEffect(() => {
-    if (!location.state) {
-      navigate("/settings/faq");
-    }
+    if (!location.state) navigate("/settings/faqs");
   }, [location.state, navigate]);
 
   const saveFaq = (e: React.FormEvent<HTMLFormElement>) => {
@@ -41,7 +39,9 @@ const EditFaq = () => {
     dispatch(Create(API.FAQ_EDIT, data, false));
   };
 
-  if (apiMessage.type === "success") navigate("/settings/faqs");
+  useEffect(() => {
+    if (apiMessage.type === "success") navigate("/settings/faqs");
+  }, [apiMessage.type, navigate]);
 
   return (
     <main className="content-container" id="formTop">

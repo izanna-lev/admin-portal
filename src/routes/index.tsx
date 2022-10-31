@@ -2,6 +2,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import loadable from "@loadable/component";
 import { useAppSelector } from "../store/hooks";
+import { useState } from "react";
 
 const Account = loadable(() => import("./Account"));
 const AssignedItineraries = loadable(() => import("./AssignedItineraries"));
@@ -41,11 +42,19 @@ const Transportation = loadable(
 );
 
 const App = () => {
+  const [sideNavView, setSideNavView] = useState(() => {
+    if (window.innerWidth <= 1200) return true;
+    return false;
+  });
   const { itineraryDetails } = useAppSelector((state) => state.itinerary);
+  const updateSideNav = () => setSideNavView((current) => !current);
 
   return (
     <Routes>
-      <Route path="/" element={<Account />}>
+      <Route
+        path="/"
+        element={<Account sideNav={updateSideNav} sideNavView={sideNavView} />}
+      >
         <Route index element={<Navigate to="dashboard" />} />
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="itinerary" element={<Itinerary />}>
@@ -107,14 +116,14 @@ const App = () => {
           />
         </Route>
 
-        <Route path="settings" element={<Settings />}>
-          <Route index element={<AboutUs />}></Route>
-          <Route path="about" element={<AboutUs />}></Route>
-          <Route path="terms" element={<TermsConditions />}></Route>
-          <Route path="privacy" element={<PrivacyPolicy />}></Route>
-          <Route path="faqs" element={<Faqs />}></Route>
-          <Route path="faqs/add" element={<AddFaq />}></Route>
-          <Route path="faqs/edit/:faqRef" element={<EditFaq />}></Route>
+        <Route path="settings" element={<Settings sideNavView={sideNavView} />}>
+          <Route index element={<Navigate to="about" />} />
+          <Route path="about" element={<AboutUs />} />
+          <Route path="terms" element={<TermsConditions />} />
+          <Route path="privacy" element={<PrivacyPolicy />} />
+          <Route path="faqs" element={<Faqs />} />
+          <Route path="faqs/add" element={<AddFaq />} />
+          <Route path="faqs/edit/:faqRef" element={<EditFaq />} />
         </Route>
 
         <Route path="profile" element={<Profile />} />
