@@ -72,3 +72,13 @@ select {
 .underline {
   text-decoration: underline;
 }
+
+@media (max-width: 1280px) {
+  html {
+    font-size: 14px;
+  }
+
+  // .AddItineraryPage {
+  // max-height: 32rem !important;
+  // }
+}
