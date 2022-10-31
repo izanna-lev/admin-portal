@@ -41,7 +41,7 @@ const AddFaq = () => {
       <section className="content-top">
         <h2
           className="content-heading"
-          onClick={() => navigate("/settings/faq")}
+          onClick={() => navigate("/settings/faqs")}
           style={{ cursor: "pointer" }}
         >
           <BsChevronLeft />
