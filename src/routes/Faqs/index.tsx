@@ -110,7 +110,7 @@ const Faqs = () => {
           <button
             className=" btn view-button add-faq"
             onClick={() => {
-              navigate(`/settings/faq/add`);
+              navigate(`/settings/faqs/add`);
             }}
           >
             Add FAQs

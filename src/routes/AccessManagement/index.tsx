@@ -63,15 +63,20 @@ const TableRow = (
       <td>{SerialNum(limit, page, index)}</td>
       <td>
         <div className="name-image-cell">
-          {item.image?
-                    <img
-                    className="user-image"
-                    src={IMAGE.SMALL + item.image}
-                    alt={item.name}
-                    onError={(e: any) => {
-                      e.target.src = ICON.DUMMY;
-                    }}
-                  />:  <div className="user-selection-img-dummy"> <IoImageOutline className="dummy-image" /></div> }
+          {item.image ? (
+            <img
+              className="user-image"
+              src={IMAGE.SMALL + item.image}
+              alt={item.name}
+              onError={(e: any) => {
+                e.target.src = ICON.DUMMY;
+              }}
+            />
+          ) : (
+            <div className="user-selection-img-dummy">
+              <IoImageOutline className="dummy-image" />
+            </div>
+          )}
 
           <div className="access-management-user">
             <span className="access-management">{item.name}</span>
@@ -151,19 +156,29 @@ const AccessManagement = () => {
   };
 
   const deleteSpecialist = () => {
-    dispatch(DeleteEntity(API.DELETE_SPECIALIST, { specialistRef: popup.id }));
+    dispatch(
+      DeleteEntity(
+        API.DELETE_SPECIALIST,
+        { specialistRef: popup.id },
+        API.LIST_SPECIALIST
+      )
+    );
     cancel();
-    window.location.reload();
   };
 
   const updateSpecialistAction = (data: any) => {
     dispatch(
-      Create(API.ACTION_SPECIALIST, {
-        specialistRef: data.id,
-        action: data.action,
-      })
+      Create(
+        API.ACTION_SPECIALIST,
+        {
+          specialistRef: data.id,
+          action: data.action,
+        },
+        false,
+        null,
+        API.LIST_SPECIALIST
+      )
     );
-    window.location.reload();
   };
 
   useEffect(() => {
@@ -184,20 +199,20 @@ const AccessManagement = () => {
         </button>
       </section>
       <div className="list-specialist">
-        <div>List of Specilists</div>
-      {list.length
-        ? Pagination({
-            page,
-            limit,
-            total,
-            size,
-            nextPage: () =>
-              dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
-            previousPage: () =>
-              dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
-          })
-        : null}
-        </div>
+        <div>List of Specialists</div>
+        {list.length
+          ? Pagination({
+              page,
+              limit,
+              total,
+              size,
+              nextPage: () =>
+                dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
+              previousPage: () =>
+                dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
+            })
+          : null}
+      </div>
       <section className="table-container">
         <table className="itinerary-table table">
           {TableHead()}

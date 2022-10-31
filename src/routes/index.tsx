@@ -107,14 +107,14 @@ const App = () => {
           />
         </Route>
 
-        <Route path="settings" element={<Settings/>}>
-          <Route index element={<AboutUs/>}></Route>
-          <Route path="about"  element={<AboutUs/>}></Route>
-          <Route path="terms"  element={<TermsConditions/>}></Route>
-          <Route path="privacy"  element={<PrivacyPolicy/>}></Route>
-          <Route path="faqs"  element={<Faqs/>}></Route>
-          <Route path="addfaq"  element={<AddFaq/>}></Route>
-          <Route path="faqs/edit/:faqRef"  element={<EditFaq/>}></Route>
+        <Route path="settings" element={<Settings />}>
+          <Route index element={<AboutUs />}></Route>
+          <Route path="about" element={<AboutUs />}></Route>
+          <Route path="terms" element={<TermsConditions />}></Route>
+          <Route path="privacy" element={<PrivacyPolicy />}></Route>
+          <Route path="faqs" element={<Faqs />}></Route>
+          <Route path="faqs/add" element={<AddFaq />}></Route>
+          <Route path="faqs/edit/:faqRef" element={<EditFaq />}></Route>
         </Route>
 
         <Route path="profile" element={<Profile />} />
