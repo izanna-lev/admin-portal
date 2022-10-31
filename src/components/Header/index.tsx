@@ -8,21 +8,19 @@ import { ICON } from "../../assets";
 
 type Props = {
   showUserData?: boolean;
-  sideNav: Function
+  sideNav: Function;
 };
-const Nav = ({ showUserData = true, sideNav }: Props) => {
 
-
+const Header = ({ showUserData = true, sideNav }: Props) => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
     window.location.replace("/login");
   };
 
-
   return (
     <header className={styles["header"]} id="navBar">
       <div className={styles["header-left"]}>
-      <img
+        <img
           title="menu"
           alt="menu"
           src={ICON.MENU}
@@ -30,7 +28,7 @@ const Nav = ({ showUserData = true, sideNav }: Props) => {
           className={styles["header-menu"]}
           loading="lazy"
         />
-      <img
+        <img
           title="logo"
           alt="logo"
           src={ICON.APP_LOGO}
@@ -39,10 +37,9 @@ const Nav = ({ showUserData = true, sideNav }: Props) => {
         />
       </div>
 
-      <div className={styles["header-right"]}>
-      </div>
-      <div className={styles["logout"]}  onClick={handleLogout}>
-      <img src={ICON.LOGOUT} alt="" className={styles["logout-icon"]} />
+      <div className={styles["header-right"]}></div>
+      <div className={styles["logout"]} onClick={handleLogout}>
+        <img src={ICON.LOGOUT} alt="" className={styles["logout-icon"]} />
 
         <div>Logout</div>
       </div>
@@ -50,4 +47,4 @@ const Nav = ({ showUserData = true, sideNav }: Props) => {
   );
 };
 
-export default Nav;
+export default Header;

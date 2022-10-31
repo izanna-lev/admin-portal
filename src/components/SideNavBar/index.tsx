@@ -2,10 +2,11 @@ import NavigationOption from "../sub-components/NavigationOption";
 import styles from "./index.module.scss";
 import { ICON } from "../../assets/index";
 
-const SideNavBar = ({sideNavigationView}: {sideNavigationView: boolean}) => 
-(
-  <nav className={`${styles["navigation-sidebar"]}`}
-  style={ sideNavigationView ? { display: "block" } : { display: "none" }}
+const SideNavBar = ({ sideNavView }: { sideNavView: boolean }) => (
+  <nav
+    className={`${styles["navigation-sidebar"]} ${
+      sideNavView ? styles["small-navigation-sidebar"] : ""
+    }`}
   >
     {NavigationOption("Dashboard", ICON.DASHBOARD_INACTIVE)}
     {NavigationOption("Travellers", ICON.TRAVELLERS_INACTIVE, "travellers")}

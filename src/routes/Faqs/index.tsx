@@ -51,14 +51,14 @@ const TableRow = (
           }}
         >
           <FaRegEdit />
-          Edit
+          &nbsp;Edit
         </button>
         <button
           className="btn view-button specialist-delete"
           onClick={() => popupUpdate(true, item._id)}
         >
           <RiDeleteBin6Line />
-          Delete
+          &nbsp;Delete
         </button>
       </td>
     </tr>
@@ -66,6 +66,7 @@ const TableRow = (
 };
 
 const Faqs = () => {
+  const [popup, setPopup] = useState({ id: "", show: false });
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -73,18 +74,10 @@ const Faqs = () => {
     (state) => state.faqList
   );
 
-  const [popup, setPopup] = useState({
-    id: "",
-    show: false,
-  });
-
-  const popupUpdate = (show: boolean, id: string) => {
+  const popupUpdate = (show: boolean, id: string) =>
     setPopup({ ...popup, show, id });
-  };
 
-  const cancel = () => {
-    setPopup({ ...popup, show: false, id: "" });
-  };
+  const cancel = () => setPopup({ ...popup, show: false, id: "" });
 
   const deleteFaq = () => {
     dispatch(DeleteEntity(API.FAQ_DELETE, { faqRef: popup.id }));
@@ -104,14 +97,11 @@ const Faqs = () => {
             className="content-heading"
             style={{ display: "flex", alignItems: "center" }}
           >
-            {/* <HelpOutlineOutlinedIcon fontSize="large" /> */}
-            &nbsp;FAQs
+            FAQs
           </div>
           <button
             className=" btn view-button add-faq"
-            onClick={() => {
-              navigate(`/settings/faqs/add`);
-            }}
+            onClick={() => navigate(`/settings/faqs/add`)}
           >
             Add FAQs
           </button>
@@ -128,7 +118,7 @@ const Faqs = () => {
                 )
               ) : (
                 <tr className="table-empty">
-                  <td colSpan={7}>
+                  <td colSpan={5}>
                     <div>No Data</div>
                   </td>
                 </tr>

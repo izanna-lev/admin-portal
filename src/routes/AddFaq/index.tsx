@@ -3,38 +3,32 @@
  * @author Jagmohan Singh
  */
 
-import { API } from "../../constants";
-import { BsChevronLeft } from "react-icons/bs";
-import { IoImageOutline } from "react-icons/io5";
-
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { useRef } from "react";
-import { Create } from "../../api/Create";
-import "./index.scss";
-import { useNavigate } from "react-router-dom";
 import TextArea from "../../components/InputTypes/TextArea";
+import { useNavigate } from "react-router-dom";
+import { BsChevronLeft } from "react-icons/bs";
+import { Create } from "../../api/Create";
+import { API } from "../../constants";
+import { useEffect } from "react";
+import "./index.scss";
 
 const AddFaq = () => {
   const apiMessage = useAppSelector((state) => state.apiMessage);
-
-  const questionRef = useRef();
-  const answerRef = useRef();
-
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const saveSpecialist = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const getInputValue = (ref: any) => ref.current.value;
 
-    const data = {
-      question: getInputValue(questionRef),
-      answer: getInputValue(answerRef),
-    };
+    const target: any = e.target;
+    const data = { question: target[0].value, answer: target[1].value };
+
     dispatch(Create(API.FAQ_ADD, data, false));
   };
 
-  if (apiMessage.type === "success") navigate("/settings/faq");
+  useEffect(() => {
+    if (apiMessage.type === "success") navigate("/settings/faqs");
+  }, [apiMessage.type, navigate]);
 
   return (
     <main className="content-container" id="formTop">
@@ -45,6 +39,7 @@ const AddFaq = () => {
           style={{ cursor: "pointer" }}
         >
           <BsChevronLeft />
+          &nbsp;
           <span>Add Faq</span>
         </h2>
       </section>
@@ -54,7 +49,6 @@ const AddFaq = () => {
           <TextArea
             inputFields={{
               placeholder: "",
-              ref: questionRef,
               name: "Question",
               id: "question",
               maxlength: 30,
@@ -64,7 +58,6 @@ const AddFaq = () => {
           <TextArea
             inputFields={{
               placeholder: "",
-              ref: answerRef,
               name: "Answer",
               id: "answer",
               maxlength: 30,
