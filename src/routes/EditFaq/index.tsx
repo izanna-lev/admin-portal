@@ -81,7 +81,7 @@ const EditFaq = () => {
             }}
           />
           <button className="button-submit-itinerary" type="submit">
-            <div className="button">Save</div>
+            Save
           </button>
         </div>
       </form>
