@@ -12,10 +12,14 @@
   overflow: auto;
   padding: 1rem;
   max-height: calc(100vh - 5rem);
+
+  // > section,
+  // > div {
+  //   min-width: 800px;
+  // }
 }
 
 .content {
-  // min-width: fit-content;
   min-height: fit-content;
 }
 
