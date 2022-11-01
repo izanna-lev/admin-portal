@@ -132,7 +132,7 @@ const Faqs = () => {
           modal={
             <Popup
               heading="Delete Specialist"
-              text="Are you sure you want to delete this faq. This can`t be undone"
+              text="Are you sure you want to delete this FAQ. This can`t be undone"
               firstButtonText="Delete"
               secondButtonText="Cancel"
               firstButtonAction={deleteFaq}
