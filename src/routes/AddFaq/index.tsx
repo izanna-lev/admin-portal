@@ -65,7 +65,7 @@ const AddFaq = () => {
             }}
           />
           <button className="button-submit-itinerary" type="submit">
-            <div className="button">Add</div>
+            Add
           </button>
         </div>
       </form>
