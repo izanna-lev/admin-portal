@@ -64,7 +64,7 @@ const EditFaq = () => {
               ref: questionRef,
               name: "Question",
               id: "question",
-              maxlength: 30,
+              maxlength: 1000,
               type: "text",
               value: location.state?.question,
             }}
@@ -75,7 +75,7 @@ const EditFaq = () => {
               ref: answerRef,
               name: "Answer",
               id: "answer",
-              maxlength: 30,
+              maxlength: 1000,
               type: "text",
               value: location.state?.answer,
             }}

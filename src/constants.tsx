@@ -184,6 +184,7 @@ export const ICON: IconOptions = {
   UPCOMING: `${STATUS_ICON}ic_upcoming.svg`,
   COMPLETED: `${STATUS_ICON}ic_completed.svg`,
   ONGOING: `${STATUS_ICON}ic_ongoing.svg`,
+  CANCELLED: `${STATUS_ICON}ic_cancel.svg`,
 };
 
 // Custom Constants

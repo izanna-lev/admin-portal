@@ -60,19 +60,21 @@
   height: 150px;
 }
 
-.button-submit-itinerary {
-  width: 70%;
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  margin-top: 36px;
-  margin-bottom: 1.5rem;
-  height: 3rem;
-  border: none;
-  border-radius: 0.5rem;
-  background-color: $theme_color_blue;
-  color: white;
-  font-size: large;
+.specialist-basic {
+  .button-submit-itinerary {
+    width: 90%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    margin-top: 36px;
+    margin-bottom: 1.5rem;
+    height: 3rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: $theme_color_blue;
+    color: white;
+    font-size: large;
+  }
 }
 
 .permissions-container {

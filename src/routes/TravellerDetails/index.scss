@@ -53,6 +53,11 @@
   border-radius: 4px;
 }
 
+.section-heading {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 // .itenary-list {
 //   margin-top: 0.75rem;
 //   overflow-y: auto;
@@ -160,7 +165,7 @@
   background-color: $theme_color_light_blue_2x;
 }
 .assign-specialist {
-  padding: 0px !important; 
+  padding: 0px !important;
 }
 
 .dropdown-container {

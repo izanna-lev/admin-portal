@@ -24,16 +24,24 @@ const User = (
           selectOne(user._id);
         }}
       />
-      { user.image ?            <img
-        className={`${user.image ? "user-selection-img": "user-dummy-img"} ` }
-        src={`${user.image ? IMAGE.SMALL+user.image: ICON.USER_PLACEHOLDER} ` }
-        alt={user.name}
-        onError={(e) => {
-          // e.target.src = ICON.USER_PLACEHOLDER;
-        }}
-        loading="lazy"
-      /> :      <div className="user-selection-img-dummy"> <IoImageOutline className="dummy-image" /></div>
-}
+      {user.image ? (
+        <img
+          className={`${user.image ? "user-selection-img" : "user-dummy-img"} `}
+          src={`${
+            user.image ? IMAGE.SMALL + user.image : ICON.USER_PLACEHOLDER
+          } `}
+          alt={user.name}
+          onError={(e) => {
+            // e.target.src = ICON.USER_PLACEHOLDER;
+          }}
+          loading="lazy"
+        />
+      ) : (
+        <div className="user-selection-img-dummy">
+          {" "}
+          <IoImageOutline className="dummy-image" />
+        </div>
+      )}
 
       <div className="user-selection-info">
         <div className="user-selection-name">{user.name}</div>
@@ -151,6 +159,7 @@ const Notifications = (props: any) => {
                 id="notificationText"
                 className="notifications-textarea"
                 autoFocus
+                placeholder="Type your message here."
               />
               <div className="notifications-message-heading">
                 Note: Select users from right pane who you want to send the
@@ -164,68 +173,72 @@ const Notifications = (props: any) => {
                 Send
               </button>
             </div>
-            <div className="user-selection-main-div">
-              <div className="user-selection-header">
-                <div className="user-selection-left">
-                  <div>Users List</div>
-                  <div className="select-all">
-                    <input
-                      id={`checkbox-x`}
-                      type="checkbox"
-                      className="checkbox"
-                      onClick={() => handleSelect()}
-                      checked={selectedAll}
-                    />
-                    <div>Select All</div>
+            <div className="container-right">
+              <div>Select Users</div>
+              <div className="user-selection-main-div">
+                <div className="user-selection-header">
+                  <div className="user-selection-left">
+                    <div>Users List</div>
+                    <div className="select-all">
+                      <input
+                        id={`checkbox-x`}
+                        type="checkbox"
+                        className="checkbox"
+                        onClick={() => handleSelect()}
+                        checked={selectedAll}
+                      />
+                      <div>Select All</div>
+                    </div>
                   </div>
+                  <div className="user-selection">
+                    <div
+                      className={`${
+                        userType === USER_TYPES_NOTIFICATION.TRAVELLER
+                          ? "selected"
+                          : ""
+                      }`}
+                      onClick={() =>
+                        setUserType(USER_TYPES_NOTIFICATION.TRAVELLER)
+                      }
+                    >
+                      Traveller
+                    </div>
+                    <div
+                      onClick={() =>
+                        setUserType(USER_TYPES_NOTIFICATION.SPECIALIST)
+                      }
+                      className={`${
+                        userType === USER_TYPES_NOTIFICATION.SPECIALIST
+                          ? "selected"
+                          : ""
+                      }`}
+                    >
+                      Specialist
+                    </div>
+                    <div
+                      onClick={() => setUserType(USER_TYPES_NOTIFICATION.ALL)}
+                      className={`${
+                        userType === USER_TYPES_NOTIFICATION.ALL
+                          ? "selected"
+                          : ""
+                      }`}
+                    >
+                      All
+                    </div>
+                  </div>
+                  <div
+                    title="Select all users"
+                    onClick={selectAll}
+                    className="user-selection-right"
+                  ></div>
+                  <div className="user-selection-right"></div>
                 </div>
-                <div className="user-selection">
-                  <div
-                    className={`${
-                      userType === USER_TYPES_NOTIFICATION.TRAVELLER
-                        ? "selected"
-                        : ""
-                    }`}
-                    onClick={() =>
-                      setUserType(USER_TYPES_NOTIFICATION.TRAVELLER)
-                    }
-                  >
-                    Traveller
-                  </div>
-                  <div
-                    onClick={() =>
-                      setUserType(USER_TYPES_NOTIFICATION.SPECIALIST)
-                    }
-                    className={`${
-                      userType === USER_TYPES_NOTIFICATION.SPECIALIST
-                        ? "selected"
-                        : ""
-                    }`}
-                  >
-                    Specialist
-                  </div>
-                  <div
-                    onClick={() => setUserType(USER_TYPES_NOTIFICATION.ALL)}
-                    className={`${
-                      userType === USER_TYPES_NOTIFICATION.ALL ? "selected" : ""
-                    }`}
-                  >
-                    All
-                  </div>
-                </div>
-                <div
-                  title="Select all users"
-                  onClick={selectAll}
-                  className="user-selection-right"
-                ></div>
-                <div className="user-selection-right"></div>
-              </div>
 
-              <div className="user-selection-list">
-                {data.length &&
-                  data.map((user: any, index: number) =>
+                <div className="user-selection-list">
+                  {data.map((user: any, index: number) =>
                     User(user, index, selectOne)
                   )}
+                </div>
               </div>
             </div>
           </div>
