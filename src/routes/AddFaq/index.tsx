@@ -51,7 +51,7 @@ const AddFaq = () => {
               placeholder: "",
               name: "Question",
               id: "question",
-              maxlength: 30,
+              maxlength: 1000,
               type: "text",
             }}
           />
@@ -60,7 +60,7 @@ const AddFaq = () => {
               placeholder: "",
               name: "Answer",
               id: "answer",
-              maxlength: 30,
+              maxlength: 1000,
               type: "text",
             }}
           />

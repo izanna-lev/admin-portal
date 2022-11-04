@@ -64,9 +64,16 @@
   flex-direction: column;
   border-radius: 5px;
   width: 450px;
-  margin-left: 40px;
-  margin-right: 40px;
   height: 700px;
+}
+
+.container-right {
+  padding: 0 40px;
+
+  > div:first-of-type {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+  }
 }
 
 .user-selection-header {
@@ -91,7 +98,7 @@
 }
 
 .user-selection > div {
-  border: 1px solid $theme_color_blue ;
+  border: 1px solid $theme_color_blue;
   border-radius: 4px;
   padding: 2px 16px;
   font-size: 16px;
@@ -101,7 +108,7 @@
 .user-selection > .selected {
   background-color: $theme_color_blue;
   color: $global_white_color;
-} 
+}
 
 .user-selection-right {
   margin-left: auto;
@@ -244,7 +251,6 @@
   display: flex;
   gap: 4px;
 }
-
 
 .user-selection-img-dummy {
   height: 40px;

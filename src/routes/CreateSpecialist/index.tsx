@@ -7,7 +7,6 @@ import { API } from "../../constants";
 import { BsChevronLeft } from "react-icons/bs";
 import { IoImageOutline } from "react-icons/io5";
 
-
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useRef, useState } from "react";
 import { Create } from "../../api/Create";
@@ -22,16 +21,14 @@ const CreateSpecialist = () => {
     createItinerary: false,
     editItinerary: false,
     cancelItinerary: false,
-    sendNotifications: false
+    sendNotifications: false,
   });
   const [selectedImage, setSelectedImage] = useState("");
 
-
   const setSpecificPermission = (data: boolean, name: string) => {
-    setPermissions({ ...permissions, ...{ [name]: data } })
+    setPermissions({ ...permissions, ...{ [name]: data } });
   };
   const apiMessage = useAppSelector((state) => state.apiMessage);
-
 
   const nameRef = useRef();
   const emailRef = useRef();
@@ -46,7 +43,6 @@ const CreateSpecialist = () => {
       setBackground(URL.createObjectURL(e.target.files[0]), "itineraryImage");
     }
   };
-
 
   const saveSpecialist = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -67,10 +63,8 @@ const CreateSpecialist = () => {
 
   if (apiMessage.type === "success") navigate("/admin/accessSpecialistList");
 
-
   return (
     <main className="content-container" id="formTop">
-
       <section className="content-top">
         <h2
           className="content-heading"
@@ -95,8 +89,9 @@ const CreateSpecialist = () => {
           />
           <label
             htmlFor="upload"
-            className={`upload-image ${selectedImage ? "" : "not-selected-preview"
-              }`}
+            className={`upload-image ${
+              selectedImage ? "" : "not-selected-preview"
+            }`}
             id="itineraryImage"
           >
             {<IoImageOutline className="image-placeholder" />}
@@ -135,9 +130,8 @@ const CreateSpecialist = () => {
           />
 
           <button className="button-submit-itinerary" type="submit">
-            <div className="button">Create</div>
+            Create
           </button>
-
         </div>
 
         <div className="specialist-basic">
@@ -145,19 +139,36 @@ const CreateSpecialist = () => {
           <div className="permissions-container">
             <div className="feild-heading-text">Specialist Permissions</div>
             <div className="line"></div>
-            <CheckBox text="Create Itineraries" name="createItinerary" permissionValue={permissions.createItinerary} setSpecificPermission={setSpecificPermission} />
+            <CheckBox
+              text="Create Itineraries"
+              name="createItinerary"
+              permissionValue={permissions.createItinerary}
+              setSpecificPermission={setSpecificPermission}
+            />
             <div className="line"></div>
-            <CheckBox text="Edit Itineraries" name="editItinerary" permissionValue={permissions.editItinerary} setSpecificPermission={setSpecificPermission} />
+            <CheckBox
+              text="Edit Itineraries"
+              name="editItinerary"
+              permissionValue={permissions.editItinerary}
+              setSpecificPermission={setSpecificPermission}
+            />
             <div className="line"></div>
-            <CheckBox text="Cancel Itineraries" name="cancelItinerary" permissionValue={permissions.cancelItinerary} setSpecificPermission={setSpecificPermission} />
+            <CheckBox
+              text="Cancel Itineraries"
+              name="cancelItinerary"
+              permissionValue={permissions.cancelItinerary}
+              setSpecificPermission={setSpecificPermission}
+            />
             <div className="line"></div>
-            <CheckBox text="Send Notifications" name="sendNotifications" permissionValue={permissions.sendNotifications} setSpecificPermission={setSpecificPermission} />
-
+            <CheckBox
+              text="Send Notifications"
+              name="sendNotifications"
+              permissionValue={permissions.sendNotifications}
+              setSpecificPermission={setSpecificPermission}
+            />
           </div>
         </div>
-
       </form>
-
     </main>
   );
 };

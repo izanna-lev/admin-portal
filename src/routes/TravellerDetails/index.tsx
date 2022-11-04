@@ -5,7 +5,7 @@
 
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { BsChevronLeft } from "react-icons/bs"
+import { BsChevronLeft } from "react-icons/bs";
 import {
   IMAGE,
   ITINERARY_STATUS,
@@ -47,7 +47,6 @@ const TableRow = (
   ref: any,
   limit?: number,
   page?: number
-
 ) => {
   const itineraryDetailsPage = (item: any) => {
     dispatch(setFormRef(item._id));
@@ -56,21 +55,24 @@ const TableRow = (
 
   return (
     <tr className="body-tr" key={index}>
-      <td>{SerialNum(limit = 0, page = 0, index)}</td>
+      <td>{SerialNum((limit = 0), (page = 0), index)}</td>
       <td>
         <div className="name-image-cell">
           <span className="table-user-name">{item.location}</span>
         </div>
       </td>
       <td>{item.userName}</td>
-      <td>{item.phoneNumber}
-      </td>
+      <td>{item.phoneNumber}</td>
       <td>{getFormattedDate(item.plannedDate)}</td>
       <td>{PLANNED_TRAVELLER[item.plannedTraveller - 1 || 0].name}</td>
       <td>{item.plannedTraveller}</td>
 
       <td>
-        <div className={`table-data-status ${item.blockedByTraveller ? 'blocked' : ""}`}>
+        <div
+          className={`table-data-status ${
+            item.blockedByTraveller ? "blocked" : ""
+          }`}
+        >
           {item.blockedByTraveller ? "Blocked" : ITINERARY_STATUS[item.status]}
         </div>
       </td>
@@ -82,39 +84,34 @@ const TravellersDetails = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [userDropdown, setUserDropdown] = useState("");
-  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(false);
   const params = useParams();
 
   const handleDropDown = (id: string) => {
-    setIsComponentVisible(true)
-    setUserDropdown(id)
+    setIsComponentVisible(true);
+    setUserDropdown(id);
   };
 
   useEffect(() => {
     const { travellerRef } = params;
-
 
     dispatch(Fetch(API.TRAVELLER_DETAILS, { userRef: travellerRef }, 1, 1000));
   }, []);
 
   useEffect(() => {
     if (!isComponentVisible) {
-      setUserDropdown("")
-      setIsComponentVisible(false)
+      setUserDropdown("");
+      setIsComponentVisible(false);
     }
   }, [isComponentVisible]);
 
-
-  let { itinerary,
-    _id,
-    name,
-    image } = useAppSelector(
-      (state) => state.travellerDetails
-    );
+  let { itinerary, _id, name, image } = useAppSelector(
+    (state) => state.travellerDetails
+  );
 
   return (
     <main className="content-container">
-
       <h2
         className="content-heading"
         onClick={() => navigate("/travellers")}
@@ -125,7 +122,7 @@ const TravellersDetails = () => {
       </h2>
 
       <section className="content-top">
-        <h3 className="content-heading">Basic Details</h3>
+        <h3 className="section-heading">Basic Details</h3>
       </section>
       <div className="name-image-cell">
         <img
@@ -138,12 +135,24 @@ const TravellersDetails = () => {
         />
         <span className="traveller-detail-name">{name}</span>
       </div>
+      <section className="content-top">
+        <h3 className="section-heading">List of Itineraries</h3>
+      </section>
       <section className="table-container">
         <table className="itinerary-table table">
           {TableHead()}
           <tbody className="body-tr">
             {itinerary.length ? (
-              itinerary.map((item, index) => TableRow(item, index, navigate, dispatch, handleDropDown, userDropdown, ref)
+              itinerary.map((item, index) =>
+                TableRow(
+                  item,
+                  index,
+                  navigate,
+                  dispatch,
+                  handleDropDown,
+                  userDropdown,
+                  ref
+                )
               )
             ) : (
               <tr className="table-empty">
