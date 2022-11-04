@@ -69,7 +69,7 @@ const TableRow = (
               src={IMAGE.SMALL + item.image}
               alt={item.name}
               onError={(e: any) => {
-                e.target.src = ICON.DUMMY;
+                e.target.src = ICON.USER_PLACEHOLDER;
               }}
             />
           ) : (

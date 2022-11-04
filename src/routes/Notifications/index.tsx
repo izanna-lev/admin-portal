@@ -26,7 +26,7 @@ const User = (
       />
       { user.image ?            <img
         className={`${user.image ? "user-selection-img": "user-dummy-img"} ` }
-        src={`${user.image ? IMAGE.SMALL+user.image: ICON.DUMMY} ` }
+        src={`${user.image ? IMAGE.SMALL+user.image: ICON.USER_PLACEHOLDER} ` }
         alt={user.name}
         onError={(e) => {
           // e.target.src = ICON.USER_PLACEHOLDER;
