@@ -66,7 +66,7 @@ const TableRow = (
         </div>
       </td>
       <td>{item.userName}</td>
-      <td>{item.contactNumber}
+      <td>{item.phoneCode}{`${item.phoneCode ? "-" : "" }`}{item.contactNumber}
       </td>
       <td>{getFormattedDate(item.plannedDate)}</td>
       <td>{PLANNED_TRAVELLER[item.plannedTraveller - 1 || 0].name}</td>

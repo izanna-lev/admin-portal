@@ -15,7 +15,7 @@ import "./index.scss";
 
 const EditFaq = () => {
   const dispatch = useAppDispatch();
-  const location = useLocation();
+  const location: any = useLocation();
   const navigate = useNavigate();
 
   const apiMessage = useAppSelector((state) => state.apiMessage);

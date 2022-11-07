@@ -6,6 +6,7 @@
 import { API } from "../../constants";
 import { BsChevronLeft } from "react-icons/bs";
 import { IoImageOutline } from "react-icons/io5";
+import PhoneInput from "react-phone-input-2";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useRef, useState } from "react";
@@ -16,6 +17,7 @@ import { useNavigate } from "react-router-dom";
 import InputForm from "../../components/InputTypes/InputForm";
 import CheckBox from "../../components/InputTypes/CheckBox";
 
+
 const CreateSpecialist = () => {
   const [permissions, setPermissions] = useState({
     createItinerary: false,
@@ -23,6 +25,8 @@ const CreateSpecialist = () => {
     cancelItinerary: false,
     sendNotifications: false,
   });
+  const [phone, setPhone] = useState("");
+
   const [selectedImage, setSelectedImage] = useState("");
 
   const setSpecificPermission = (data: boolean, name: string) => {
@@ -89,9 +93,8 @@ const CreateSpecialist = () => {
           />
           <label
             htmlFor="upload"
-            className={`upload-image ${
-              selectedImage ? "" : "not-selected-preview"
-            }`}
+            className={`upload-image ${selectedImage ? "" : "not-selected-preview"
+              }`}
             id="itineraryImage"
           >
             {<IoImageOutline className="image-placeholder" />}
@@ -118,7 +121,22 @@ const CreateSpecialist = () => {
             }}
           />
 
-          <InputForm
+          <PhoneInput
+            inputProps={{
+              name: "Phone Number",
+              required: true,
+              autoFocus: true,
+            }}
+            country="us"
+            value={phone}
+            specialLabel="Phone Number"
+            inputClass="field-value"
+            containerClass="input-tel"
+            buttonClass="flag-dropdown"
+            onChange={(value: any) => setPhone(value)}
+          />
+
+          {/* <InputForm
             inputFields={{
               placeholder: "12345678",
               ref: phoneRef,
@@ -127,7 +145,7 @@ const CreateSpecialist = () => {
               maxlength: 30,
               type: "tel",
             }}
-          />
+          /> */}
 
           <button className="button-submit-itinerary" type="submit">
             Create
