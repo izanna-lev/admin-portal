@@ -9,7 +9,7 @@ const API_URL = process.env.API_URL;
 const S3_URL = process.env.S3_URL;
 
 // const SERVER_TYPE = "development/";
-// const API_URL = "http://44.209.25.93:3000/api/";
+// const API_URL = "http://localhost:3001/api/";
 // const S3_URL = "https://app-onsite.s3.amazonaws.com/";
 
 // Google Places Api Key

@@ -81,7 +81,10 @@ const TableRow = (
           <div className="access-management-user">
             <span className="access-management">{item.name}</span>
             <span className="access-management text">{item.email}</span>
-            <span className="access-management text">{item.phoneNumber}</span>
+            <span className="access-management text">
+
+            {item.phoneCode}{`${item.phoneCode ? "-" : "" }`}{item.phoneNumber}
+            </span>
           </div>
         </div>
       </td>
@@ -114,6 +117,7 @@ const TableRow = (
                 name: item.name,
                 email: item.email,
                 phoneNumber: item.phoneNumber,
+                phoneCode: item.phoneCode,
                 permissions: item.permissions,
                 image: item.image,
               },
