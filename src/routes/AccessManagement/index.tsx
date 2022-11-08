@@ -117,6 +117,7 @@ const TableRow = (
                 name: item.name,
                 email: item.email,
                 phoneNumber: item.phoneNumber,
+                phoneCode: item.phoneCode,
                 permissions: item.permissions,
                 image: item.image,
               },

@@ -123,7 +123,7 @@ const CreateSpecialist = () => {
             }}
           />
 
-          <div className="field-heading">Contact Number</div>
+          <div className="field-heading">Phone Number</div>
           <PhoneInput
             inputProps={{
               name: "Phone Number",
@@ -131,7 +131,7 @@ const CreateSpecialist = () => {
               autoFocus: true,
             }}
             country={"us"}
-            value={phoneCode+phone}
+            value={phoneCode + phone}
             onKeyDown={(val: any) => {
               setPhoneCode(val.target.value.split(" ")[0])
               setPhone(val.target.value.split(" ").slice(1).join(""))
@@ -140,11 +140,11 @@ const CreateSpecialist = () => {
             inputClass="field-value"
             containerClass="input-tel"
             buttonClass="flag-dropdown"
-            // onChange={(value: any) => 
-            //   {
-            //     console.log({value})
-            //     setPhone(value)
-            //   }}
+          // onChange={(value: any) => 
+          //   {
+          //     console.log({value})
+          //     setPhone(value)
+          //   }}
           />
 
           <button className="button-submit-itinerary" type="submit">

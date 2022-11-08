@@ -6,7 +6,8 @@
 import { API, IMAGE } from "../../constants";
 import { BsChevronLeft } from "react-icons/bs";
 import { IoImageOutline } from "react-icons/io5";
-
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/plain.css";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { useEffect, useRef, useState } from "react";
 import { Create } from "../../api/Create";
@@ -19,7 +20,8 @@ import CheckBox from "../../components/InputTypes/CheckBox";
 const EditSpecialist = () => {
   const location: any = useLocation();
   const navigate = useNavigate();
-
+  const [phone, setPhone] = useState(location.state?.phoneNumber || "");
+  const [phoneCode, setPhoneCode] = useState(location.state?.phoneCode || "");
   useEffect(() => {
     if (!location.state) {
       navigate("/admin/accessSpecialistList")
@@ -67,7 +69,8 @@ const EditSpecialist = () => {
     const data = {
       specialistEmail: getInputValue(emailRef),
       name: getInputValue(nameRef),
-      phoneNumber: getInputValue(phoneRef),
+      phoneNumber: phone,
+      phoneCode,
       access: permissions,
       specialistRef: location.state.id
     };
@@ -135,17 +138,31 @@ const EditSpecialist = () => {
             }}
           />
 
-          <InputForm
-            inputFields={{
-              placeholder: "12345678",
-              ref: phoneRef,
+          <div className="field-heading">Phone Number</div>
+
+          <PhoneInput
+            inputProps={{
               name: "Phone Number",
-              id: "tel",
-              maxlength: 30,
-              type: "tel",
-              value: location.state?.phoneNumber
+              required: true,
+              autoFocus: true,
             }}
+            country={"us"}
+            value={phoneCode + phone}
+            onKeyDown={(val: any) => {
+              setPhoneCode(val.target.value.split(" ")[0])
+              setPhone(val.target.value.split(" ").slice(1).join(""))
+            }}
+            specialLabel="Phone Number"
+            inputClass="field-value"
+            containerClass="input-tel"
+            buttonClass="flag-dropdown"
+          // onChange={(value: any) => 
+          //   {
+          //     console.log({value})
+          //     setPhone(value)
+          //   }}
           />
+
 
           <button className="button-submit-itinerary" type="submit">
             <div className="button">Edit</div>
