@@ -1,7 +1,10 @@
 import APP_LOGO from "./logo.png";
 import APP_LOGO_BACKGROUND from "./ic_login-background.png";
 import SIGNIN from "./signin.png";
+import SHOW_PASSWORD from "./ic_show-password.svg";
+import HIDE_PASSWORD from "./ic_hide-password.svg";
 import USER_PLACEHOLDER from "./placeholder.png";
+import UPLOAD_IMAGE from "./ic_upload-placeholder.svg";
 
 import CHAT_ADD from "./action/ic_add.svg";
 import CHAT_SEND from "./action/ic_send.svg";
@@ -26,7 +29,7 @@ import SETTINGS_INACTIVE from "./navigation/ic_settings-inactive.svg";
 import TRAVELLERS_INACTIVE from "./navigation/ic_travellers-inactive.svg";
 import SETTINGS from "./navigation/ic-settings-inactive.svg";
 import DUMMY from "./status/dummy.svg";
-import MENU from "./action/ic_menu.svg"
+import MENU from "./action/ic_menu.svg";
 
 type IconOptions = {
   [key: string]: string;
@@ -37,7 +40,10 @@ type IconOptions = {
 export const ICON: IconOptions = {
   SIGNIN,
   LOGOUT,
+  SHOW_PASSWORD,
+  HIDE_PASSWORD,
   USER_PLACEHOLDER,
+  UPLOAD_IMAGE,
 
   // APP LOGO & BANNER
   APP_LOGO,
