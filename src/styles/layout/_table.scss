@@ -22,7 +22,7 @@
   border-collapse: collapse;
 
   th {
-    min-width: 8rem;
+    min-width: 10rem;
     text-align: left;
     padding-left: 1rem;
     font-weight: 500;
@@ -46,13 +46,13 @@
     top: 0px;
     height: 3rem;
     position: sticky;
-    z-index: 10;
-
+    font-size: 0.95rem;
     background-image: linear-gradient(
-      to right,
-      $theme_color_lime,
-      $theme_color_light_blue
+      165deg,
+      rgba(26, 204, 111, 0.5) 0%,
+      rgba(11, 157, 216, 0.25) 100%
     );
+    background-color: white;
   }
 
   .head-tr {

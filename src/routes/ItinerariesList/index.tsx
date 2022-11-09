@@ -3,24 +3,18 @@
  * @author Jagmohan Singh
  */
 
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { BsChevronDown } from "react-icons/bs"
-import {
-  IMAGE,
-  ITINERARY_STATUS,
-  ICON,
-  API,
-  PLANNED_TRAVELLER,
-} from "../../constants";
+import { ITINERARY_STATUS, API, PLANNED_TRAVELLER } from "../../constants";
+import useComponentVisible from "../../components/outsideClickHandler";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { setFormRef } from "../../store/slices/appData";
 import { Pagination } from "../../components/Pagination";
 import { getFormattedDate, SerialNum } from "../../util";
+import { setFormRef } from "../../store/slices/appData";
+import { useNavigate } from "react-router-dom";
+import { BsChevronDown } from "react-icons/bs";
+import { useEffect, useState } from "react";
+import { Create } from "../../api/Create";
 import { Fetch } from "../../api/Fetch";
 import "./index.scss";
-import useComponentVisible from "../../components/outsideClickHandler";
-import { Create } from "../../api/Create";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -50,7 +44,7 @@ const TableRow = (
   userDropdown: string,
   ref: any,
   userList: any,
-  assignSpecialist: any,
+  assignSpecialist: any
 ) => {
   const itineraryDetailsPage = (item: any) => {
     dispatch(setFormRef(item._id));
@@ -65,40 +59,57 @@ const TableRow = (
           <span className="table-user-name">{item.location}</span>
         </div>
       </td>
-      <td>{item.userName}</td>
-      <td>{item.phoneCode}{`${item.phoneCode ? "-" : "" }`}{item.contactNumber}
+      <td>{item.userName || "NA"}</td>
+      <td>
+        {item.contactNumber ? (
+          <a href={`tel:${item.phoneCode}${item.contactNumber}`}>
+            {item.phoneCode}
+            {`${item.phoneCode ? "-" : ""}`}
+            {item.contactNumber}
+          </a>
+        ) : (
+          "NA"
+        )}
       </td>
       <td>{getFormattedDate(item.plannedDate)}</td>
       <td>{PLANNED_TRAVELLER[item.plannedTraveller - 1 || 0].name}</td>
       <td>{item.plannedTraveller}</td>
       <td className="assign-specialist">
         <div className="dropdown-container">
-          <label> { item.specialistName || "None"}</label>
-          <BsChevronDown className="list-icon"
+          <label> {item.specialistName || "None"}</label>
+          <BsChevronDown
+            className="list-icon"
             onClick={() => {
               handleDropDown(item._id);
-            }} />
-          {userDropdown === item._id &&
+            }}
+          />
+          {userDropdown === item._id && (
             <div className="specialist-user-list" ref={ref}>
-              {
-                userList.map((user: any) => {
-                  return <option
-                  onClick={() => {
-                    assignSpecialist({
-                      formRef: item._id,
-                      specialistRef: user._id
-                    });
-                  }}
-
-                   >{user.name}</option>
-                })
-              }
-            </div>}
-
-        </div></td>
+              {userList.map((user: any) => {
+                return (
+                  <option
+                    onClick={() => {
+                      assignSpecialist({
+                        formRef: item._id,
+                        specialistRef: user._id,
+                      });
+                    }}
+                  >
+                    {user.name}
+                  </option>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </td>
       <td>
-        <div className={`table-data-status ${item.blockedByTraveller? 'blocked': ""}`}>
-          { item.blockedByTraveller ? "Blocked" :ITINERARY_STATUS[item.status]}
+        <div
+          className={`table-data-status ${
+            item.blockedByTraveller ? "blocked" : ""
+          }`}
+        >
+          {item.blockedByTraveller ? "Blocked" : ITINERARY_STATUS[item.status]}
         </div>
       </td>
       <td>
@@ -119,49 +130,36 @@ const ItineraryPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [userDropdown, setUserDropdown] = useState("");
-  const { ref, isComponentVisible, setIsComponentVisible } = useComponentVisible(false);
+  const { ref, isComponentVisible, setIsComponentVisible } =
+    useComponentVisible(false);
 
-  const handleDropDown = (id: string) => {
-    setIsComponentVisible(true)
-    setUserDropdown(id)
-  };
-
-  useEffect(() => {
-    dispatch(Fetch(API.SPECIALIST_LIST, {}, 1, 1000));
-  }, []);
-
-  useEffect(() => {
-    if (!isComponentVisible) {
-      setUserDropdown("")
-      setIsComponentVisible(false)
-    }
-  }, [isComponentVisible]);
-
-
-  let { page, limit, size, total, list } = useAppSelector(
+  const { page, limit, size, total, list } = useAppSelector(
     (state) => state.itineraries
   );
 
-  let { list: userList } = useAppSelector(
-    (state) => state.specialistList
-  );
+  const { list: userList } = useAppSelector((state) => state.specialistList);
 
   useEffect(() => {
     dispatch(Fetch(API.ITINERARIES, {}, 1, 10));
+    dispatch(Fetch(API.SPECIALIST_LIST, {}, 1, 1000));
   }, [dispatch]);
 
+  useEffect(() => {
+    if (!isComponentVisible) {
+      setUserDropdown("");
+      setIsComponentVisible(false);
+    }
+  }, [isComponentVisible]);
 
   const assignSpecialist = (data: any) => {
-    dispatch(
-      Create(
-        API.ASSIGN_SPECIALIST,
-        data,
-        false,
-      )
-    );
-    setUserDropdown("")
+    dispatch(Create(API.ASSIGN_SPECIALIST, data, false));
+    setUserDropdown("");
   };
 
+  const handleDropDown = (id: string) => {
+    setIsComponentVisible(true);
+    setUserDropdown(id);
+  };
 
   return (
     <main className="content-container">
@@ -170,22 +168,35 @@ const ItineraryPage = () => {
       </section>
       {list.length
         ? Pagination({
-          page,
-          limit,
-          total,
-          size,
-          nextPage: () =>
-            dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
-          previousPage: () =>
-            dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
-        })
+            page,
+            limit,
+            total,
+            size,
+            nextPage: () =>
+              dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
+            previousPage: () =>
+              dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
+          })
         : null}
-      <section className="table-container">
+      <section className="table-container itineraries-listing-table">
         <table className="itinerary-table table">
           {TableHead()}
           <tbody className="body-tr">
             {list.length ? (
-              list.map((item, index) =>  TableRow(item, index, limit, page, navigate, dispatch, handleDropDown, userDropdown, ref, userList, assignSpecialist)
+              list.map((item, index) =>
+                TableRow(
+                  item,
+                  index,
+                  limit,
+                  page,
+                  navigate,
+                  dispatch,
+                  handleDropDown,
+                  userDropdown,
+                  ref,
+                  userList,
+                  assignSpecialist
+                )
               )
             ) : (
               <tr className="table-empty">

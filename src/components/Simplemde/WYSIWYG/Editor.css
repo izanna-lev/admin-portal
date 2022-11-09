@@ -64,8 +64,7 @@ h6 {
 }
 
 .WYSIWYG .cm-link,
-.WYSIWYG a,
-a {
+.WYSIWYG a {
   text-decoration: none;
   color: hsl(324, 59%, 39%);
 }

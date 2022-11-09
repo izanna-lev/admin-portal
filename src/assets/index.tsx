@@ -18,6 +18,11 @@ import COMPLETED from "./status/ic_completed.svg";
 import CANCELLED from "./status/ic_cancel.svg";
 import ONGOING from "./status/ic_ongoing.svg";
 
+import ABOUT_US from "./navigation/ic-about-us-inactive.svg";
+import FAQ from "./navigation/ic-faq-inactive.svg";
+import PRIVACY_POLICY from "./navigation/ic-privacy-policy-inactive.svg";
+import TERMS_CONDITIONS from "./navigation/ic-t&c-inactive.svg";
+
 import ACCESS_MANAGEMENT_INACTIVE from "./navigation/ic_access-management-inactive.svg";
 import CANCELLED_ITINERARIES_INACTIVE from "./navigation/ic_cancel-requests_inactive.svg";
 import CHAT_INACTIVE from "./navigation/ic_chat-inactive.svg";
@@ -76,6 +81,13 @@ export const ICON: IconOptions = {
   COMPLETED,
   CANCELLED,
   ONGOING,
+
+  // SETTINGS NAV ICONS
+
+  ABOUT_US,
+  FAQ,
+  PRIVACY_POLICY,
+  TERMS_CONDITIONS,
 
   DUMMY,
 };
