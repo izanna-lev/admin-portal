@@ -25,7 +25,6 @@ const TextArea = ({ inputFields }: InputProps) => {
         ref={inputFields.ref}
         placeholder={inputFields.placeholder}
         defaultValue={inputFields.value || inputFields.default}
-        autoFocus
         required
       />
     </div>

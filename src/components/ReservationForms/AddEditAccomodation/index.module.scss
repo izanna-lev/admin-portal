@@ -13,28 +13,26 @@
 }
 
 .form-background {
-  width: 60rem;
-  height: 45rem;
+  width: 70vw;
+  max-width: 60rem;
+  height: 98vh;
+  max-height: 740px;
   border-radius: 0.75rem;
   background-color: $white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  padding: 1.5rem 0;
 }
 
 .form-image {
   margin-left: 0px;
-  width: 20%;
+  width: 10rem;
+  height: 5rem;
   display: flex;
   align-items: center;
-  padding: 0.25rem;
-  height: 15%;
-  border-radius: 0.5rem;
+  margin: 0.25rem;
   justify-content: space-around;
-  background-color: $theme_color_light_blue_3x;
 }
 
-.form-image>.not-selected-preview {
+.form-image > .not-selected-preview {
   width: 80%;
   height: 70%;
   display: flex;
@@ -45,9 +43,14 @@
 }
 
 .activity-image-placeholder {
-  width: 40px;
-  height: 40px;
-  color: $theme_color_light_blue;
+  width: 12rem;
+  border-radius: 0.5rem;
+  height: 6rem;
+
+  background-image: url("../../../assets/ic_upload-placeholder.svg");
+  background-position: center center;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 
 .form-required-feilds {
@@ -55,7 +58,7 @@
   width: 100%;
   display: grid;
   column-gap: 60px;
-  row-gap: 20px;
+  row-gap: 1.25rem;
   grid-template-columns: 1fr 1fr;
 }
 
@@ -78,7 +81,7 @@
 }
 
 .button-save {
-  margin-top: 20px;
+  margin-top: 1.25rem;
   width: 100%;
   height: 52px;
   display: flex;
@@ -120,7 +123,7 @@
   .field-value {
     // margin-top: 0.25rem !important;
     font-size: 0.75rem !important;
-    background-color: $theme_color_light_blue_3x !important;
+    background-color: $gray-200 !important;
     border: none !important;
     border-radius: 0.5rem !important;
     padding: 0.95rem 0.95rem 0.95rem 60px !important;
@@ -132,13 +135,13 @@
 }
 
 .flag-dropdown {
-  border: 1px solid #bee3f4 !important;
+  border: 1px solid $gray-300 !important;
   border-radius: 5px !important;
 }
 
 .field-heading {
   margin-top: 0.5rem;
-  height: 20px;
+  height: 1.25rem;
   font-size: 0.9rem;
   padding: 0 0 0.5rem;
 }

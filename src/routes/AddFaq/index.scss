@@ -8,7 +8,7 @@
 
 .feild-heading {
   margin-top: 0.5rem;
-  height: 20px;
+  height: 1.25rem;
   font-size: 0.9rem;
   padding: 0 0 0.5rem;
   font-weight: 600;
@@ -30,7 +30,7 @@
   max-height: 100px;
   border-radius: 0.5rem;
   cursor: pointer;
-  margin-top: 4px;
+  margin-top: 0.25rem;
   display: flex;
   flex: 1;
   align-items: center;
@@ -57,7 +57,7 @@
   display: grid;
   justify-content: center;
   align-items: center;
-  margin-top: 36px;
+  margin-top: 2.25rem;
   margin-bottom: 1.5rem;
   height: 3rem;
   border: none;
@@ -70,10 +70,10 @@
 .permissions-container {
   width: 100%;
   // max-height: 228px;
-  margin-top: 12px;
-  padding: 8px;
-  gap: 12px;
-  border-radius: 8px;
+  margin-top: 0.75rem;
+  padding: 0.5rem;
+  gap: 0.75rem;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
   background-color: $theme_color_light_blue_3x;

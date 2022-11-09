@@ -73,7 +73,7 @@ const Notifications = (props: any) => {
       )
     );
     unselectAll();
-  }, [userType]);
+  }, [userType, dispatch]);
 
   const handleSelect = () => {
     selectedAll ? unselectAll() : selectAll();
@@ -152,93 +152,91 @@ const Notifications = (props: any) => {
       <section className="content">
         <section className="content-top">
           <div className="content-heading">Notifications</div>
-          <div className="notifications-main-div">
-            <div className="notifications-message-div">
-              <div className="notifications-message-heading"></div>
-              <textarea
-                id="notificationText"
-                className="notifications-textarea"
-                autoFocus
-                placeholder="Type your message here."
-              />
-              <div className="notifications-message-heading">
-                Note: Select users from right pane who you want to send the
-                notification.
-              </div>
-              <button
-                onClick={sendNotifications}
-                className="notifications-send-btn"
-                title="Send notification"
-              >
-                Send
-              </button>
+        </section>
+        <section className="content-bottom notifications-main-div">
+          <div className="notifications-message-div">
+            <div className="notifications-message-heading"></div>
+            <textarea
+              id="notificationText"
+              className="notifications-textarea"
+              autoFocus
+              placeholder="Type your message here."
+            />
+            <div className="notifications-message-heading">
+              Note: Select users from right pane who you want to send the
+              notification.
             </div>
-            <div className="container-right">
-              <div>Select Users</div>
-              <div className="user-selection-main-div">
-                <div className="user-selection-header">
-                  <div className="user-selection-left">
-                    <div>Users List</div>
-                    <div className="select-all">
-                      <input
-                        id={`checkbox-x`}
-                        type="checkbox"
-                        className="checkbox"
-                        onClick={() => handleSelect()}
-                        checked={selectedAll}
-                      />
-                      <div>Select All</div>
-                    </div>
+            <button
+              onClick={sendNotifications}
+              className="notifications-send-btn"
+              title="Send notification"
+            >
+              Send
+            </button>
+          </div>
+          <div className="container-right">
+            <div>Select Users</div>
+            <div className="user-selection-main-div">
+              <div className="user-selection-header">
+                <div className="user-selection-left">
+                  <div>Users List</div>
+                  <div className="select-all">
+                    <input
+                      id={`checkbox-x`}
+                      type="checkbox"
+                      className="checkbox"
+                      onClick={() => handleSelect()}
+                      checked={selectedAll}
+                    />
+                    <div>Select All</div>
                   </div>
-                  <div className="user-selection">
-                    <div
-                      className={`${
-                        userType === USER_TYPES_NOTIFICATION.TRAVELLER
-                          ? "selected"
-                          : ""
-                      }`}
-                      onClick={() =>
-                        setUserType(USER_TYPES_NOTIFICATION.TRAVELLER)
-                      }
-                    >
-                      Traveller
-                    </div>
-                    <div
-                      onClick={() =>
-                        setUserType(USER_TYPES_NOTIFICATION.SPECIALIST)
-                      }
-                      className={`${
-                        userType === USER_TYPES_NOTIFICATION.SPECIALIST
-                          ? "selected"
-                          : ""
-                      }`}
-                    >
-                      Specialist
-                    </div>
-                    <div
-                      onClick={() => setUserType(USER_TYPES_NOTIFICATION.ALL)}
-                      className={`${
-                        userType === USER_TYPES_NOTIFICATION.ALL
-                          ? "selected"
-                          : ""
-                      }`}
-                    >
-                      All
-                    </div>
+                </div>
+                <div className="user-selection">
+                  <div
+                    className={`${
+                      userType === USER_TYPES_NOTIFICATION.TRAVELLER
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      setUserType(USER_TYPES_NOTIFICATION.TRAVELLER)
+                    }
+                  >
+                    Traveller
                   </div>
                   <div
-                    title="Select all users"
-                    onClick={selectAll}
-                    className="user-selection-right"
-                  ></div>
-                  <div className="user-selection-right"></div>
+                    onClick={() =>
+                      setUserType(USER_TYPES_NOTIFICATION.SPECIALIST)
+                    }
+                    className={`${
+                      userType === USER_TYPES_NOTIFICATION.SPECIALIST
+                        ? "selected"
+                        : ""
+                    }`}
+                  >
+                    Specialist
+                  </div>
+                  <div
+                    onClick={() => setUserType(USER_TYPES_NOTIFICATION.ALL)}
+                    className={`${
+                      userType === USER_TYPES_NOTIFICATION.ALL ? "selected" : ""
+                    }`}
+                  >
+                    All
+                  </div>
                 </div>
+                <div
+                  title="Select all users"
+                  onClick={selectAll}
+                  className="user-selection-right"
+                ></div>
+                <div className="user-selection-right"></div>
+              </div>
 
-                <div className="user-selection-list">
-                  {data.map((user: any, index: number) =>
-                    User(user, index, selectOne)
-                  )}
-                </div>
+              <div className="user-selection-list">
+                {data.map((user: any, index: number) =>
+                  User(user, index, selectOne)
+                )}
               </div>
             </div>
           </div>
