@@ -19,7 +19,7 @@
   overflow: auto;
   height: 100%;
   width: 100%;
-  border-right: 4px solid $theme_color_6;
+  border-right: 0.25rem solid $theme_color_6;
   box-shadow: 0px 0px 0px $theme_color_6;
 }
 
@@ -35,14 +35,6 @@
   display: flex;
   overflow-x: hidden;
   flex-direction: column;
-}
-
-::-webkit-scrollbar {
-  width: 4px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: $light_blue !important;
 }
 
 .user-chat {

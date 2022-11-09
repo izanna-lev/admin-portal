@@ -1,12 +1,9 @@
-@import "../../styles/configs/_fonts.scss";
-@import "../../styles/configs/_colors.scss";
-@import "../../styles/configs/_ui.scss";
-
 .pagination {
   display: flex;
   font-size: 1rem;
   align-items: center;
   justify-content: flex-end;
+  height: 1.5rem;
 
   &-button {
     display: flex;

@@ -257,6 +257,12 @@ export const ITINERARY_TYPE = [
   { name: "International Trip", value: 3 },
 ];
 
+export const ITINERARY_TYPE_MAP = {
+  ONE_DAY: 1,
+  DOMESTIC_TRIP: 2,
+  INTERNATIONAL_TRIP: 3,
+};
+
 export const PLANNED_TRAVELLER = [
   { name: "I haven't even started", value: 1 },
   { name: "I have a few things planned but still have a lot to go", value: 2 },

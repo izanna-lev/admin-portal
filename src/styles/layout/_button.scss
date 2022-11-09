@@ -53,7 +53,7 @@ button {
 .block-button {
   background-color: $white;
   border: 1px solid $blue !important;
-  border-radius: 20px;
+  border-radius: 1.25rem;
 
   &:hover {
     color: $blue !important;
@@ -95,7 +95,7 @@ button {
 }
 
 .notifications-send-btn {
-  width: 100%;
+  width: 80%;
   height: 50px;
   color: white;
   font-size: 18px;

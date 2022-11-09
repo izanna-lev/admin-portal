@@ -8,7 +8,7 @@
 //   overflow-y: auto;
 //   max-height: 50px;
 //   padding: 0 5px;
-//   margin-right: 20px;
+//   margin-right: 1.25rem;
 // }
 
 .table-container {
@@ -17,12 +17,25 @@
   max-height: calc(100vh - 250px);
 }
 
+.itinerary-table-header {
+  background: linear-gradient(
+      165deg,
+      rgba(26, 204, 111, 0.5) 0%,
+      rgba(11, 157, 216, 0.25) 100%
+    )
+    0% 0% no-repeat padding-box;
+}
+
+.itinerary-table-row {
+  min-height: 5rem !important;
+}
+
 .table {
   min-width: 100%;
   border-collapse: collapse;
 
   th {
-    min-width: 8rem;
+    min-width: 10rem;
     text-align: left;
     padding-left: 1rem;
     font-weight: 500;
@@ -46,13 +59,13 @@
     top: 0px;
     height: 3rem;
     position: sticky;
-    z-index: 10;
-
+    font-size: 0.95rem;
     background-image: linear-gradient(
-      to right,
-      $theme_color_lime,
-      $theme_color_light_blue
+      165deg,
+      rgba(26, 204, 111, 0.5) 0%,
+      rgba(11, 157, 216, 0.25) 100%
     );
+    background-color: white;
   }
 
   .head-tr {
@@ -110,7 +123,7 @@
   border-radius: 50%;
   max-width: 3.5rem;
   height: 3.5rem;
-  padding: 4px;
+  padding: 0.25rem;
 }
 
 @include tableXL {

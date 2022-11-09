@@ -3,7 +3,13 @@
  * @author Jagmohan Singh
  */
 
-import { API, GOOGLE_API, IMAGE, ITINERARY_TYPE } from "../../../constants";
+import {
+  API,
+  GOOGLE_API,
+  IMAGE,
+  ITINERARY_TYPE,
+  ITINERARY_TYPE_MAP,
+} from "../../../constants";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import InputForm from "../../../components/InputTypes/InputForm/index";
 import { usePlacesWidget } from "react-google-autocomplete";
@@ -35,6 +41,7 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
   const itineraryTypeRef = useRef();
 
   const { formRef } = useAppSelector((state) => state.appData);
+  const { itineraryDetails } = useAppSelector((state) => state.itinerary);
   const apiMessage = useAppSelector((state) => state.apiMessage);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -47,8 +54,6 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
   useEffect(() => {
     if (data.duration)
       setBackground(`${IMAGE.SMALL}${data.image}`, "itineraryImage");
-
-    document.getElementById("itineraryDetailPage")?.scrollTo(0, 0);
   }, [data]);
 
   const imageChange = (e: any) => {
@@ -95,6 +100,22 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
     if (location.type) {
       payload = { ...payload, location };
     }
+    const dateDiff =
+      (new Date(payload.toDate).valueOf() -
+        new Date(payload.fromDate).valueOf()) /
+      36e5;
+
+    if (dateDiff < 0) {
+      alert("Invalid Date");
+      return;
+    }
+
+    if (payload.itineraryType == ITINERARY_TYPE_MAP.ONE_DAY) {
+      if (dateDiff >= 48) {
+        alert("You can`t select more than one day in One Day itinerary type.");
+        return;
+      }
+    }
 
     if (data.duration) {
       payload = { ...payload, itineraryRef: data._id };
@@ -109,7 +130,7 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
           { formRef }
         )
       );
-      handleEditPopup(null);
+      handleEditPopup && handleEditPopup(null);
     } else {
       payload = { ...payload, formRef };
 
@@ -126,7 +147,11 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
       );
     }
   };
-  if (apiMessage.type === "success") navigate("/itinerary/add/summary");
+
+  useEffect(() => {
+    if (apiMessage.type === "success" && itineraryDetails._id)
+      navigate("/itinerary/add/transportation");
+  }, [apiMessage.type, navigate, itineraryDetails._id]);
 
   return (
     <section className="AddItineraryDetailsPage" id="formTop">
@@ -139,14 +164,9 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
         onChange={imageChange}
         hidden
       />
-      <label
-        htmlFor="upload"
-        className={`upload-image ${
-          selectedImage ? "" : "not-selected-preview"
-        }`}
-        id="itineraryImage"
-      >
-        <IoImageOutline className="image-placeholder" />
+
+      <label htmlFor="upload" className={`upload-image `}>
+        <div className="image-placeholder" id="itineraryImage"></div>
       </label>
 
       <form

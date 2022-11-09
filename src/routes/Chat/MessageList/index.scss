@@ -54,13 +54,13 @@
   overflow: auto;
   scroll-behavior: smooth;
   margin-left: 1rem;
-  padding-top: 4px;
+  padding-top: 0.25rem;
   padding-right: 1rem;
   list-style: none;
 }
 
 .user-message {
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
   max-width: 55%;
   padding: 0.5rem 0.5rem;
   background-color: $theme_color_light_blue_3x;
@@ -69,7 +69,7 @@
   font-size: 14px;
   font-weight: 400;
   color: $theme_color_dark_grey;
-  line-height: 20px;
+  line-height: 1.25rem;
   position: relative;
 }
 
@@ -137,7 +137,7 @@
 .socket-input {
   height: 90%;
   width: 88%;
-  padding: 4px 4px;
+  padding: 0.25rem 0.25rem;
   display: flex;
   align-items: center;
   border-radius: 0.5rem;

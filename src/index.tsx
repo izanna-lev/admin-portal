@@ -1,7 +1,6 @@
 import { BrowserRouter } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
-import React from "react";
 
 import Toast from "./components/Toast";
 import { store } from "./store/index";

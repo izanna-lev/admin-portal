@@ -12,13 +12,13 @@
 .TransportationOptions {
   display: flex;
   margin: 10px 0 10px 0rem;
-  background-color: $gray-200;
+  background-color: $theme_color_light_blue_2x;
   width: fit-content;
   border-radius: 0.5rem;
   font-size: 0.85rem;
 
   .option {
-    padding: 10px 20px;
+    padding: 10px 1.25rem;
     border: none;
     cursor: pointer;
   }

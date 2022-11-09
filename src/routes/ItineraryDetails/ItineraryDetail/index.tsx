@@ -12,7 +12,7 @@ import { ITINERARY_TYPE, PAYMENT_STATUS } from "../../../constants";
 
 const NoItinerary = ({ navigate }: any) => (
   <section className="itinerary-details">
-    <h2 className="itinerary-details-heading">Itinerary Details</h2>
+    <h2 className="itinerary-details-heading color-blue">Itinerary Details</h2>
     <div className="no-itenary">
       <div className="image-background">
         <IoImageOutline className="image" />
@@ -37,13 +37,15 @@ const AvailableItinerary = ({ navigate, data = {} }: any) => {
   const detail = (title: string, value: string) => (
     <div className="detail-item">
       <h3 className="item-name">{title}</h3>
-      <p className="item-value">{value || "NA"}</p>
+      <p className="item-value">{value}</p>
     </div>
   );
   return (
     <>
       <section className="itinerary-details">
-        <h2 className="itinerary-details-heading">Itinerary Details</h2>
+        <h2 className="itinerary-details-heading color-blue">
+          Itinerary Details
+        </h2>
         <div className="basic-itinerary-details">
           <div className="details-row">
             {detail("Title", data.name)}
@@ -69,7 +71,7 @@ const AvailableItinerary = ({ navigate, data = {} }: any) => {
             {detail("Passports", data.isPassport ? "Required" : "Not Required")}
             {detail(
               "Itinerary Type",
-              ITINERARY_TYPE[data.itineraryType - 1 || 0].name
+              ITINERARY_TYPE[data.itineraryType - 1].name
             )}
           </div>
         </div>
@@ -82,7 +84,9 @@ const AvailableItinerary = ({ navigate, data = {} }: any) => {
         </div>
       </section>
       <section className="itinerary-details">
-        <div className="itinerary-details-heading">Additional Information</div>
+        <div className="itinerary-details-heading color-blue">
+          Additional Information
+        </div>
         <div className="additional-itinerary-details">
           <div className="details-row">
             {detail(

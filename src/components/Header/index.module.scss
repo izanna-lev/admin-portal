@@ -5,10 +5,10 @@
 .header {
   height: 5rem;
   display: flex;
-  padding:  0 0 0 2rem;
+  padding: 0 0 0 2rem;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 4px solid #e1e1e18f;
+  border-bottom: 0.25rem solid #e1e1e18f;
 }
 
 .header-logo {
@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 2rem;
 }
 .header-menu {
   cursor: pointer;
@@ -78,7 +78,6 @@
   font-weight: 600;
 }
 
-
 .logout-container {
   display: flex;
   align-items: center;
@@ -95,8 +94,8 @@
   flex-direction: row;
   height: 100%;
   align-items: center;
-  gap: 8px;
-  padding:  0px 80px 0 20px;
+  gap: 0.5rem;
+  padding: 0px 80px 0 1.25rem;
   color: $theme_color_white;
   cursor: pointer;
   font-weight: 600;

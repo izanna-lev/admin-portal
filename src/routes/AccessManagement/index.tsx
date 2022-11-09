@@ -21,6 +21,7 @@ import "./index.scss";
 import Popup from "../../components/Popup";
 import { Create } from "../../api/Create";
 import { IoImageOutline } from "react-icons/io5";
+import { UserIcon } from "../../components/UserIcon";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -53,9 +54,9 @@ const TableRow = (
           text += PERMISSIONS_STRING[key] + ", ";
         }
       }
+      return text.substring(0, text.length - 2);
     }
-
-    return text.substring(0, text.length - 2);
+    return "NA";
   };
 
   return (
@@ -64,14 +65,7 @@ const TableRow = (
       <td>
         <div className="name-image-cell">
           {item.image ? (
-            <img
-              className="user-image"
-              src={IMAGE.SMALL + item.image}
-              alt={item.name}
-              onError={(e: any) => {
-                e.target.src = ICON.USER_PLACEHOLDER;
-              }}
-            />
+            <UserIcon image={item.image} />
           ) : (
             <div className="user-selection-img-dummy">
               <IoImageOutline className="dummy-image" />
@@ -80,10 +74,26 @@ const TableRow = (
 
           <div className="access-management-user">
             <span className="access-management">{item.name}</span>
-            <span className="access-management text">{item.email}</span>
             <span className="access-management text">
-
-            {item.phoneCode}{`${item.phoneCode ? "-" : "" }`}{item.phoneNumber}
+              {" "}
+              {item.email ? (
+                <a className="value" href={`mailto:${item.email}`}>
+                  {item.email}
+                </a>
+              ) : (
+                "NA"
+              )}
+            </span>
+            <span className="access-management text">
+              {item.phoneNumber ? (
+                <a href={`tel:${item.phoneCode}${item.phoneNumber}`}>
+                  {item.phoneCode}
+                  {`${item.phoneCode ? "-" : ""}`}
+                  {item.phoneNumber}
+                </a>
+              ) : (
+                "NA"
+              )}
             </span>
           </div>
         </div>
@@ -217,7 +227,7 @@ const AccessManagement = () => {
             })
           : null}
       </div>
-      <section className="table-container">
+      <section className="table-container access-table-list">
         <table className="itinerary-table table">
           {TableHead()}
           <tbody className="body-tr">

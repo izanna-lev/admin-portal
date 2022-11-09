@@ -21,6 +21,7 @@ import { Fetch } from "../../api/Fetch";
 import "./index.scss";
 import useComponentVisible from "../../components/outsideClickHandler";
 import { Create } from "../../api/Create";
+import { UserIcon } from "../../components/UserIcon";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -62,7 +63,17 @@ const TableRow = (
         </div>
       </td>
       <td>{item.userName}</td>
-      <td>{item.phoneNumber}</td>
+      <td>
+        {item.phoneNumber ? (
+          <a href={`tel:${item.phoneCode}${item.phoneNumber}`}>
+            {item.phoneCode}
+            {`${item.phoneCode ? "-" : ""}`}
+            {item.phoneNumber}
+          </a>
+        ) : (
+          "NA"
+        )}
+      </td>
       <td>{getFormattedDate(item.plannedDate)}</td>
       <td>{PLANNED_TRAVELLER[item.plannedTraveller - 1 || 0].name}</td>
       <td>{item.plannedTraveller}</td>
@@ -125,14 +136,7 @@ const TravellersDetails = () => {
         <h3 className="section-heading">Basic Details</h3>
       </section>
       <div className="name-image-cell">
-        <img
-          className="user-image"
-          src={IMAGE.SMALL + image}
-          alt="user-image"
-          onError={(e: any) => {
-            e.target.src = ICON.USER_PLACEHOLDER;
-          }}
-        />
+        <UserIcon image={image} width="3.5rem" height="3.5rem" />
         <span className="traveller-detail-name">{name}</span>
       </div>
       <section className="content-top">

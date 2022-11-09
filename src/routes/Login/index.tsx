@@ -2,8 +2,7 @@
  * @desc this is the login component of the application.
  * @author Jagmohan Singh
  */
-import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
-import { FaRegEye } from "react-icons/fa";
+
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -17,8 +16,11 @@ const Login = () => {
   const [passVisibleStatus, setPassVisibleStatus] = useState(false);
   const accessToken = useAppSelector((state) => state.login.accessToken);
   const loaderActive = useAppSelector((state) => state.loader.active);
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+
+  const { SHOW_PASSWORD, HIDE_PASSWORD } = ICON;
 
   useEffect(() => {
     localStorage.getItem("accessToken") && navigate("/dashboard");
@@ -42,42 +44,51 @@ const Login = () => {
           <img src={ICON.APP_LOGO} alt="logo" loading="lazy" />
         </div>
       </div>
-      <div className="login-form">
+
+      <div className="loginPageRight">
         <div className="heading">
           Welcome to <strong className="strong-heading">Onsite Travel</strong>
         </div>
 
-        <form className="user-login" onSubmit={submitForm}>
-          <div className="input-field-text">
-            <div className="label">Email</div>
-            <div className="input-login-containers">
-              <input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="example@mail.com"
-                className="custom-field"
-                autoFocus
-                autoComplete="email"
-                required
-                defaultValue={localStorage.getItem("user") || ""}
-              />
+        <form className="login-form" onSubmit={submitForm}>
+          <div className="input-data-container">
+            <label htmlFor="email" className="label">
+              Email
+            </label>
+            <div className="input-wrapper">
+              <div className="input-container">
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="example@mail.com"
+                  className="custom-field"
+                  autoFocus
+                  autoComplete="email"
+                  required
+                  defaultValue={localStorage.getItem("user") || ""}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="input-field-text">
-            <div className="label">Password</div>
-            <div className="input-login-containers password">
-              <input
-                id="password"
-                name="password"
-                type={passVisibleStatus ? "text" : "password"}
-                placeholder="XXXXXXXXXXXX"
-                className="custom-field"
-                autoFocus
-                autoComplete="password"
-                required
-              />
+          <div className="input-data-container">
+            <label htmlFor="password" className="label">
+              Password
+            </label>
+            <div className="input-wrapper">
+              <div className="input-container">
+                <input
+                  id="password"
+                  name="password"
+                  type={passVisibleStatus ? "text" : "password"}
+                  placeholder="XXXXXXXXXXXX"
+                  className="custom-field"
+                  autoFocus
+                  autoComplete="password"
+                  required
+                />
+              </div>
               <div
                 className="password-icon"
                 onClick={() => {
@@ -85,20 +96,16 @@ const Login = () => {
                 }}
               >
                 {passVisibleStatus ? (
-                  <FaRegEye className="input-icon" />
+                  <img src={SHOW_PASSWORD} alt="show" className="input-icon" />
                 ) : (
-                  <RiEyeCloseLine className="input-icon" />
+                  <img src={HIDE_PASSWORD} alt="hide" className="input-icon" />
                 )}
               </div>
             </div>
           </div>
 
           <div className="button-login">
-            {loaderActive ? (
-              <LoginSpinner />
-            ) : (
-              <button className="button">Log In</button>
-            )}
+            {loaderActive ? <LoginSpinner /> : <button>Log In</button>}
           </div>
         </form>
       </div>

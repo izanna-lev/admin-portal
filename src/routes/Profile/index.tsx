@@ -24,9 +24,13 @@ const ProfilePage = () => {
         />
         <div className="profile-details">
           <h4 className="profile-name">Admin</h4>
-          <a href={`mailto:${profileData.email}`} className="profile-text">
-            {profileData.email}
-          </a>
+          {profileData.email ? (
+            <a className="value" href={`mailto:${profileData.email}`}>
+              {profileData.email}
+            </a>
+          ) : (
+            "NA"
+          )}
           <a href={`tel:${profileData.phoneNumber}`} className="profile-text">
             {profileData.phoneNumber}
           </a>

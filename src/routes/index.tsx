@@ -5,7 +5,7 @@ import { useAppSelector } from "../store/hooks";
 import { useState } from "react";
 
 const Account = loadable(() => import("./Account"));
-const AssignedItineraries = loadable(() => import("./AssignedItineraries"));
+const AssignedItineraries = loadable(() => import("./ItinerariesList"));
 const Chat = loadable(() => import("./Chat"));
 const CreateItinerary = loadable(() => import("./CreateItinerary"));
 const Dashboard = loadable(() => import("./Dashboard"));

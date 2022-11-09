@@ -6,12 +6,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import {
-  IMAGE,
-  ICON,
-  API,
-  PERMISSIONS_STRING,
-} from "../../constants";
+import { IMAGE, ICON, API, PERMISSIONS_STRING } from "../../constants";
 import { Modal } from "../../components/Portal";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -22,7 +17,7 @@ import { Fetch } from "../../api/Fetch";
 import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
-
+import { UserIcon } from "../../components/UserIcon";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -34,31 +29,18 @@ const TableHead = () => (
   </thead>
 );
 
-const TableRow = (
-  item: any,
-  index: number,
-) => {
-
-
+const TableRow = (item: any, index: number) => {
   return (
     <tr className="body-tr" key={index}>
-      
       <td>
         <div className="name-image-cell">
-          <img
-            className="user-image"
-            src={IMAGE.SMALL + item.image}
-            alt={item.name}
-            onError={(e: any) => {
-              e.target.src = ICON.USER_PLACEHOLDER;
-            }}
-          />
+          <UserIcon image={item.image} />
           <span className="access-management">{item.name}</span>
-        </div></td>
+        </div>
+      </td>
       <td>{item.email}</td>
       <td>{item.itineryCount}</td>
     </tr>
-
   );
 };
 
@@ -76,24 +58,22 @@ const SpecialistList = () => {
     <main className="content-container">
       {list.length
         ? Pagination({
-          page,
-          limit,
-          total,
-          size,
-          nextPage: () =>
-            dispatch(Fetch(API.SPECIALIST_LIST, {}, page + 1, limit)),
-          previousPage: () =>
-            dispatch(Fetch(API.SPECIALIST_LIST, {}, page - 1, limit)),
-        })
+            page,
+            limit,
+            total,
+            size,
+            nextPage: () =>
+              dispatch(Fetch(API.SPECIALIST_LIST, {}, page + 1, limit)),
+            previousPage: () =>
+              dispatch(Fetch(API.SPECIALIST_LIST, {}, page - 1, limit)),
+          })
         : null}
-      <section className="table-container">
+      <section className="table-container dashboard-table">
         <table className="itinerary-table table">
           {TableHead()}
           <tbody className="body-tr">
             {list.length ? (
-              list.map((item, index) =>
-                TableRow(item, index)
-              )
+              list.map((item, index) => TableRow(item, index))
             ) : (
               <tr className="table-empty">
                 <td colSpan={7}>

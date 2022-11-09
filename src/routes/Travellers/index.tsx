@@ -19,6 +19,7 @@ import { DeleteEntity } from "../../api/Delete";
 import "./index.scss";
 import Popup from "../../components/Popup";
 import { Create } from "../../api/Create";
+import { UserIcon } from "../../components/UserIcon";
 
 const TableHead = () => (
   <thead className="table-head">
@@ -46,21 +47,22 @@ const TableRow = (
       <td>{SerialNum(limit, page, index)}</td>
       <td>
         <div className="name-image-cell">
-          <img
-            className="user-image"
-            src={IMAGE.SMALL + item.image}
-            alt={item.name}
-            onError={(e: any) => {
-              e.target.src = ICON.USER_PLACEHOLDER;
-            }}
-          />
-          <span className="access-management">{item.name}</span>
+          <UserIcon image={item.image} width="3.5rem" height="3.5rem" />
+
+          <span className="access-management">{item.name || "NA"}</span>
         </div>
       </td>
       <td>
         <div className="access-management-user">
-          <span className="access-management text">{item.email}</span>
-          <span className="access-management text">{item.phoneNumber}</span>
+          <a href={`mailto:${item.email}`} className="access-management text">
+            {item.email}
+          </a>
+          <a
+            href={`tel:+${item.phoneNumber}`}
+            className="access-management text"
+          >
+            {item.phoneNumber}
+          </a>
         </div>
       </td>
       <td className="specialist-actions">
@@ -147,37 +149,37 @@ const Travellers = () => {
       <section className="content-top">
         <h2 className="content-heading">Travellers List</h2>
         <div className="traveller-top">
-        <div className="traveller-search">
-          <input
-            name="Search"
-            type="text"
-            className="traveller-search-input"
-            maxLength={20}
-            placeholder="Search here"
-            ref={searchRef}
-            autoFocus
-          />
-          <AiOutlineSearch className="search-icon" />
-          <div
-            onClick={(e) => setText(searchRef.current?.value)}
-            className="traveller-search-go"
-          >
-            Go
+          <div className="traveller-search">
+            <input
+              name="Search"
+              type="text"
+              className="traveller-search-input"
+              maxLength={20}
+              placeholder="Search here"
+              ref={searchRef}
+              autoFocus
+            />
+            <AiOutlineSearch className="search-icon" />
+            <div
+              onClick={(e) => setText(searchRef.current?.value)}
+              className="traveller-search-go"
+            >
+              Go
+            </div>
           </div>
-        </div>
-        <>Viewing</>
-        {list.length
-        ? Pagination({
-            page,
-            limit,
-            total,
-            size,
-            nextPage: () =>
-              dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
-            previousPage: () =>
-              dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
-          })
-        : null}
+          <>Viewing</>
+          {list.length
+            ? Pagination({
+                page,
+                limit,
+                total,
+                size,
+                nextPage: () =>
+                  dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
+                previousPage: () =>
+                  dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
+              })
+            : null}
         </div>
       </section>
 
