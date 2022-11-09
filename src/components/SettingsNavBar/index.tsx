@@ -1,5 +1,5 @@
 import NavigationOption from "../sub-components/NavigationOption";
-import { ICON } from "../../constants";
+import { ICON } from "../../assets/index";
 import styles from "./index.module.scss";
 
 const SettingsNavBar = ({ sideNavView }: { sideNavView: boolean }) => (
