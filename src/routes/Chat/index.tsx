@@ -35,7 +35,7 @@ const ChatPage = () => {
   };
 
   return (
-    <section className="ChatPage" id="ChatPage">
+    <section className="content-container ChatPage" id="ChatPage">
       <div className="chat-list">
         <div className="heading">
           <div className="heading-text">Chat</div>

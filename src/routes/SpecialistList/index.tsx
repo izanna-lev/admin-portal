@@ -55,7 +55,7 @@ const SpecialistList = () => {
   }, [dispatch]);
 
   return (
-    <main className="content-container">
+    <main className="content-container specialist-section">
       {list.length
         ? Pagination({
             page,

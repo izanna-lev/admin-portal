@@ -3,7 +3,7 @@
 @import "../../styles/configs/_ui.scss";
 
 .header {
-  height: 5rem;
+  min-height: 5rem;
   display: flex;
   padding: 0 0 0 2rem;
   align-items: center;
