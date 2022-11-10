@@ -79,7 +79,7 @@ const AvailableItinerary = ({ navigate, data = {} }: any) => {
           <div className="details-row height-max">
             {detail("Specialist Note", data.specialistNote)}
             {detail("Email", data.email)}
-            {detail("Location", data.location?.location)}
+            {detail("Location", data.location)}
           </div>
         </div>
       </section>
