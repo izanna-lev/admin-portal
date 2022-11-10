@@ -31,8 +31,8 @@ const User = (
             user.image ? IMAGE.SMALL + user.image : ICON.USER_PLACEHOLDER
           } `}
           alt={user.name}
-          onError={(e) => {
-            // e.target.src = ICON.USER_PLACEHOLDER;
+          onError={(e: any) => {
+            e.target.src = ICON.USER_PLACEHOLDER;
           }}
           loading="lazy"
         />
@@ -53,7 +53,7 @@ const User = (
 
 let selectedUsers: any[] = [];
 
-const Notifications = (props: any) => {
+const Notifications = () => {
   const [selectedAll, setSelectedAll] = useState(false);
   const [userType, setUserType] = useState(USER_TYPES_NOTIFICATION.TRAVELLER);
   const dispatch = useAppDispatch();
