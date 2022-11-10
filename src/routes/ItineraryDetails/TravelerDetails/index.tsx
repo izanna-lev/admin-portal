@@ -14,9 +14,16 @@ const DetailsPage = () => {
     (state: any) => state.itinerary
   );
 
-  const { name, phoneNumber, image } = useAppSelector(
-    (state: any) => state.profile
-  );
+  const {
+    specialistName,
+    specialistNumber,
+    specialistImage,
+    specialistPhoneCode,
+    plannedDate,
+    plannedTraveller,
+    travellerName,
+    travellerEmail,
+  } = travellerDetails;
 
   return (
     <>
@@ -29,26 +36,21 @@ const DetailsPage = () => {
             <div className="key">Name</div>
             <div className="value">
               <UserIcon image={itineraryDetails.image} />
-              <span>{itineraryDetails.location?.location || "NA"}</span>
+              <span>{itineraryDetails.location || "NA"}</span>
             </div>
           </div>
 
           <div>
             <div className="key">Planned Date</div>
             <div className="value">
-              {travellerDetails.plannedDate
-                ? dayjs(travellerDetails.plannedDate).format("DD-MM-YYYY")
-                : "NA"}
+              {plannedDate ? dayjs(plannedDate).format("DD-MM-YYYY") : "NA"}
             </div>
           </div>
 
           <div>
             <div className="key">How much have you already planned?</div>
             <div className="value">
-              {
-                PLANNED_TRAVELLER[travellerDetails.plannedTraveller - 1 || 0]
-                  .name
-              }
+              {PLANNED_TRAVELLER[plannedTraveller - 1 || 0].name}
             </div>
           </div>
         </div>
@@ -56,15 +58,18 @@ const DetailsPage = () => {
         <div className="trip-details-heading">Assigned Specialist</div>
         <div className="trip-details-data">
           <div className="assigned-specialist">
-            <UserIcon image={image} />
+            <UserIcon image={specialistImage} />
             <div className="specialist-details">
-              <div className="key">{name || "NA"}</div>
-              <a
-                className="specialist-detail value"
-                href={`tel:+${phoneNumber}`}
-              >
-                +{phoneNumber || "NA"}
-              </a>
+              <div className="key">{specialistName || "NA"}</div>
+              {specialistNumber ? (
+                <a href={`tel:${specialistPhoneCode}${specialistNumber}`}>
+                  {specialistPhoneCode}
+                  {`${specialistPhoneCode ? "-" : ""}`}
+                  {specialistNumber}
+                </a>
+              ) : (
+                "NA"
+              )}
             </div>
           </div>
         </div>
@@ -75,19 +80,18 @@ const DetailsPage = () => {
         <div className="trip-details-data">
           <div>
             <div className="key">Name</div>
-            <div className="value">
-              {travellerDetails.travellerName || "NA"}
-            </div>
+            <div className="value">{travellerName || "NA"}</div>
           </div>
 
           <div>
             <div className="key">Email</div>
-            <a
-              className="value"
-              href={`mailto:${travellerDetails.travellerEmail}`}
-            >
-              {travellerDetails.travellerEmail || "NA"}
-            </a>
+            {travellerEmail ? (
+              <a className="value" href={`mailto:${travellerEmail}`}>
+                {travellerEmail}
+              </a>
+            ) : (
+              "NA"
+            )}
           </div>
         </div>
       </div>
