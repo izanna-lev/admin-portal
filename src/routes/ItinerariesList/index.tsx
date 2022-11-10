@@ -157,7 +157,7 @@ const ItineraryPage = () => {
   };
 
   const handleDropDown = (id: string) => {
-    setIsComponentVisible(true);
+    setIsComponentVisible((prev) => !prev);
     setUserDropdown(id);
   };
 
