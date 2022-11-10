@@ -35,11 +35,11 @@ const ChatPage = () => {
   };
 
   return (
-    <section className="ChatPage" id="ChatPage">
+    <section className="content-container ChatPage" id="ChatPage">
       <div className="chat-list">
-        <div className="heading">
-          <div className="heading-text">Chat</div>
-        </div>
+        <section className="content-top">
+          <h2 className="content-heading">Chat</h2>
+        </section>
 
         <ul className="chat-user-list" onScroll={onScroll} ref={listInnerRef}>
           {DUMMY.map((element, index) => {
