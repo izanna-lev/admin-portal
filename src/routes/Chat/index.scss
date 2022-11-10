@@ -3,21 +3,17 @@
 @import "../../styles/configs/_ui.scss";
 
 .ChatPage {
-  height: calc(92vh);
   display: grid;
   grid-template-columns: 30% 70%;
-  width: 100%;
 }
 
 .chat-list {
   font-size: x-large;
   font-weight: 400;
   display: flex;
-  padding-top: 1rem;
-  padding-left: 1rem;
   flex-direction: column;
   overflow: auto;
-  height: 100%;
+  height: calc(100vh - 7rem);
   width: 100%;
   border-right: 0.25rem solid $theme_color_6;
   box-shadow: 0px 0px 0px $theme_color_6;

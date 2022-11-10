@@ -27,7 +27,7 @@ const DashboardPage = () => {
   }, [dispatch]);
 
   return (
-    <main className="content-container">
+    <main className="content-container dashboard-container">
       <section className="content-top">
         <h2 className="content-heading">Dashboard</h2>
       </section>

@@ -8,8 +8,10 @@
 }
 
 .dashboard-ratings {
-  .dashboard-table {
-    max-height: calc(100vh - 34rem);
+  .dashboard-table,
+  .specialist-section {
+    min-height: fit-content;
+    overflow: unset;
 
     .table th:first-child {
       width: fit-content !important;
