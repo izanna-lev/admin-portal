@@ -1,3 +1,42 @@
+@import "../../styles/configs/colors";
+
 .itineraries-listing-table {
   max-height: calc(100vh - 14rem);
+}
+
+.dropdown-container {
+  width: 100%;
+  height: 2.5rem;
+  border: 2px solid $theme_color_blue;
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  padding: 0.25rem;
+  position: relative;
+  justify-content: space-between;
+}
+
+.specialist-user-list {
+  width: 100%;
+  display: grid;
+  min-height: 180px;
+  max-height: 360px;
+  border-radius: 0.25rem;
+  justify-content: start;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  grid-template-columns: 1fr;
+  background-color: $theme_color_white;
+  overflow: scroll;
+  list-style: none;
+  z-index: 1;
+}
+
+.specialist-user-list > option {
+  padding: 0.5rem;
+}
+
+.specialist-user-list > option:hover {
+  background-color: $theme_color_light_blue_2x;
 }
