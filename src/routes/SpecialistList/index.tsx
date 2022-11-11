@@ -20,7 +20,7 @@ import Popup from "../../components/Popup";
 import { UserIcon } from "../../components/UserIcon";
 
 const TableHead = () => (
-  <thead className="table-head">
+  <thead className="table-head specialist-head">
     <tr className="head-tr">
       <th>Name</th>
       <th>Email</th>
