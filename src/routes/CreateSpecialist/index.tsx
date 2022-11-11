@@ -17,7 +17,6 @@ import { useNavigate } from "react-router-dom";
 import InputForm from "../../components/InputTypes/InputForm";
 import CheckBox from "../../components/InputTypes/CheckBox";
 
-
 const CreateSpecialist = () => {
   const [permissions, setPermissions] = useState({
     createItinerary: false,
@@ -93,13 +92,11 @@ const CreateSpecialist = () => {
             onChange={imageChange}
             hidden
           />
-          <label
-            htmlFor="upload"
-            className={`upload-image ${selectedImage ? "" : "not-selected-preview"
-              }`}
-            id="itineraryImage"
-          >
-            {<IoImageOutline className="image-placeholder" />}
+          <label htmlFor="upload">
+            <div
+              className="specialist-image-placeholder"
+              id="itineraryImage"
+            ></div>
           </label>
 
           <InputForm
@@ -133,18 +130,18 @@ const CreateSpecialist = () => {
             country={"us"}
             value={phoneCode + phone}
             onKeyDown={(val: any) => {
-              setPhoneCode(val.target.value.split(" ")[0])
-              setPhone(val.target.value.split(" ").slice(1).join(""))
+              setPhoneCode(val.target.value.split(" ")[0]);
+              setPhone(val.target.value.split(" ").slice(1).join(""));
             }}
             specialLabel="Phone Number"
             inputClass="field-value"
             containerClass="input-tel"
             buttonClass="flag-dropdown"
-          // onChange={(value: any) => 
-          //   {
-          //     console.log({value})
-          //     setPhone(value)
-          //   }}
+            // onChange={(value: any) =>
+            //   {
+            //     console.log({value})
+            //     setPhone(value)
+            //   }}
           />
 
           <button className="button-submit-itinerary" type="submit">

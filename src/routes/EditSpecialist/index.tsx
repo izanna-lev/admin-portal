@@ -22,13 +22,16 @@ const EditSpecialist = () => {
   const navigate = useNavigate();
   const [phone, setPhone] = useState(location.state?.phoneNumber || "");
   const [phoneCode, setPhoneCode] = useState(location.state?.phoneCode || "");
+
   useEffect(() => {
     if (!location.state) {
-      navigate("/admin/accessSpecialistList")
+      navigate("/admin/accessSpecialistList");
     }
     if (location.state?.image) {
-      const myMaybeNullElement = window.document.getElementById("specialistImage")
-      myMaybeNullElement!.style.background = "url(" + IMAGE.SMALL + location.state.image + ")";
+      const myMaybeNullElement =
+        window.document.getElementById("specialistImage");
+      myMaybeNullElement!.style.background =
+        "url(" + IMAGE.SMALL + location.state.image + ")";
     }
   }, []);
 
@@ -41,12 +44,10 @@ const EditSpecialist = () => {
 
   const [selectedImage, setSelectedImage] = useState();
 
-  const setSpecificPermission = (data: boolean, name: string) => {
-    setPermissions({ ...permissions, ...{ [name]: data } })
-  };
+  const setSpecificPermission = (data: boolean, name: string) =>
+    setPermissions({ ...permissions, ...{ [name]: data } });
 
   const apiMessage = useAppSelector((state) => state.apiMessage);
-
 
   const nameRef = useRef();
   const emailRef = useRef();
@@ -54,14 +55,12 @@ const EditSpecialist = () => {
 
   const dispatch = useAppDispatch();
 
-
   const imageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
-      setBackground(URL.createObjectURL(e.target.files[0]), "itineraryImage");
+      setBackground(URL.createObjectURL(e.target.files[0]), "specialistImage");
     }
   };
-
 
   const editSpecialist = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -72,7 +71,7 @@ const EditSpecialist = () => {
       phoneNumber: phone,
       phoneCode,
       access: permissions,
-      specialistRef: location.state.id
+      specialistRef: location.state.id,
     };
 
     dispatch(Create(API.EDIT_SPECIALIST, data, true, selectedImage));
@@ -80,10 +79,8 @@ const EditSpecialist = () => {
 
   if (apiMessage.type === "success") navigate("/admin/accessSpecialistList");
 
-
   return (
     <main className="content-container" id="formTop">
-
       <section className="content-top">
         <h2
           className="content-heading"
@@ -106,13 +103,11 @@ const EditSpecialist = () => {
             onChange={imageChange}
             hidden
           />
-          <label
-            htmlFor="upload"
-            className={`upload-image ${location.state?.image ? "" : "not-selected-preview"
-              }`}
-            id="specialistImage"
-          >
-            {<IoImageOutline className="image-placeholder" />}
+          <label htmlFor="upload">
+            <div
+              className="specialist-image-placeholder"
+              id="specialistImage"
+            ></div>
           </label>
 
           <InputForm
@@ -123,7 +118,7 @@ const EditSpecialist = () => {
               id: "name",
               maxlength: 30,
               type: "text",
-              value: location.state?.name
+              value: location.state?.name,
             }}
           />
           <InputForm
@@ -134,7 +129,7 @@ const EditSpecialist = () => {
               id: "email",
               maxlength: 30,
               type: "email",
-              value: location.state?.email
+              value: location.state?.email,
             }}
           />
 
@@ -149,25 +144,23 @@ const EditSpecialist = () => {
             country={"us"}
             value={phoneCode + phone}
             onKeyDown={(val: any) => {
-              setPhoneCode(val.target.value.split(" ")[0])
-              setPhone(val.target.value.split(" ").slice(1).join(""))
+              setPhoneCode(val.target.value.split(" ")[0]);
+              setPhone(val.target.value.split(" ").slice(1).join(""));
             }}
             specialLabel="Phone Number"
             inputClass="field-value"
             containerClass="input-tel"
             buttonClass="flag-dropdown"
-          // onChange={(value: any) => 
-          //   {
-          //     console.log({value})
-          //     setPhone(value)
-          //   }}
+            // onChange={(value: any) =>
+            //   {
+            //     console.log({value})
+            //     setPhone(value)
+            //   }}
           />
-
 
           <button className="button-submit-itinerary" type="submit">
             <div className="button">Edit</div>
           </button>
-
         </div>
 
         <div className="specialist-basic">
@@ -175,19 +168,36 @@ const EditSpecialist = () => {
           <div className="permissions-container">
             <div className="feild-heading">Specialist Permissions</div>
             <div className="line"></div>
-            <CheckBox text="Create Itineraries" name="createItinerary" permissionValue={permissions.createItinerary} setSpecificPermission={setSpecificPermission} />
+            <CheckBox
+              text="Create Itineraries"
+              name="createItinerary"
+              permissionValue={permissions.createItinerary}
+              setSpecificPermission={setSpecificPermission}
+            />
             <div className="line"></div>
-            <CheckBox text="Edit Itineraries" name="editItinerary" permissionValue={permissions.editItinerary} setSpecificPermission={setSpecificPermission} />
+            <CheckBox
+              text="Edit Itineraries"
+              name="editItinerary"
+              permissionValue={permissions.editItinerary}
+              setSpecificPermission={setSpecificPermission}
+            />
             <div className="line"></div>
-            <CheckBox text="Cancel Itineraries" name="cancelItinerary" permissionValue={permissions.cancelItinerary} setSpecificPermission={setSpecificPermission} />
+            <CheckBox
+              text="Cancel Itineraries"
+              name="cancelItinerary"
+              permissionValue={permissions.cancelItinerary}
+              setSpecificPermission={setSpecificPermission}
+            />
             <div className="line"></div>
-            <CheckBox text="Send Notifications" name="sendNotifications" permissionValue={permissions.sendNotifications} setSpecificPermission={setSpecificPermission} />
-
+            <CheckBox
+              text="Send Notifications"
+              name="sendNotifications"
+              permissionValue={permissions.sendNotifications}
+              setSpecificPermission={setSpecificPermission}
+            />
           </div>
         </div>
-
       </form>
-
     </main>
   );
 };

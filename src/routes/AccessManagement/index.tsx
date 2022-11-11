@@ -156,10 +156,7 @@ const AccessManagement = () => {
   const { page, limit, size, total, list } = useAppSelector(
     (state) => state.specialists
   );
-  const [popup, setPopup] = useState({
-    id: "",
-    show: false,
-  });
+  const [popup, setPopup] = useState({ id: "", show: false });
 
   const popupUpdate = (show: boolean, id: string) => {
     setPopup({ ...popup, show, id });
