@@ -27,7 +27,7 @@
 .notifications-main-div {
   display: flex;
   width: 100%;
-  flex-direction: row;
+  flex-direction: row !important;
   height: calc(100vh - 10.5rem);
   overflow: auto;
   gap: 3rem;
