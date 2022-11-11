@@ -36,8 +36,8 @@ const NoItinerary = ({ navigate }: any) => (
 const AvailableItinerary = ({ navigate, data = {} }: any) => {
   const detail = (title: string, value: string) => (
     <div className="detail-item">
-      <h3 className="item-name">{title}</h3>
-      <p className="item-value">{value}</p>
+      <h3 className="item-name">{title || "NA"}</h3>
+      <p className="item-value">{value || "NA"}</p>
     </div>
   );
   return (
@@ -62,7 +62,7 @@ const AvailableItinerary = ({ navigate, data = {} }: any) => {
           <div className="details-row">
             {detail(
               "Payment Status",
-              PAYMENT_STATUS[data.paymentStatus - 1 || 0].name
+              PAYMENT_STATUS[data.paymentStatus - 1]?.name
             )}
             {detail(
               "Licenses",
@@ -71,7 +71,7 @@ const AvailableItinerary = ({ navigate, data = {} }: any) => {
             {detail("Passports", data.isPassport ? "Required" : "Not Required")}
             {detail(
               "Itinerary Type",
-              ITINERARY_TYPE[data.itineraryType - 1].name
+              ITINERARY_TYPE[data.itineraryType - 1]?.name
             )}
           </div>
         </div>
