@@ -218,9 +218,9 @@ const AccessManagement = () => {
               total,
               size,
               nextPage: () =>
-                dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
+                dispatch(Fetch(API.LIST_SPECIALIST, {}, page + 1, limit)),
               previousPage: () =>
-                dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
+                dispatch(Fetch(API.LIST_SPECIALIST, {}, page - 1, limit)),
             })
           : null}
       </div>
