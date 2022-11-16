@@ -202,7 +202,7 @@ const Notifications = () => {
                       setUserType(USER_TYPES_NOTIFICATION.TRAVELLER)
                     }
                   >
-                    Traveller
+                    Traveler
                   </div>
                   <div
                     onClick={() =>

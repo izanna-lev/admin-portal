@@ -125,11 +125,11 @@ const TravellersDetails = () => {
     <main className="content-container">
       <h2
         className="content-heading"
-        onClick={() => navigate("/travellers")}
+        onClick={() => navigate("/travelers")}
         style={{ cursor: "pointer" }}
       >
         <BsChevronLeft />
-        <span>Traveller Details</span>
+        <span>Traveler Details</span>
       </h2>
 
       <section className="content-top">

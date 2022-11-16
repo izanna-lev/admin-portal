@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import { AiOutlineSearch } from "react-icons/ai";
-import { IMAGE, ICON, API, USER_ACTIONS } from "../../constants";
+import { API, USER_ACTIONS } from "../../constants";
 import { Modal } from "../../components/Portal";
 
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
@@ -82,7 +82,7 @@ const TableRow = (
         <button
           className=" btn view-button"
           onClick={() => {
-            navigate(`/travellers/details/${item._id}`);
+            navigate(`/travelers/details/${item._id}`);
           }}
         >
           View Details
@@ -147,7 +147,7 @@ const Travellers = () => {
   return (
     <main className="content-container">
       <section className="content-top">
-        <h2 className="content-heading">Travellers List</h2>
+        <h2 className="content-heading">Travelers List</h2>
         <div className="traveller-top">
           <div className="traveller-search">
             <input
@@ -214,8 +214,8 @@ const Travellers = () => {
         <Modal
           modal={
             <Popup
-              heading="Delete Specialist"
-              text="Are you sure you want to delete this traveller. This can`t be undone"
+              heading="Delete Traveler"
+              text="Are you sure you want to delete this traveler. This can`t be undone"
               firstButtonText="Delete"
               secondButtonText="Cancel"
               firstButtonAction={deleteSpecialist}

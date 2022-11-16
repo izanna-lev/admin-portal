@@ -20,8 +20,8 @@ const CreateSpecialist = loadable(() => import("./CreateSpecialist"));
 const EditSpecialist = loadable(() => import("./EditSpecialist"));
 const Activities = loadable(() => import("./CreateItinerary/Activities"));
 const Accomodation = loadable(() => import("./CreateItinerary/Accomodation"));
-const Travellers = loadable(() => import("./Travellers"));
-const TravellersDetails = loadable(() => import("./TravellerDetails"));
+const Travelers = loadable(() => import("./Travelers"));
+const TravelersDetails = loadable(() => import("./TravelerDetails"));
 const TripSummary = loadable(() => import("./CreateItinerary/TripSummary"));
 const Settings = loadable(() => import("./Settings"));
 const AboutUs = loadable(() => import("./AboutUs"));
@@ -101,9 +101,9 @@ const App = () => {
           </Route>
         </Route>
 
-        <Route path="travellers">
-          <Route index element={<Travellers />} />
-          <Route path="details/:travellerRef" element={<TravellersDetails />} />
+        <Route path="travelers">
+          <Route index element={<Travelers />} />
+          <Route path="details/:travellerRef" element={<TravelersDetails />} />
         </Route>
 
         <Route path="admin">
