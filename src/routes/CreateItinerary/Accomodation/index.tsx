@@ -7,7 +7,7 @@ import AddEditAccomodation from "../../../components/ReservationForms/AddEditAcc
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { getFormattedDate, getFormattedTime } from "../../../util";
 import { API, IMAGE, RESERVATION_TYPE } from "../../../constants";
-import { Pagination } from "../../../components/Pagination";
+// import { Pagination } from "../../../components/Pagination";
 import { DeleteEntity } from "../../../api/Delete";
 import { Modal } from "../../../components/Portal";
 import { MdDeleteOutline } from "react-icons/md";
@@ -29,27 +29,27 @@ const AccomodationDetails = ({ status }: { status?: number }) => {
 
   useEffect(() => {
     dispatch(
-      Fetch(API.RESERVATION_LIST, { itineraryRef: _id }, 1, 10, {
+      Fetch(API.RESERVATION_LIST, { itineraryRef: _id }, 1, 10000, {
         reservationType: RESERVATION_TYPE.ACCOMMODATION,
       })
     );
   }, [dispatch, _id]);
 
-  const nextPage = () =>
-    dispatch(
-      Fetch(API.RESERVATION_LIST, { itineraryRef: _id }, page + 1, limit, {
-        reservationType: RESERVATION_TYPE.ACCOMMODATION,
-      })
-    );
+  // const nextPage = () =>
+  //   dispatch(
+  //     Fetch(API.RESERVATION_LIST, { itineraryRef: _id }, page + 1, limit, {
+  //       reservationType: RESERVATION_TYPE.ACCOMMODATION,
+  //     })
+  //   );
 
-  const previousPage = () =>
-    dispatch(
-      Fetch(API.RESERVATION_LIST, { itineraryRef: _id }, page - 1, limit, {
-        reservationType: RESERVATION_TYPE.ACCOMMODATION,
-      })
-    );
+  // const previousPage = () =>
+  //   dispatch(
+  //     Fetch(API.RESERVATION_LIST, { itineraryRef: _id }, page - 1, limit, {
+  //       reservationType: RESERVATION_TYPE.ACCOMMODATION,
+  //     })
+  //   );
 
-  const { list, page, limit, total, size } = useAppSelector(
+  const { list, page, limit } = useAppSelector(
     (state) => state.itinerary.accomodation
   );
 
@@ -167,20 +167,22 @@ const AccomodationDetails = ({ status }: { status?: number }) => {
           )}
         </div>
       </section>
-      {status !== 4 ? null : (
-        <>
-          <span className="add-more-tickets" onClick={() => setAddMore(true)}>
-            <AiOutlinePlus />
-            &nbsp;Add Days
-          </span>
-          <div
-            onClick={() => navigate("/itinerary/add/restaurant")}
-            className="continue-button"
-          >
-            Continue
-          </div>
-        </>
-      )}
+      {status === 1 || status === 2 || status === 4 ? (
+        <span className="add-more-tickets" onClick={() => setAddMore(true)}>
+          <AiOutlinePlus />
+          &nbsp;Add Days
+        </span>
+      ) : null}
+
+      {status === 4 ? (
+        <div
+          onClick={() => navigate("/itinerary/add/restaurant")}
+          className="continue-button"
+        >
+          Continue
+        </div>
+      ) : null}
+
       {addMore ? (
         <Modal
           modal={<AddEditAccomodation handleAddPopup={setAddMore} />}

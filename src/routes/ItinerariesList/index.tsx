@@ -73,7 +73,7 @@ const TableRow = (
       </td>
       <td>{getFormattedDate(item.plannedDate)}</td>
       <td>{PLANNED_TRAVELLER[item.plannedTraveller - 1 || 0].name}</td>
-      <td>{item.plannedTraveller}</td>
+      <td>{item.travellers || 0}</td>
       <td className="assign-specialist">
         <div className="dropdown-container">
           <label> {item.specialistName || "None"}</label>

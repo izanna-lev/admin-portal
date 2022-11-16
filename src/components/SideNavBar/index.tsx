@@ -9,7 +9,7 @@ const SideNavBar = ({ sideNavView }: { sideNavView: boolean }) => (
     }`}
   >
     {NavigationOption("Dashboard", ICON.DASHBOARD_INACTIVE)}
-    {NavigationOption("Travellers", ICON.TRAVELLERS_INACTIVE, "travellers")}
+    {NavigationOption("Travelers", ICON.TRAVELLERS_INACTIVE)}
     {NavigationOption("Itineraries", ICON.ITINERARIES_INACTIVE, "itinerary")}
     {NavigationOption("Chat", ICON.CHAT_INACTIVE)}
     {NavigationOption(

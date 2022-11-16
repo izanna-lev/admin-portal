@@ -4,7 +4,6 @@
  */
 
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { Pagination } from "../../../components/Pagination";
 import AddEditNote from "../../../components/AddEditNote";
 import { DeleteEntity } from "../../../api/Delete";
 import { MdDeleteOutline } from "react-icons/md";
@@ -23,7 +22,7 @@ const NotesDetails = ({ status }: { status?: number }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const { list, page, limit, total, size } = useAppSelector(
+  const { list, page, limit } = useAppSelector(
     (state) => state.itinerary.notes
   );
 
@@ -33,7 +32,7 @@ const NotesDetails = ({ status }: { status?: number }) => {
     editListItem(dispatch, list, EDIT_NOTES, id);
 
   const fetchData = useCallback(
-    (page = 1, limit = 10) =>
+    (page = 1, limit = 10000) =>
       dispatch(Fetch(API.NOTES_LIST, { itineraryRef: _id }, page, limit, {})),
     [_id, dispatch]
   );
@@ -42,8 +41,8 @@ const NotesDetails = ({ status }: { status?: number }) => {
     fetchData(1, 10);
   }, [fetchData]);
 
-  const nextPage = () => fetchData(page + 1, limit);
-  const previousPage = () => fetchData(page - 1, limit);
+  // const nextPage = () => fetchData(page + 1, limit);
+  // const previousPage = () => fetchData(page - 1, limit);
 
   const deleteNote = (noteRef: string) => {
     const confirmDelete = window.confirm(
@@ -133,25 +132,26 @@ const NotesDetails = ({ status }: { status?: number }) => {
           </div>
         </div>
       </section>
-      {status !== 4 ? null : (
-        <>
-          <span
-            className="add-more-tickets"
-            onClick={() => {
-              setAddMore(true);
-            }}
-          >
-            <AiOutlinePlus />
-            &nbsp;Add More
-          </span>
-          <div
-            onClick={() => navigate("/itinerary/add/summary")}
-            className="continue-button"
-          >
-            Continue
-          </div>
-        </>
-      )}
+      {status === 1 || status === 2 || status === 4 ? (
+        <span
+          className="add-more-tickets"
+          onClick={() => {
+            setAddMore(true);
+          }}
+        >
+          <AiOutlinePlus />
+          &nbsp;Add More
+        </span>
+      ) : null}
+
+      {status === 4 ? (
+        <div
+          onClick={() => navigate("/itinerary/add/summary")}
+          className="continue-button"
+        >
+          Continue
+        </div>
+      ) : null}
     </>
   );
 };
