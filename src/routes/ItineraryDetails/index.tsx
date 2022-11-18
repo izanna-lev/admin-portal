@@ -236,7 +236,8 @@ const ItineraryDetailsPage = () => {
             <div className="itinerary-buttons">
               {/* Cancel itinerary Button */}
 
-              {itineraryDetails.itineraryStatus === 2 ? (
+              {itineraryDetails.itineraryStatus === 2 ||
+              itineraryDetails.itineraryStatus === 1 ? (
                 <>
                   <div
                     className="btn view-button"
@@ -255,7 +256,8 @@ const ItineraryDetailsPage = () => {
 
               {/* Chat Button */}
 
-              {itineraryDetails.itineraryStatus === 2 ? (
+              {itineraryDetails.itineraryStatus === 2 ||
+              itineraryDetails.itineraryStatus === 1 ? (
                 <div
                   className="chat"
                   onClick={() => navigate(`/chat/${channelRef}`)}
