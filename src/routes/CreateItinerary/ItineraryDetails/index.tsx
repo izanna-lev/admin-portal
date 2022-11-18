@@ -270,7 +270,7 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
               default: data.rooms,
               placeholder: "1",
               ref: roomsRef,
-              name: "No of Rooms allotted",
+              name: "No. of Rooms allotted",
               id: "rooms",
               maxlength: 3,
               type: "number",
