@@ -175,9 +175,9 @@ const Travellers = () => {
                 total,
                 size,
                 nextPage: () =>
-                  dispatch(Fetch(API.ITINERARIES, {}, page + 1, limit)),
+                  dispatch(Fetch(API.USER_LIST, {}, page + 1, limit)),
                 previousPage: () =>
-                  dispatch(Fetch(API.ITINERARIES, {}, page - 1, limit)),
+                  dispatch(Fetch(API.USER_LIST, {}, page - 1, limit)),
               })
             : null}
         </div>
