@@ -124,20 +124,36 @@ const Travellers = () => {
 
   const deleteSpecialist = () => {
     dispatch(
-      DeleteEntity(API.USER_ACTION, {
-        userRef: popup.id,
-        action: USER_ACTIONS.DELETED,
-      })
+      DeleteEntity(
+        API.USER_ACTION,
+        {
+          userRef: popup.id,
+          action: USER_ACTIONS.DELETED,
+        },
+        API.USER_LIST,
+        {
+          page,
+          limit,
+        }
+      )
     );
     cancel();
-    window.location.reload();
   };
 
   const updateTravellerAction = (data: any) => {
     dispatch(
-      Create(API.USER_ACTION, { userRef: data.id, action: data.action })
+      Create(
+        API.USER_ACTION,
+        { userRef: data.id, action: data.action },
+        false,
+        null,
+        API.USER_LIST,
+        {
+          page,
+          limit,
+        }
+      )
     );
-    window.location.reload();
   };
 
   useEffect(() => {
