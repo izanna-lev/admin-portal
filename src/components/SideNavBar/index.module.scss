@@ -4,14 +4,14 @@
 
 .navigation {
   &-sidebar {
-    min-width: 220px;
+    min-width: 13.75rem;
     padding-top: 1.25rem;
     background-color: $theme_color_blue;
   }
 }
 
 .small-navigation-sidebar {
-  min-width: 75px;
+  min-width: 4.75rem;
   a {
     span {
       font-size: 0;

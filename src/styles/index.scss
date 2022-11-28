@@ -7,7 +7,7 @@
 }
 
 html {
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 body {
@@ -94,10 +94,18 @@ h6 {
   html {
     font-size: 14px;
   }
+}
 
-  // .AddItineraryPage {
-  // max-height: 32rem !important;
-  // }
+@media (max-width: 1024px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 10px;
+  }
 }
 
 //  random styles don't know where to put
