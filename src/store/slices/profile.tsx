@@ -2,22 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import { API } from "../../constants";
 
 interface Profile {
-  name: string;
+  zone: string;
   email: string;
-  phoneNumber: string;
-  image: string;
-  device: string;
-  fcmToken: string;
+
   _id: string;
 }
 
 const initialState: Profile = {
-  name: "",
+  zone: "",
   email: "",
-  phoneNumber: "",
-  image: "",
-  device: "",
-  fcmToken: "",
   _id: "",
 };
 
@@ -26,7 +19,7 @@ const profile = createSlice({
   initialState,
   reducers: {
     setProfile: (state, action) => {
-      state = action.payload;
+      return action.payload;
     },
   },
   extraReducers(builder) {

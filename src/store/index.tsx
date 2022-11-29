@@ -8,26 +8,37 @@ export const store = configureStore({
     allTickets: reducers.allTickets,
     apiMessage: reducers.apiMessage,
     appData: reducers.appData,
+    appDetails: reducers.AppDetails,
+    chatList: reducers.chatList,
     dashboard: reducers.dashboard,
+    faqList: reducers.FaqList,
     itineraries: reducers.itineraries,
     itinerary: reducers.itinerary,
     loader: reducers.loader,
     login: reducers.login,
+    messageList: reducers.messageList,
     navigation: reducers.navigation,
-    profile: reducers.profile,
-    specialists: reducers.specialists,
-    specialistList: reducers.specialistsList,
     notificationUserList: reducers.NotificationUserList,
+    profile: reducers.profile,
+    specialistList: reducers.specialistsList,
+    specialists: reducers.specialists,
+    socket: reducers.socket,
     travellerList: reducers.TravellerList,
     travellerDetails: reducers.TravellerDetails,
-    appDetails: reducers.AppDetails,
-    faqList: reducers.FaqList,
   },
   devTools: process.env.NODE_ENV !== "production",
   middleware: (getDefaultMiddleware) =>
     process.env.NODE_ENV === "production"
-      ? getDefaultMiddleware().concat([])
-      : getDefaultMiddleware().concat(createLogger()),
+      ? getDefaultMiddleware({
+          serializableCheck: {
+            ignoredPaths: ["socket.socket"],
+          },
+        }).concat([])
+      : getDefaultMiddleware({
+          serializableCheck: {
+            ignoredPaths: ["socket.socket"],
+          },
+        }).concat(createLogger()),
 });
 
 export type AppDispatch = typeof store.dispatch;

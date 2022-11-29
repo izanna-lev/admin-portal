@@ -66,7 +66,6 @@ const Login = () => {
                   autoFocus
                   autoComplete="email"
                   required
-                  defaultValue={localStorage.getItem("user") || ""}
                 />
               </div>
             </div>

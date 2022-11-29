@@ -12,7 +12,6 @@ const Dashboard = loadable(() => import("./Dashboard"));
 const Itinerary = loadable(() => import("./Itinerary"));
 const ItineraryDetails = loadable(() => import("./ItineraryDetails"));
 const Login = loadable(() => import("./Login"));
-const Profile = loadable(() => import("./Profile"));
 const SendNotifications = loadable(() => import("./Notifications"));
 const CancelledItineraries = loadable(() => import("./CancelledItineraries"));
 const AccessManagement = loadable(() => import("./AccessManagement"));
@@ -126,7 +125,6 @@ const App = () => {
           <Route path="faqs/edit/:faqRef" element={<EditFaq />} />
         </Route>
 
-        <Route path="profile" element={<Profile />} />
         <Route path="notifications" element={<SendNotifications />} />
         <Route path="chat">
           <Route index element={<Chat />} />

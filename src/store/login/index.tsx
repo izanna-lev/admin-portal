@@ -30,8 +30,9 @@ export const login = ({
       if (response.data.code !== 100) throw new Error(response.data.message);
 
       localStorage.setItem("accessToken", response.data.data.accessToken);
+      localStorage.setItem("user", JSON.stringify(response.data.data.user));
       dispatch(getAccessToken(response.data.data));
-      dispatch(setProfile({ data: response.data.data.user }));
+      dispatch(setProfile(response.data.data.user));
 
       dispatch(
         setApiMessage({

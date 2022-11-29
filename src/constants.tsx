@@ -4,18 +4,14 @@
 
 // Global Environment Variables
 
-const SERVER_TYPE = `${process.env.BRANCH}/`;
-const API_URL = process.env.API_URL;
 const S3_URL = process.env.S3_URL;
-
-// const SERVER_TYPE = "development/";
-// const API_URL = "http://localhost:3001/api/";
-// const S3_URL = "https://app-onsite.s3.amazonaws.com/";
+const SERVER_TYPE = `${process.env.BRANCH}/`;
+export const SOCKET_URL = process.env.SERVER || "";
+export const API_URL = `${process.env.SERVER}api/` || "";
 
 // Google Places Api Key
 
 export const GOOGLE_API = process.env.GOOGLE_API;
-// export const GOOGLE_API = "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s";
 
 // Custom Environment Variables
 
@@ -108,6 +104,12 @@ export const API = {
   // Submit Itinerary (List)
 
   SUBMIT_ITINERARY: `${API_URL}admin/submit`,
+
+  // Socket
+
+  MESSAGE_LIST: `${API_URL}admin/messageList`,
+  CHAT_LIST: `${API_URL}admin/chatList`,
+  CHAT_IMAGE: `${API_URL}admin/chatImage`,
 
   // Upload Image
 
@@ -291,8 +293,18 @@ export const SPECIALIST_ACTIONS = {
   BLOCK: 2,
 };
 
+export const TYPE_OF_MESSAGE = {
+  TEXT: 1,
+  IMAGE: 2,
+};
+
 export const USER_ACTIONS = {
   BLOCKED: 2,
   UNBLOCKED: 3,
   DELETED: 4,
+};
+
+export const USER_TYPE = {
+  USER: 1,
+  SPECIALIST: 2,
 };
