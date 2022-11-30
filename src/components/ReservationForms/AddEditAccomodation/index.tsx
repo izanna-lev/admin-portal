@@ -18,7 +18,6 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
   const [phone, setPhone] = useState("");
   const [phoneCode, setPhoneCode] = useState("");
 
-  console.log(phoneCode);
   const dispatch = useAppDispatch();
 
   const { _id } = useAppSelector((state) => state.itinerary.itineraryDetails);

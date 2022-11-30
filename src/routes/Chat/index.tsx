@@ -3,30 +3,40 @@
  * @author Jagmohan Singh
  */
 import { useNavigate } from "react-router-dom";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
 
 import MessagesPage from "./MessageList/index";
-import { DUMMY } from "./dummy";
+import { IMAGE } from "../../constants";
 import "./index.scss";
+import { chatList } from "../../store/Actions/chat";
+import dayjs from "dayjs";
+import { UserIcon } from "../../components/UserIcon";
 
-type Props = {
-  navPaths: Array<{
-    key: number;
-    path: string;
-    name: string;
-    state: number;
-    element: JSX.Element;
-    icon: JSX.Element;
-  }>;
-};
 const ChatPage = () => {
-  const navigate = useNavigate();
+  const { page, limit, size, total, data } = useAppSelector(
+    (state) => state.chatList
+  );
+
   const listInnerRef = useRef(null);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    dispatch(chatList());
+  }, [dispatch]);
+
+  // useEffect(() => {
+  //   if (page === 1 && data.length) {
+  //     const path = `/chat/${data[0].channelRef}`;
+  //     navigate(path);
+  //   }
+  // }, [data, navigate, page]);
 
   const onScroll = () => {
     if (listInnerRef.current) {
       const { scrollTop, scrollHeight, clientHeight } = listInnerRef.current;
-      console.log(scrollTop, scrollHeight, clientHeight);
+      // console.log(scrollTop, scrollHeight, clientHeight);
       if (scrollTop + clientHeight === scrollHeight) {
         // This will be triggered after hitting the last element.
         // API call should be made here while implementing pagination.
@@ -35,40 +45,49 @@ const ChatPage = () => {
   };
 
   return (
-    <section className="content-container ChatPage" id="ChatPage">
+    <section className="ChatPage" id="ChatPage">
       <div className="chat-list">
-        <section className="content-top">
-          <h2 className="content-heading">Chat</h2>
-        </section>
+        <div className="heading">
+          <div className="heading-text">Chat</div>
+        </div>
 
         <ul className="chat-user-list" onScroll={onScroll} ref={listInnerRef}>
-          {DUMMY.map((element, index) => {
+          {data.map((element, index) => {
             return (
               <li
                 className="user-chat"
                 key={index}
                 onClick={() => {
-                  let path = `/chat/${index}`;
+                  const path = `/chat/${element.channelRef}`;
                   navigate(path);
                 }}
               >
                 <div className="image-view">
-                  <img className="user-image" src={element.image} alt="d" />
-                  {element.unseen > 0 && (
+                  <UserIcon
+                    image={element.otherUser.image}
+                    width={"2.5rem"}
+                    height={"2.5rem"}
+                  />
+
+                  {element.unseenMessages > 0 && (
                     <div className="unseen-messages"></div>
                   )}
                 </div>
                 <div className="user-chat-data">
-                  <div className="user-chat-name">{element.name}</div>
-                  <div className="user-chat-time">{element.date}</div>
-                  <div className="user-chat-message">{element.message}</div>
+                  <div className="user-chat-name">{element.otherUser.name}</div>
+                  <div className="user-chat-time">
+                    {dayjs(element.message?.createdOn).format("hh:mm A")}
+                  </div>
+                  <div className="user-chat-message">
+                    {element.message?.message || ""}
+                  </div>
                 </div>
               </li>
             );
           })}
         </ul>
       </div>
-      <MessagesPage />
+      {data.length ? <MessagesPage /> : null}
     </section>
   );
 };

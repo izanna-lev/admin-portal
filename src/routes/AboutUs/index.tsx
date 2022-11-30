@@ -14,7 +14,7 @@ const AboutUs = () => {
   const [aboutUsValue, setAboutUs] = useState(aboutUs)
 
 
-  console.log("=----> aboutUsValue",aboutUsValue)
+  // console.log("=----> aboutUsValue",aboutUsValue)
   const handleAboutUsChange = (e: any) => {
     setAboutUs(e)
   }

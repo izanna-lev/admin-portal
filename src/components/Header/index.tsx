@@ -14,6 +14,7 @@ type Props = {
 const Header = ({ showUserData = true, sideNav }: Props) => {
   const handleLogout = () => {
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
     window.location.replace("/login");
   };
 

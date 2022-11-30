@@ -10,27 +10,26 @@ const PrivacyPolicy = () => {
   const { privacyPolicy, termsAndConditions, aboutUs } = useAppSelector(
     (state) => state.appDetails
   );
-  const [privacyPolicyValue, setPrivacyPolicy] = useState(privacyPolicy)
+  const [privacyPolicyValue, setPrivacyPolicy] = useState(privacyPolicy);
 
-  console.log("---privacyPolicy->",privacyPolicy)
+  // console.log("---privacyPolicy->",privacyPolicy)
 
   const handleAboutUsChange = (e: any) => {
-    setPrivacyPolicy(e)
-  }
-  
+    setPrivacyPolicy(e);
+  };
+
   const saveAppDetails = () => {
     dispatch(
-      Create(
-        API.APP_DETAILS_ADD,
-        {
-          privacyPolicy: privacyPolicyValue
-        },
-      )
+      Create(API.APP_DETAILS_ADD, {
+        privacyPolicy: privacyPolicyValue,
+      })
     );
-    dispatch(setAppdetails({
-        privacyPolicy: privacyPolicyValue
-    }))
-  }
+    dispatch(
+      setAppdetails({
+        privacyPolicy: privacyPolicyValue,
+      })
+    );
+  };
   return (
     <section className="content-container">
       <section className="content">
@@ -46,7 +45,7 @@ const PrivacyPolicy = () => {
         </section>
         <section className="content-bottom">
           <div className="editor-container">
-            <Editor 
+            <Editor
               // id="body-editor"
               onChange={handleAboutUsChange}
               options={{
@@ -68,6 +67,5 @@ const PrivacyPolicy = () => {
     </section>
   );
 };
-
 
 export default PrivacyPolicy;

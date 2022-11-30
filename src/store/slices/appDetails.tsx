@@ -2,15 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import { API } from "../../constants";
 
 interface AppDetails {
-    aboutUs: String
-    privacyPolicy: String
-    termsAndConditions: String
+  aboutUs: String;
+  privacyPolicy: String;
+  termsAndConditions: String;
 }
 
 const initialState: AppDetails = {
-    aboutUs: "",
-    privacyPolicy: "",
-    termsAndConditions: "",
+  aboutUs: "",
+  privacyPolicy: "",
+  termsAndConditions: "",
 };
 
 const appDetails = createSlice({
@@ -18,14 +18,11 @@ const appDetails = createSlice({
   initialState,
   reducers: {
     setAppdetails: (state, action) => {
-      console.log("-------->",state, action)
       Object.assign(state, action.payload);
     },
   },
   extraReducers(builder) {
     builder.addCase(API.APP_DETAILS, (state, action: any) => {
-      console.log("----state---->",state, action)
-
       Object.assign(state, action.payload);
     });
   },
