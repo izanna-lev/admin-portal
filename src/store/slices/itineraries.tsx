@@ -4,7 +4,7 @@ import { API } from "../../constants";
 interface listObject {
   _id: string;
   name: string;
-  userName: string,
+  userName: string;
   price: number;
   description: string;
   duration: string;
@@ -34,7 +34,7 @@ interface ItinerariesState {
 const initialState: ItinerariesState = {
   list: [],
   hasMore: false,
-  page: 0,
+  page: 1,
   size: 0,
   total: 0,
   limit: 10,
