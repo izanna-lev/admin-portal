@@ -171,7 +171,9 @@ const AccessManagement = () => {
       DeleteEntity(
         API.DELETE_SPECIALIST,
         { specialistRef: popup.id },
-        API.LIST_SPECIALIST
+        API.LIST_SPECIALIST,
+        {},
+        size === 1 && page > 1 ? page - 1 : page
       )
     );
     cancel();
@@ -187,13 +189,16 @@ const AccessManagement = () => {
         },
         false,
         null,
-        API.LIST_SPECIALIST
+        API.LIST_SPECIALIST,
+        {},
+        page,
+        limit
       )
     );
   };
 
   useEffect(() => {
-    dispatch(Fetch(API.LIST_SPECIALIST, {}, 1, 10));
+    dispatch(Fetch(API.LIST_SPECIALIST, {}, page, limit));
   }, [dispatch]);
 
   return (
