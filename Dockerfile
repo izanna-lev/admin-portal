@@ -1,12 +1,12 @@
 FROM node:16.13.0
 
-ARG MACHINE_NAME=admin-webapp
+ARG MACHINE_NAME=admin-admin
 ENV MACHINE_NAME=${MACHINE_NAME}}
 
 # app directory
-WORKDIR /usr/src/admin-webapp
-RUN mkdir -p /usr/src/admin-webapp/logs
-RUN mkdir -p /usr/src/admin-webapp/downloads
+WORKDIR /usr/src/admin-admin
+RUN mkdir -p /usr/src/admin-admin/logs
+RUN mkdir -p /usr/src/admin-admin/downloads
 
 # install app dependencies
 COPY package.json ./
@@ -16,8 +16,8 @@ RUN apt-get update
 RUN apt-get install nano
 # RUN npm rebuild bcrypt --build-from-source
 
-RUN npm install --legacy-peer-deps
-RUN npm install pm2 -g --legacy-peer-deps
+RUN npm install
+RUN npm install pm2 -g
 
 # bundle app ADD source
 COPY server.js ./

@@ -13,6 +13,13 @@ const path = require("path");
 const APP_DIR = path.resolve(__dirname, "src");
 const BUILD_DIR = path.resolve(__dirname, "build");
 
+const defaultEnv = {
+  BRANCH: "development",
+  SERVER: "http://44.209.25.93:3000/",
+  S3_URL: "https://app-onsite.s3.amazonaws.com/",
+  GOOGLE_API: "AIzaSyByy1LrT-5ZQ642PzXM4m_WCQ-fS6GO-9s",
+};
+
 module.exports = (env) => {
   return {
     mode: "production",
@@ -111,7 +118,7 @@ module.exports = (env) => {
 
     // plugins
     plugins: [
-      new EnvironmentPlugin(env),
+      new EnvironmentPlugin(defaultEnv),
       new ProvidePlugin({ process: "process/browser" }),
       new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
       new CompressionPlugin({

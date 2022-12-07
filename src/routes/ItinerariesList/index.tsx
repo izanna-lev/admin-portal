@@ -140,7 +140,7 @@ const ItineraryPage = () => {
   const { list: userList } = useAppSelector((state) => state.specialistList);
 
   useEffect(() => {
-    dispatch(Fetch(API.ITINERARIES, {}, 1, 10));
+    dispatch(Fetch(API.ITINERARIES, {}, page, limit));
     dispatch(Fetch(API.SPECIALIST_LIST, {}, 1, 1000));
   }, [dispatch]);
 
