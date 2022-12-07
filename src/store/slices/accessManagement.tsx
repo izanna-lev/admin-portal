@@ -2,15 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 import { API } from "../../constants";
 
 interface listObject {
-  _id: string
-  name: string
-  email: string
-  phoneNumber: string
-  image: string
-  blocked: boolean
-  completedItineraries: number
-  averageRatings: string
-  permissions: object
+  _id: string;
+  name: string;
+  email: string;
+  phoneNumber: string;
+  image: string;
+  blocked: boolean;
+  completedItineraries: number;
+  averageRatings: string;
+  permissions: object;
 }
 
 interface SpecialistState {
@@ -25,7 +25,7 @@ interface SpecialistState {
 const initialState: SpecialistState = {
   list: [],
   hasMore: false,
-  page: 0,
+  page: 1,
   size: 0,
   total: 0,
   limit: 10,

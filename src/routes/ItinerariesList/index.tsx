@@ -152,7 +152,18 @@ const ItineraryPage = () => {
   }, [isComponentVisible]);
 
   const assignSpecialist = (data: any) => {
-    dispatch(Create(API.ASSIGN_SPECIALIST, data, false, null, API.ITINERARIES));
+    dispatch(
+      Create(
+        API.ASSIGN_SPECIALIST,
+        data,
+        false,
+        null,
+        API.ITINERARIES,
+        {},
+        page,
+        limit
+      )
+    );
     setUserDropdown("");
   };
 

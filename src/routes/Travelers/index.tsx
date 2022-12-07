@@ -157,7 +157,7 @@ const Travellers = () => {
   };
 
   useEffect(() => {
-    dispatch(Fetch(API.USER_LIST, { text }, 1, 10));
+    dispatch(Fetch(API.USER_LIST, { text }, page, limit));
   }, [dispatch, text]);
 
   return (
