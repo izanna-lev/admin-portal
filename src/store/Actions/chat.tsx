@@ -46,3 +46,33 @@ export const chatList = (): ThunkAction<
     }
   };
 };
+
+export const newChatList = async (dispatch: any) => {
+  try {
+    const Authorization = localStorage.getItem("accessToken") || "";
+    dispatch(setLoader(true));
+    const response = await axios.post(
+      API.CHAT_LIST,
+      {},
+      {
+        headers: {
+          Authorization,
+        },
+      }
+    );
+    dispatch(setLoader(false));
+    if (response.data.code !== 100) throw new Error(response.data.message);
+    console.log(response);
+    dispatch(getChat(response.data));
+  } catch (err: any) {
+    dispatch(setLoader(false));
+    dispatch(
+      setApiMessage({
+        data: {
+          message: err.message,
+          type: "error",
+        },
+      })
+    );
+  }
+};
