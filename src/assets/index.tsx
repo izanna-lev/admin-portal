@@ -5,6 +5,8 @@ import SHOW_PASSWORD from "./ic_show-password.svg";
 import HIDE_PASSWORD from "./ic_hide-password.svg";
 import USER_PLACEHOLDER from "./placeholder.png";
 import UPLOAD_IMAGE from "./ic_upload-placeholder.svg";
+import MESSAGE_IMAGE from "./ic_image-upload.svg";
+import MESSAGE_LINK from "./ic_link.svg";
 import NO_ACTIVE_CHATS from "./noActiveChat.svg";
 
 import CHAT_ADD from "./action/ic_add.svg";
@@ -51,6 +53,9 @@ export const ICON: IconOptions = {
   USER_PLACEHOLDER,
   UPLOAD_IMAGE,
   NO_ACTIVE_CHATS,
+
+  MESSAGE_IMAGE,
+  MESSAGE_LINK,
 
   // APP LOGO & BANNER
   APP_LOGO,

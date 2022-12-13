@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useAppSelector } from "../../store/hooks";
 import { setProfile } from "../../store/slices/profile";
 import { useDispatch } from "react-redux";
+import { newChatList } from "../../store/Actions/chat";
 
 const Account = (props: { sideNav: Function; sideNavView: boolean }) => {
   const { sideNav, sideNavView } = props;
@@ -32,6 +33,10 @@ const Account = (props: { sideNav: Function; sideNavView: boolean }) => {
     if (profile._id && !localStorage.getItem("user"))
       localStorage.setItem("user", JSON.stringify(profile));
   }, [profile, dispatch, navigate]);
+
+  useEffect(() => {
+    newChatList(dispatch);
+  }, [dispatch]);
 
   return (
     <>
