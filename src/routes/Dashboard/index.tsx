@@ -23,7 +23,11 @@ const DashboardPage = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(Fetch(API.DASHBOARD));
+    dispatch(
+      Fetch(API.DASHBOARD, {
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      })
+    );
   }, [dispatch]);
 
   return (
