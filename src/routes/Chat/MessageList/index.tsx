@@ -18,6 +18,7 @@ import { IMAGE, TYPE_OF_MESSAGE, USER_TYPE } from "../../../constants";
 import { UserIcon } from "../../../components/UserIcon";
 import NoChatActive from "../NoChatActive";
 import { ICON } from "../../../assets/index";
+import Socket from "../../../services/socket";
 
 const MessagePage = () => {
   const [messages, newMessage] = useState<any>([]);
@@ -45,11 +46,11 @@ const MessagePage = () => {
       setNoChatActive(false);
       div?.focus();
     }
-  }, [messageData, channelId]);
+  }, [messageData, channelId, div]);
 
   useEffect(() => {
     if (socketData.id && channelId && profileData._id) {
-      socketData.emit("subscribe_channel", {
+      Socket.subscribeChannel({
         channelRef: channelId,
         id: profileData._id,
       });
@@ -83,15 +84,16 @@ const MessagePage = () => {
           type: USER_TYPE.SPECIALIST,
         })
       );
+
       setmessageType(false);
 
-      // socketData.emit("message", {
-      //   channelRef: channelId,
-      //   message: resp.data,
-      //   id: profileData._id,
-      //   messageType: TYPE_OF_MESSAGE.IMAGE,
-      //   type: USER_TYPE.SPECIALIST,
-      // });
+      Socket.sendMessage({
+        channelRef: channelId,
+        message: resp.data,
+        id: profileData._id,
+        messageType: TYPE_OF_MESSAGE.IMAGE,
+        type: USER_TYPE.SPECIALIST,
+      });
 
       e.target.value = null;
     }
@@ -109,13 +111,14 @@ const MessagePage = () => {
 
   const handleKeyPress = (event: any, key: string) => {
     if ((event.key === "Enter" || key === "Enter") && message) {
-      socketData.emit("message", {
+      Socket.sendMessage({
         channelRef: channelId,
         message,
         id: profileData._id,
         messageType: messageLink ? TYPE_OF_MESSAGE.LINK : TYPE_OF_MESSAGE.TEXT,
         type: USER_TYPE.SPECIALIST,
       });
+
       document.getElementsByClassName("socket-input")[0].innerHTML = "";
       if (messageLink) setmessageLink(false);
     }
