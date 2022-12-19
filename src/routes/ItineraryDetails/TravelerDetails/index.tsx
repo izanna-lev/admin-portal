@@ -23,6 +23,7 @@ const DetailsPage = () => {
     plannedTraveller,
     travellerName,
     travellerEmail,
+    endDate,
   } = travellerDetails;
 
   return (
@@ -43,7 +44,8 @@ const DetailsPage = () => {
           <div>
             <div className="key">Planned Date</div>
             <div className="value">
-              {plannedDate ? dayjs(plannedDate).format("DD-MM-YYYY") : "NA"}
+              {plannedDate ? dayjs(plannedDate).format("DD-MM-YYYY") : "NA"} |{" "}
+              {endDate ? dayjs(endDate).format("DD-MM-YYYY") : "NA"}
             </div>
           </div>
 

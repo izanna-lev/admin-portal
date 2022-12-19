@@ -54,18 +54,21 @@ const MessagePage = () => {
         channelRef: channelId,
         id: profileData._id,
       });
+      Socket.chatRead({
+        channelRef: channelId,
+        id: profileData._id,
+      });
+
       dispatch(messageList(channelId));
     }
-  }, [channelId, socketData.id, profileData._id, dispatch, socketData]);
+  }, [channelId, profileData._id, dispatch, socketData]);
 
   socketData.on("message", (data: any) => {
     newMessage([
       {
-        _id: data._id,
         userRef: data.userId,
-        message: data.message,
-        messageType: data.messageType,
         createdOn: new Date(),
+        ...data,
       },
       ...messages,
     ]);
@@ -155,7 +158,7 @@ const MessagePage = () => {
                     {dayjs(itineraryData.fromDate).format("DD-MMM-YYYY")}
                   </div>
                   <div className="chat-itinerary-text">
-                    {itineraryData.location.location}
+                    {itineraryData.location}
                   </div>
                 </div>
                 {show && <LoginSpinner position="relative" />}
@@ -166,7 +169,7 @@ const MessagePage = () => {
           <ul className="message-data" onScroll={onScroll} ref={listInnerRef}>
             {messages.map((element: any, index: number) => {
               return (
-                <div
+                <li
                   className={`message-container ${
                     element.userRef === profileData._id
                       ? ""
@@ -174,7 +177,20 @@ const MessagePage = () => {
                   }`}
                   key={element._id}
                 >
-                  <li
+                  <div
+                    className="message-sender-wrapper"
+                    id={`${element.userType === 3 ? "my-message" : null}`}
+                  >
+                    <span className="message-sender-name">
+                      {element.userType === 1
+                        ? element.traveller.name
+                        : element.userType === 3
+                        ? "You"
+                        : element.specialist.name}
+                    </span>
+                  </div>
+
+                  <div
                     className={`user-message ${
                       element.userRef === profileData._id ? "" : "other-user"
                     } ${
@@ -200,11 +216,11 @@ const MessagePage = () => {
                     ) : (
                       element.message
                     )}
-                  </li>
+                  </div>
                   <div className="message-date">
                     {dayjs(element.createdOn).format("hh:mm A")}
                   </div>
-                </div>
+                </li>
               );
             })}
           </ul>
