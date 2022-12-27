@@ -1,0 +1,38 @@
+@import "../../styles/configs/colors";
+
+.notification-template-conatiner {
+  margin-top: 1.25rem;
+  border: 1px solid;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+
+  .template {
+    &-heading {
+      // font-weight: 500;
+      margin: 0.5rem 0;
+      font-size: 1.25rem;
+    }
+
+    &-wrapper {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      overflow: auto;
+      max-height: 20rem;
+    }
+
+    &-text {
+      background-color: $gray-300;
+      width: fit-content;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+      max-width: 14rem;
+
+      &:hover {
+        background-color: $gray-200;
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ import { setApiMessage } from "../../store/slices/apiMessage";
 import { Create } from "../../api/Create";
 import { ICON } from "../../assets/index";
 import { IoImageOutline } from "react-icons/io5";
+import NotificationTemplate from "../../components/NotificationTemplate";
 
 const User = (
   user: any,
@@ -54,10 +55,18 @@ const User = (
 let selectedUsers: any[] = [];
 
 const Notifications = () => {
-  const [selectedAll, setSelectedAll] = useState(false);
   const [userType, setUserType] = useState(USER_TYPES_NOTIFICATION.TRAVELLER);
-  const dispatch = useAppDispatch();
+  const [selectedAll, setSelectedAll] = useState(false);
+  const [message, setmessage] = useState("");
+
+  let { templates } = useAppSelector((state) => state.notificationTemplates);
   let { data } = useAppSelector((state) => state.notificationUserList);
+  let apiMessage = useAppSelector((state) => state.apiMessage);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(Fetch(API.LIST_TEMPLATE));
+  }, [dispatch]);
 
   useEffect(() => {
     setSelectedAll(false);
@@ -98,6 +107,7 @@ const Notifications = () => {
     checkboxes.forEach((checkbox: any) => {
       checkbox.checked = false;
     });
+    selectedUsers = [];
   };
 
   const selectOne = (id: any) => {
@@ -109,35 +119,22 @@ const Notifications = () => {
     }
   };
 
-  const sendNotifications = () => {
+  const sendNotifications = (e: any) => {
+    e.preventDefault();
     if (!selectedUsers.length && !selectedAll) {
-      dispatch(
+      return dispatch(
         setApiMessage({
           type: "error",
           message: "Please select some users to send notifications to!",
         })
       );
-      return;
-    }
-    if (
-      !(document.getElementById("notificationText") as HTMLInputElement).value
-    ) {
-      dispatch(
-        setApiMessage({
-          type: "error",
-          message: "Notification message cannot be empty!",
-        })
-      );
-      return;
     }
 
     dispatch(
       Create(
         API.BROADCAST,
         {
-          message: (
-            document.getElementById("notificationText") as HTMLInputElement
-          ).value,
+          message,
           selectedAll,
           userType,
           userIds: selectedAll ? [] : selectedUsers,
@@ -147,6 +144,14 @@ const Notifications = () => {
     );
   };
 
+  useEffect(() => {
+    const { type } = apiMessage;
+    if (type === "success") {
+      setmessage("");
+      unselectAll();
+    }
+  }, [apiMessage]);
+
   return (
     <section className="content-container">
       <section className="content">
@@ -154,26 +159,38 @@ const Notifications = () => {
           <div className="content-heading">Notifications</div>
         </section>
         <section className="content-bottom notifications-main-div">
-          <div className="notifications-message-div">
-            <div className="notifications-message-heading"></div>
+          <form
+            className="notifications-message-div"
+            onSubmit={sendNotifications}
+          >
+            <label
+              className="notifications-message-heading"
+              htmlFor="notificationText"
+            ></label>
             <textarea
               id="notificationText"
               className="notifications-textarea"
               autoFocus
-              placeholder="Type your message here."
+              placeholder="Type your message here or select one below."
+              required
+              value={message}
+              onChange={(e) => setmessage(e.target.value)}
             />
             <div className="notifications-message-heading">
               Note: Select users from right pane who you want to send the
               notification.
             </div>
             <button
-              onClick={sendNotifications}
               className="notifications-send-btn"
               title="Send notification"
             >
               Send
             </button>
-          </div>
+            <NotificationTemplate
+              setmessage={setmessage}
+              templates={templates}
+            />
+          </form>
           <div className="container-right">
             <div>Select Users</div>
             <div className="user-selection-main-div">

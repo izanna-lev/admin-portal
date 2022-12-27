@@ -18,3 +18,4 @@ export { default as TravellerDetails } from "./travellerDetails";
 export { default as AppDetails } from "./appDetails";
 export { default as FaqList } from "./faqs";
 export { default as socket } from "./socket";
+export { default as notificationTemplates } from "./notificationTemplates";

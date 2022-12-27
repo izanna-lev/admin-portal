@@ -8,11 +8,11 @@ interface listObject {
   image: string;
 }
 
-interface NotificationUserList {
+interface NotificationUserListType {
   data: listObject[];
 }
 
-const initialState: NotificationUserList = {
+const initialState: NotificationUserListType = {
   data: [],
 };
 

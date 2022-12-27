@@ -62,7 +62,7 @@ export const newChatList = async (dispatch: any) => {
     );
     dispatch(setLoader(false));
     if (response.data.code !== 100) throw new Error(response.data.message);
-    console.log(response);
+    // console.log(response);
     dispatch(getChat(response.data));
   } catch (err: any) {
     dispatch(setLoader(false));

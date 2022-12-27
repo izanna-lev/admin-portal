@@ -129,6 +129,7 @@ export const API = {
   //NOTIFICATIONS
   LIST_USERS: `${API_URL}notification/userSelectList`,
   BROADCAST: `${API_URL}notification/broadcast`,
+  LIST_TEMPLATE: `${API_URL}notification/template`,
 
   // APP DETAILS
   APP_DETAILS: `${API_URL}appdetail/list`,
