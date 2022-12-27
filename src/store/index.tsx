@@ -18,6 +18,7 @@ export const store = configureStore({
     login: reducers.login,
     messageList: reducers.messageList,
     navigation: reducers.navigation,
+    notificationTemplates: reducers.notificationTemplates,
     notificationUserList: reducers.NotificationUserList,
     profile: reducers.profile,
     specialistList: reducers.specialistsList,
