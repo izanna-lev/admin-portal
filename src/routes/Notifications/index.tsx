@@ -149,6 +149,7 @@ const Notifications = () => {
     if (type === "success") {
       setmessage("");
       unselectAll();
+      setSelectedAll(false);
     }
   }, [apiMessage]);
 
