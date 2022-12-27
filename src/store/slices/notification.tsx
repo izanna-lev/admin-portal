@@ -22,7 +22,7 @@ const NotificationUserList = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder.addCase(API.LIST_USERS, (state, action: any) => {
-      Object.assign(state.data, Object.values(action.payload));
+      state.data = action.payload;
     });
   },
 });
