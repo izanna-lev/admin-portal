@@ -4,13 +4,14 @@
   margin-top: 1.25rem;
   border: 1px solid;
   border-radius: 0.5rem;
-  padding: 0.5rem;
+  height: 45%;
 
   .template {
     &-heading {
       // font-weight: 500;
       margin: 0.5rem 0;
       font-size: 1.25rem;
+      padding: 0.5rem;
     }
 
     &-wrapper {
@@ -19,7 +20,8 @@
       flex-wrap: wrap;
       gap: 0.5rem;
       overflow: auto;
-      max-height: 20rem;
+      padding: 0.5rem;
+      max-height: calc(100% - 5rem);
     }
 
     &-text {
