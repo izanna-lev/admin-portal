@@ -5,6 +5,7 @@
   border: 1px solid;
   border-radius: 0.5rem;
   height: 45%;
+  // max-height: fit-content;
 
   .template {
     &-heading {
@@ -30,7 +31,8 @@
       padding: 0.25rem 0.5rem;
       border-radius: 0.5rem;
       cursor: pointer;
-      max-width: 14rem;
+      width: 20rem;
+      max-width: 49%;
 
       &:hover {
         background-color: $gray-200;
