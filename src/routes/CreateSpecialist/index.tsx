@@ -125,13 +125,15 @@ const CreateSpecialist = () => {
             inputProps={{
               name: "Phone Number",
               required: true,
-              autoFocus: true,
             }}
             country={"us"}
             value={phoneCode + phone}
-            onKeyDown={(val: any) => {
-              setPhoneCode(val.target.value.split(" ")[0]);
-              setPhone(val.target.value.split(" ").slice(1).join(""));
+            onChange={(value, country, e) => {
+              // console.log(value, country, e);
+              const newVal = e.target.value.split(" ");
+
+              setPhoneCode(newVal[0]);
+              setPhone(newVal.slice(1).join(""));
             }}
             specialLabel="Phone Number"
             inputClass="field-value"

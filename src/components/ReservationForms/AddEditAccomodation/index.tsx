@@ -94,9 +94,9 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
       payload.checkOutDateTime
     );
 
-    if (payload.contactNumber.length < 10) {
-      return alert("Please enter a valid phone number!");
-    }
+    // if (payload.contactNumber.length < 10) {
+    //   return alert("Please enter a valid phone number!");
+    // }
 
     if (!dateComparison) {
       return alert("Please select proper date range!");
@@ -219,11 +219,13 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
                 inputProps={{
                   name: "contact number",
                   required: true,
-                  autoFocus: true,
                 }}
-                onKeyDown={(val: any) => {
-                  setPhoneCode(val.target.value.split(" ")[0]);
-                  setPhone(val.target.value.split(" ").slice(1).join(""));
+                onChange={(value, country, e) => {
+                  // console.log(value, country, e);
+                  const newVal = e.target.value.split(" ");
+
+                  setPhoneCode(newVal[0]);
+                  setPhone(newVal.slice(1).join(""));
                 }}
                 country="us"
                 value={phoneCode + phone}
