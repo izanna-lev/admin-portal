@@ -79,7 +79,6 @@ const UserTicket = (
         </div>
         <InputForm
           inputFields={{
-            placeholder: "Steven Johns",
             name: `Company Name`,
             id: "drivername",
             maxlength: 50,
@@ -91,7 +90,6 @@ const UserTicket = (
       <div className={styles["form-left-details"]}>
         <InputForm
           inputFields={{
-            placeholder: "3",
             name: `No. of Travelers`,
             id: "usersTravelling",
             maxlength: 4,
@@ -228,7 +226,6 @@ const NewTransportationForm = (props: props) => {
             <div className={styles["form-left-details"]}>
               <InputForm
                 inputFields={{
-                  placeholder: "1",
                   ref: dayRef,
                   name: "Day",
                   id: "day",
@@ -238,9 +235,9 @@ const NewTransportationForm = (props: props) => {
               />
               <InputForm
                 inputFields={{
-                  placeholder: "Canada",
                   ref: DepartLocation.ref,
                   name: "Pickup Location",
+                  placeholder: "",
                   id: "pickupLocation",
                   maxlength: 70,
                   type: "text",
@@ -249,7 +246,6 @@ const NewTransportationForm = (props: props) => {
 
               <InputForm
                 inputFields={{
-                  placeholder: "",
                   ref: pickupDateRef,
                   name: "Pickup Date",
                   id: "date",
@@ -259,7 +255,6 @@ const NewTransportationForm = (props: props) => {
               />
               <InputForm
                 inputFields={{
-                  placeholder: "",
                   ref: pickupTimeRef,
                   name: "Pickup Time",
                   id: "time",
@@ -271,9 +266,9 @@ const NewTransportationForm = (props: props) => {
             <div className={styles["form-left-details"]}>
               <InputForm
                 inputFields={{
-                  placeholder: "Phillippines",
                   ref: ArrivalLocation.ref,
                   name: "Dropoff Location",
+                  placeholder: "",
                   id: "dropoffLocation",
                   maxlength: 70,
                   type: "text",
@@ -282,7 +277,6 @@ const NewTransportationForm = (props: props) => {
 
               <TextArea
                 inputFields={{
-                  placeholder: "Lorem Ipsum",
                   ref: specialistNoteRef,
                   name: "Specialist Note",
                   id: "specialist note",
