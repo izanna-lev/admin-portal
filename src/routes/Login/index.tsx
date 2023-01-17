@@ -46,7 +46,7 @@ const Login = () => {
       </div>
 
       <div className="loginPageRight">
-        <div className="heading">
+        <div className="page-heading">
           Welcome to <strong className="strong-heading">Onsite Travel</strong>
         </div>
 
