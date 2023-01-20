@@ -142,11 +142,11 @@ const EditSpecialist = () => {
             country={"us"}
             value={phoneCode + phone}
             onChange={(value, country, e) => {
-              // console.log(value, country, e);
-              const newVal = e.target.value.split(" ");
-
-              setPhoneCode(newVal[0]);
-              setPhone(newVal.slice(1).join(""));
+              if (e.target.localName === "input") {
+                const newVal = e.target.value.split(" ");
+                setPhoneCode(newVal[0]);
+                setPhone(newVal.slice(1).join(""));
+              }
             }}
             specialLabel="Phone Number"
             inputClass="field-value"
