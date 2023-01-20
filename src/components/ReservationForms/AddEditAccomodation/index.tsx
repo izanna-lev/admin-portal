@@ -220,11 +220,11 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
                   required: true,
                 }}
                 onChange={(value, country, e) => {
-                  // console.log(value, country, e);
-                  const newVal = e.target.value.split(" ");
-
-                  setPhoneCode(newVal[0]);
-                  setPhone(newVal.slice(1).join(""));
+                  if (e.target.localName === "input") {
+                    const newVal = e.target.value.split(" ");
+                    setPhoneCode(newVal[0]);
+                    setPhone(newVal.slice(1).join(""));
+                  }
                 }}
                 country="us"
                 value={phoneCode + phone}
