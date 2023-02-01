@@ -57,7 +57,7 @@ const AvailableItinerary = ({ navigate, data = {} }: any) => {
                 data.toDate
               )}`
             )}
-            {detail("No. Of Rooms", data.guests)}
+            {detail("No. Of People", data.guests)}
           </div>
           <div className="details-row">
             {detail(
