@@ -94,7 +94,7 @@ const GooglePlacesInput = (props: GooglePlacesInputProps) => {
       <InputForm
         inputFields={{
           name: name || "",
-          id: "google-place",
+          id: `google-place-${name?.toLowerCase().split(" ").join("-")}`,
           type: "text",
           placeholder: "",
           onChange: (value: any) => {
