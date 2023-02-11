@@ -1,10 +1,11 @@
 @import "../../../styles/configs/colors";
 
+// Styles for Google Places Input Component
+
 .predictions-wrapper {
   position: relative;
 
   .all-places-predictions {
-    // border-radius: 0.6rem;
     background-color: $gray-400;
     z-index: 2;
     position: absolute;
@@ -12,7 +13,30 @@
     margin-top: 0.25rem;
 
     .prediction-place {
-      // border-radius: 0.6rem;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      margin-bottom: 0.25rem;
+
+      &:hover {
+        background-color: $gray-200;
+      }
+    }
+  }
+}
+
+// Styles for Activity Places Input Component
+
+.activity-location-wrapper {
+  z-index: 2;
+  position: relative;
+
+  .all-places-predictions {
+    position: absolute;
+    background-color: $gray-400;
+    width: 20rem;
+    margin-top: 0.25rem;
+
+    .prediction-place {
       padding: 0.5rem 1rem;
       cursor: pointer;
       margin-bottom: 0.25rem;

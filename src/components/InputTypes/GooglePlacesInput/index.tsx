@@ -8,9 +8,10 @@
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { GOOGLE_API } from "../../../constants";
 import { truncateString } from "../../../util";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import InputForm from "../InputForm";
+import ReactDOM from "react-dom";
 
 interface GooglePlacesPredictionsProps {
   item: any;
@@ -41,7 +42,7 @@ interface GooglePlacesInputProps {
 // Google Places Input Component
 const GooglePlacesInput = (props: GooglePlacesInputProps) => {
   const ref = useRef<HTMLInputElement | null>(null);
-  const [placeId, setPlaceId] = useState("");
+  const [placeSelected, setPlaceSelected] = useState(false);
   const { name, setLocation, defaultValue } = props;
 
   const {
@@ -56,7 +57,7 @@ const GooglePlacesInput = (props: GooglePlacesInputProps) => {
 
   const getPlaceDetails = (place: any) => {
     // Set place_id to hide predictions.
-    setPlaceId(place.place_id);
+    setPlaceSelected(true);
 
     // Setting the current input value to selected place description
     if (ref.current) ref.current.value = place.description;
@@ -98,7 +99,7 @@ const GooglePlacesInput = (props: GooglePlacesInputProps) => {
           type: "text",
           placeholder: "",
           onChange: (value: any) => {
-            setPlaceId("");
+            setPlaceSelected(false);
             getPlacePredictions({ input: value });
           },
           ref,
@@ -108,7 +109,7 @@ const GooglePlacesInput = (props: GooglePlacesInputProps) => {
       <div className={styles["predictions-wrapper"]}>
         <div className={styles["all-places-predictions"]}>
           {/* Show or Hide Predictions */}
-          {!placeId && !isPlacePredictionsLoading
+          {!placeSelected && !isPlacePredictionsLoading
             ? placePredictions.map((item, index) => (
                 // Return Every Prediction
                 <GooglePlacesPredictions
@@ -125,3 +126,118 @@ const GooglePlacesInput = (props: GooglePlacesInputProps) => {
 };
 
 export default GooglePlacesInput;
+
+// Google Places Input Component for Add/Edit Activity page
+export const ActivityPlacesInput = (props: GooglePlacesInputProps) => {
+  const placeInputRef = useRef<HTMLInputElement | null>(null);
+
+  const [inputPosition, setInputPosition] = useState<any>({ top: 0, left: 0 });
+  const [predictionsFocus, setPredictionsFocus] = useState(false);
+  const [placeSelected, setPlaceSelected] = useState(false);
+  const [inputFocus, setInputFocus] = useState(false);
+
+  const { setLocation, defaultValue } = props;
+
+  const {
+    placesService,
+    placePredictions,
+    getPlacePredictions,
+    isPlacePredictionsLoading,
+  } = usePlacesService({
+    apiKey: GOOGLE_API,
+    debounce: 500,
+  });
+
+  const getPlaceDetails = (place: any) => {
+    // Set place_id to hide predictions.
+    setPlaceSelected(true);
+
+    // Setting the current input value to selected place description
+    if (placeInputRef.current) placeInputRef.current.value = place.description;
+
+    if (placesService && place.place_id)
+      // Fetch place details for the selected place.
+
+      placesService.getDetails(
+        { placeId: place.place_id },
+        (placeDetails: any) => {
+          if (placeDetails) {
+            // Destructure "placedetails" object for "latitude" and "longitude" methods
+            const {
+              geometry: {
+                location: { lat, lng },
+              },
+            } = placeDetails;
+
+            // Extract place details in desired format
+            const newLocationObj = {
+              location: place.description,
+              type: "Point",
+              coordinates: [Math.abs(lng()), Math.abs(lat())],
+            };
+
+            // Set the object to the passed setState from other components
+            setLocation(newLocationObj);
+          }
+        }
+      );
+  };
+
+  const showPredictions = () =>
+    (inputFocus || predictionsFocus) &&
+    !placeSelected &&
+    !isPlacePredictionsLoading;
+
+  return (
+    <div>
+      <input
+        required
+        type="text"
+        placeholder=""
+        id="google-place"
+        ref={placeInputRef}
+        name="activity-location"
+        defaultValue={defaultValue || ""}
+        onBlur={() => setInputFocus(false)}
+        className="day-blank edit-background"
+        onChange={(e: any) => {
+          placeSelected && setPlaceSelected(false);
+          getPlacePredictions({ input: e.target.value });
+        }}
+        onFocus={() => {
+          setInputFocus(true);
+          setPredictionsFocus(false);
+          if (placeInputRef.current)
+            setInputPosition(placeInputRef.current.getBoundingClientRect());
+        }}
+      />
+
+      {/* Show or Hide Predictions */}
+      {showPredictions()
+        ? ReactDOM.createPortal(
+            <div
+              className={styles["activity-location-wrapper"]}
+              style={{
+                top: `${inputPosition.y + 80}px`,
+                left: `${inputPosition.x}px`,
+              }}
+              onMouseEnter={() => setPredictionsFocus(true)}
+              onMouseLeave={() => setPredictionsFocus(false)}
+            >
+              <div className={styles["all-places-predictions"]}>
+                {placePredictions.map((item, index) => (
+                  // Return Every Prediction
+                  <GooglePlacesPredictions
+                    key={index}
+                    item={item}
+                    getPlaceDetails={getPlaceDetails}
+                  />
+                ))}
+              </div>
+            </div>,
+            document.getElementById("overlay-root") as HTMLDivElement
+          )
+        : null}
+    </div>
+  );
+};
