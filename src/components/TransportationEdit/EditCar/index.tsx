@@ -197,7 +197,6 @@ const EditCar = (props: props) => {
   return (
     <div className={styles["add-itinerary-data-form"]}>
       <div className={styles["form-background"]}>
-        \
         <div className="form-cross">
           <IoCloseOutline
             className={styles["cross"]}

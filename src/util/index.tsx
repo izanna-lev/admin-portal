@@ -101,7 +101,6 @@ export const editListItem = (
 export const getRefValue = (ref: any) => ref.current.value;
 
 // Truncate any string
-
 export const truncateString = (
   str: string,
   length: number,
