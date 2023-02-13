@@ -8,10 +8,11 @@
 import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
 import { GOOGLE_API } from "../../../constants";
 import { truncateString } from "../../../util";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import styles from "./index.module.scss";
 import InputForm from "../InputForm";
 import ReactDOM from "react-dom";
+import { ICON } from "../../../assets/index";
 
 interface GooglePlacesPredictionsProps {
   item: any;
@@ -28,7 +29,14 @@ const GooglePlacesPredictions = (props: GooglePlacesPredictionsProps) => {
       onClick={() => getPlaceDetails(item)}
       className={styles["prediction-place"]}
     >
-      {truncateString(item.description, 65, "...")}
+      <img
+        src={ICON.LOCATION_PIN}
+        alt="Location : "
+        className={styles["location-pin"]}
+      />
+      <span className={styles["location-name"]}>
+        {truncateString(item.description, 65, "...")}
+      </span>
     </div>
   );
 };

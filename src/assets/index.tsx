@@ -8,6 +8,7 @@ import UPLOAD_IMAGE from "./ic_upload-placeholder.svg";
 import MESSAGE_IMAGE from "./ic_image-upload.svg";
 import MESSAGE_LINK from "./ic_link.svg";
 import NO_ACTIVE_CHATS from "./noActiveChat.svg";
+import LOCATION_PIN from "./ic_location.svg";
 
 import CHAT_ADD from "./action/ic_add.svg";
 import CHAT_SEND from "./action/ic_send.svg";
@@ -36,6 +37,7 @@ import PROFILE_INACTIVE from "./navigation/ic_profile_inactive.svg";
 import SETTINGS_INACTIVE from "./navigation/ic_settings-inactive.svg";
 import TRAVELLERS_INACTIVE from "./navigation/ic_travellers-inactive.svg";
 import SETTINGS from "./navigation/ic-settings-inactive.svg";
+
 import DUMMY from "./status/dummy.svg";
 import MENU from "./action/ic_menu.svg";
 
@@ -53,6 +55,7 @@ export const ICON: IconOptions = {
   USER_PLACEHOLDER,
   UPLOAD_IMAGE,
   NO_ACTIVE_CHATS,
+  LOCATION_PIN,
 
   MESSAGE_IMAGE,
   MESSAGE_LINK,
