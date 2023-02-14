@@ -13,7 +13,6 @@ import { Create } from "../../../api/Create";
 import { OldTicket } from "../OldTicket";
 import styles from "./index.module.scss";
 import { Modal } from "../../Portal";
-import dayjs from "dayjs";
 
 interface props {
   handleEditPopup: React.Dispatch<React.SetStateAction<any>>;
@@ -134,12 +133,12 @@ const EditFerry = (props: props) => {
       trainClass: getInputValue(trainClassRef),
       specialistNote: getInputValue(specialistNoteRef),
       userDetails: [...newTicketsData, ...ticketsEdited],
-      departDateTime: new Date(
-        `${getInputValue(arrivalDateRef)}T${getInputValue(departTimeRef)}`
-      ).toISOString(),
-      arrivalDateTime: new Date(
-        `${getInputValue(arrivalDateRef)}T${getInputValue(arrivalTimeRef)}`
-      ).toISOString(),
+      departDateTime: `${getInputValue(arrivalDateRef)}T${getInputValue(
+        departTimeRef
+      )}:00.000Z`,
+      arrivalDateTime: `${getInputValue(arrivalDateRef)}T${getInputValue(
+        arrivalTimeRef
+      )}:00.000Z`,
       deleteUserDetails,
       transportationRef: data._id,
       transportationType: TRANSPORTATION_TYPE.FERRY,
@@ -207,9 +206,7 @@ const EditFerry = (props: props) => {
               <InputForm
                 inputFields={{
                   default: data.arrivalDateTime
-                    ? dayjs(new Date(data.arrivalDateTime).toISOString())
-                        .format()
-                        .slice(0, 10)
+                    ? data.arrivalDateTime.slice(0, 10)
                     : "",
                   ref: arrivalDateRef,
                   name: "Arrival Date",
@@ -223,9 +220,7 @@ const EditFerry = (props: props) => {
               <InputForm
                 inputFields={{
                   default: data.arrivalDateTime
-                    ? dayjs(new Date(data.arrivalDateTime).toISOString())
-                        .format()
-                        .slice(11, 16)
+                    ? data.arrivalDateTime.slice(11, 16)
                     : "",
                   ref: arrivalTimeRef,
                   name: "Arrival Time",
@@ -244,9 +239,7 @@ const EditFerry = (props: props) => {
               <InputForm
                 inputFields={{
                   default: data.departDateTime
-                    ? dayjs(new Date(data.departDateTime).toISOString())
-                        .format()
-                        .slice(11, 16)
+                    ? data.departDateTime.slice(11, 16)
                     : "",
                   ref: departTimeRef,
                   name: "Depart Time",

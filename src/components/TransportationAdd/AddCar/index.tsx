@@ -147,9 +147,9 @@ const NewTransportationForm = (props: props) => {
 
     const data = {
       day: getInputValue(dayRef),
-      departDateTime: new Date(
-        `${getInputValue(pickupDateRef)}T${getInputValue(pickupTimeRef)}`
-      ).toISOString(),
+      departDateTime: `${getInputValue(pickupDateRef)}T${getInputValue(
+        pickupTimeRef
+      )}:00.000Z`,
       depart,
       arrival,
       specialistNote: getInputValue(specialistNoteRef),

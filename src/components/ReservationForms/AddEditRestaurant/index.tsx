@@ -1,5 +1,6 @@
-import { API, GOOGLE_API, IMAGE, RESERVATION_TYPE } from "../../../constants";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
+import GooglePlacesInput from "../../InputTypes/GooglePlacesInput";
+import { API, IMAGE, RESERVATION_TYPE } from "../../../constants";
 import { getRefValue, setBackground } from "../../../util";
 import InputForm from "../../InputTypes/InputForm/index";
 import TextArea from "../../InputTypes/TextArea/index";
@@ -9,8 +10,6 @@ import { Create } from "../../../api/Create";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/plain.css";
 import styles from "./index.module.scss";
-import dayjs from "dayjs";
-import GooglePlacesInput from "../../InputTypes/GooglePlacesInput";
 
 const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
   const [selectedImage, setSelectedImage] = useState();
@@ -57,9 +56,9 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
       day: getRefValue(dayRef),
       name: getRefValue(nameRef),
       description: getRefValue(specialistNoteRef),
-      reservationDateTime: new Date(
-        `${getRefValue(reservationDateRef)}T${getRefValue(reservationTimeRef)}`
-      ).toISOString(),
+      reservationDateTime: `${getRefValue(reservationDateRef)}T${getRefValue(
+        reservationTimeRef
+      )}:00.000Z`,
     };
 
     // if (payload.contactNumber.length < 10) {
@@ -197,11 +196,7 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
             <div className={styles["form-left-details"]}>
               <InputForm
                 inputFields={{
-                  default: data.dateTime
-                    ? dayjs(new Date(data.dateTime).toISOString())
-                        .format()
-                        .slice(0, 10)
-                    : "",
+                  default: data.dateTime ? data.dateTime.slice(0, 10) : "",
                   ref: reservationDateRef,
                   name: "Date",
                   id: "date",
@@ -211,11 +206,7 @@ const AddAccomodation = ({ handleAddPopup, data = {} }: any) => {
               />
               <InputForm
                 inputFields={{
-                  default: data.dateTime
-                    ? dayjs(new Date(data.dateTime).toISOString())
-                        .format()
-                        .slice(11, 16)
-                    : "",
+                  default: data.dateTime ? data.dateTime.slice(11, 16) : "",
                   ref: reservationTimeRef,
                   name: "Time",
                   id: "time",
