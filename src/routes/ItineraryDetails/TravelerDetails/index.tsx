@@ -1,13 +1,7 @@
-/**
- * @desc this is the login component of the application.
- * @author Jagmohan Singh
- */
-
-import { useAppSelector } from "../../../store/hooks";
-import { PLANNED_TRAVELLER } from "../../../constants";
-import dayjs from "dayjs";
-import "./index.scss";
 import { UserIcon } from "../../../components/UserIcon";
+import { PLANNED_TRAVELLER } from "../../../constants";
+import { useAppSelector } from "../../../store/hooks";
+import "./index.scss";
 
 const DetailsPage = () => {
   const { itineraryDetails, travellerDetails } = useAppSelector(
@@ -43,10 +37,7 @@ const DetailsPage = () => {
 
           <div>
             <div className="key">Planned Date</div>
-            <div className="value">
-              {plannedDate ? dayjs(plannedDate).format("DD-MM-YYYY") : "NA"} |{" "}
-              {endDate ? dayjs(endDate).format("DD-MM-YYYY") : "NA"}
-            </div>
+            <div className="value">{`${plannedDate} | ${endDate}`}</div>
           </div>
 
           <div>

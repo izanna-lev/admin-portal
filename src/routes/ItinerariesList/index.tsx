@@ -1,19 +1,14 @@
-/**
- * @desc this is the login component of the application.
- * @author Jagmohan Singh
- */
-
 import { ITINERARY_STATUS, API, PLANNED_TRAVELLER } from "../../constants";
 import useComponentVisible from "../../components/outsideClickHandler";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { Pagination } from "../../components/Pagination";
-import { getFormattedDate, SerialNum } from "../../util";
 import { setFormRef } from "../../store/slices/appData";
 import { useNavigate } from "react-router-dom";
 import { BsChevronDown } from "react-icons/bs";
 import { useEffect, useState } from "react";
 import { Create } from "../../api/Create";
 import { Fetch } from "../../api/Fetch";
+import { SerialNum } from "../../util";
 import "./index.scss";
 
 const TableHead = () => (
@@ -71,7 +66,7 @@ const TableRow = (
           "NA"
         )}
       </td>
-      <td>{getFormattedDate(item.plannedDate)}</td>
+      <td>{item.plannedDate}</td>
       <td>{PLANNED_TRAVELLER[item.plannedTraveller - 1 || 0].name}</td>
       <td>{item.travellers || 0}</td>
       <td className="assign-specialist">

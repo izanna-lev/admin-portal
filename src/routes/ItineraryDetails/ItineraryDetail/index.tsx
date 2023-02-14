@@ -3,12 +3,11 @@
  * @author Jagmohan Singh
  */
 
+import { ITINERARY_TYPE, PAYMENT_STATUS } from "../../../constants";
 import { useAppSelector } from "../../../store/hooks";
 import { IoImageOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import "./index.scss";
-import { getFormattedDate } from "../../../util";
-import { ITINERARY_TYPE, PAYMENT_STATUS } from "../../../constants";
 
 const NoItinerary = ({ navigate }: any) => (
   <section className="itinerary-details">
@@ -51,12 +50,7 @@ const AvailableItinerary = ({ navigate, data = {} }: any) => {
             {detail("Title", data.name)}
             {detail("Price", `$${data.price}`)}
             {detail("No. of Days", data.duration)}
-            {detail(
-              "Date of Trip",
-              `${getFormattedDate(data.fromDate)} | ${getFormattedDate(
-                data.toDate
-              )}`
-            )}
+            {detail("Date of Trip", `${data.fromDate} | ${data.toDate}`)}
             {detail("No. of People", data.guests)}
           </div>
           <div className="details-row">
