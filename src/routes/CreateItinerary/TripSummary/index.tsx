@@ -4,16 +4,15 @@
  */
 
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
-import { getFormattedDate, getFormattedTime } from "../../../util";
 import SubmitPopup from "../../../components/SubmitItnineraryPopup";
 import { Pagination } from "../../../components/Pagination";
 import { useCallback, useEffect, useState } from "react";
+import { Modal } from "../../../components/Portal";
 import { API, IMAGE } from "../../../constants";
 import { useNavigate } from "react-router-dom";
 import { Create } from "../../../api/Create";
 import { Fetch } from "../../../api/Fetch";
 import "./index.scss";
-import { Modal } from "../../../components/Portal";
 
 const TripSummary = ({ status }: { status?: number }) => {
   const [dayFilter, setdayFilter] = useState("1");
