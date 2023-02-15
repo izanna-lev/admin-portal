@@ -192,29 +192,21 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
 
           <InputForm
             inputFields={{
-              default: data.fromDate
-                ? dayjs(new Date(data.fromDate).toISOString())
-                    .format()
-                    .slice(0, 10)
+              default: data.fromDateFormat
+                ? data.fromDateFormat.slice(0, 10)
                 : "",
               ref: fromDateRef,
               name: "From Date",
               id: "from_date",
-              maxlength: 350,
               type: "date",
             }}
           />
           <InputForm
             inputFields={{
-              default: data.toDate
-                ? dayjs(new Date(data.toDate).toISOString())
-                    .format()
-                    .slice(0, 10)
-                : "",
+              default: data.toDateFormat ? data.toDateFormat.slice(0, 10) : "",
               ref: toDateRef,
               name: "To Date",
               id: "to_date",
-              maxlength: 350,
               type: "date",
             }}
           />
