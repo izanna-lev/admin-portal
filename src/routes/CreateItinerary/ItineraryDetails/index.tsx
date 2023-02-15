@@ -63,7 +63,7 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
 
     payload = {
       itineraryEmail: getRefValue(emailRef),
-      fromDate: new Date(getRefValue(fromDateRef)).toISOString(),
+      fromDate: `${getRefValue(fromDateRef)}T00:00:00.000Z`,
       isDrivingLicense: getRefChecked(drivingRef) === "on",
       isPassport: getRefChecked(passportRef) === "on",
       itineraryType: getRefValue(itineraryTypeRef),
@@ -72,7 +72,7 @@ const AddItineraryPage = ({ handleEditPopup, data = {} }: any) => {
       rooms: getRefValue(roomsRef),
       specialistNote: getRefValue(noteRef),
       specificRestrictionsAndRegulations: getRefValue(regulationsRef),
-      toDate: new Date(getRefValue(toDateRef)).toISOString(),
+      toDate: `${getRefValue(toDateRef)}T00:00:00.000Z`,
     };
 
     if (location.type) {
