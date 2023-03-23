@@ -1,6 +1,6 @@
 import APP_LOGO from "./logo.png";
-import APP_LOGO_BACKGROUND from "./ic_login-background.png";
-import SIGNIN from "./signin.png";
+import APP_LOGO_BACKGROUND from "./ic_login-background.webp";
+
 import SHOW_PASSWORD from "./ic_show-password.svg";
 import HIDE_PASSWORD from "./ic_hide-password.svg";
 import USER_PLACEHOLDER from "./placeholder.png";
@@ -48,7 +48,6 @@ type IconOptions = {
 // All Icon
 
 export const ICON: IconOptions = {
-  SIGNIN,
   LOGOUT,
   SHOW_PASSWORD,
   HIDE_PASSWORD,
