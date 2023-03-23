@@ -3,7 +3,7 @@
  * @author Shivender
  **/
 
-const CompressionPlugin = require("compression-webpack-plugin");
+// const CompressionPlugin = require("compression-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
@@ -13,12 +13,12 @@ const path = require("path");
 const APP_DIR = path.resolve(__dirname, "src");
 const BUILD_DIR = path.resolve(__dirname, "build");
 
-// const defaultEnv = {
-//   BRANCH: "development",
-//   S3_URL: "https://app-onsite.s3.amazonaws.com/",
-//   SERVER: "https://developmentapi.onsiteplanning.com/",
-//   GOOGLE_API: "AIzaSyAOO-vhn-vejr178fuNVujksicv8nsTGfQ",
-// };
+const defaultEnv = {
+  BRANCH: "production",
+  S3_URL: "https://app-onsite.s3.amazonaws.com/",
+  SERVER: "https://api.onsiteplanning.com/",
+  GOOGLE_API: "AIzaSyAOO-vhn-vejr178fuNVujksicv8nsTGfQ",
+};
 
 module.exports = (env) => {
   return {
@@ -55,7 +55,7 @@ module.exports = (env) => {
       ],
     },
 
-    // devtool: "source-map",
+    devtool: "cheap-module-source-map",
 
     // loaders
     module: {
@@ -93,7 +93,7 @@ module.exports = (env) => {
         },
 
         {
-          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          test: /\.(png|svg|jpg|jpeg|gif|webp)$/i,
           type: "asset/resource",
         },
 
@@ -121,10 +121,10 @@ module.exports = (env) => {
       new EnvironmentPlugin(env),
       new ProvidePlugin({ process: "process/browser" }),
       new MiniCssExtractPlugin({ filename: "[name].[contenthash].css" }),
-      new CompressionPlugin({
-        algorithm: "gzip",
-        test: /.js$|.css$|.map$/,
-      }),
+      // new CompressionPlugin({
+      //   algorithm: "gzip",
+      //   test: /.js$|.css$|.map$/,
+      // }),
       new HtmlWebpackPlugin({
         template: "./public/index.html",
         favicon: "./public/favicon.png",
